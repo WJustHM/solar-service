@@ -1,0 +1,1132 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ALARMDATATYPE_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int ALARMDATATYPE_FIELD_NUMBER = 20;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData
+BATCH_NUMBER_PROPERTY	./src/main/java/common/kafka/KafkaConfig.java	/^    public static final String BATCH_NUMBER_PROPERTY = "batch.num.messages";$/;"	f	interface:KafkaConfig
+BELIEVE_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int BELIEVE_FIELD_NUMBER = 7;$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel
+BOOTSTRAP_SERVER	./src/main/java/common/kafka/KafkaConfig.java	/^    public static final String BOOTSTRAP_SERVER = "bootstrap.servers";$/;"	f	interface:KafkaConfig
+BOOTSTRAP_SERVERS_PROPERTY	./src/main/java/common/kafka/KafkaConfig.java	/^    public static final String BOOTSTRAP_SERVERS_PROPERTY = "bootstrap.servers";$/;"	f	interface:KafkaConfig
+BRIGHT_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int BRIGHT_FIELD_NUMBER = 3;$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel
+BROKERS_LIST_PROPERTY	./src/main/java/common/kafka/KafkaConfig.java	/^    public static final String BROKERS_LIST_PROPERTY = "metadata.broker.list";$/;"	f	interface:KafkaConfig
+BootStrap	./src/main/java/service/BootStrap.java	/^public class BootStrap {$/;"	c
+Builder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private Builder($/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+Builder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private Builder($/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder	file:
+Builder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private Builder($/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder	file:
+Builder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private Builder($/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder	file:
+Builder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private Builder($/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder	file:
+Builder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private Builder() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+Builder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private Builder() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder	file:
+Builder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private Builder() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder	file:
+Builder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private Builder() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder	file:
+Builder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private Builder() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder	file:
+Builder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final class Builder extends$/;"	c	class:OffenceSnapDataProtos.OffenceSnapData
+Builder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final class Builder extends$/;"	c	class:OffenceSnapDataProtos.PicInfoModel
+Builder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final class Builder extends$/;"	c	class:OffenceSnapDataProtos.PlateInfoModel
+Builder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final class Builder extends$/;"	c	class:OffenceSnapDataProtos.PlateRectModel
+Builder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final class Builder extends$/;"	c	class:OffenceSnapDataProtos.VehicleInfoModel
+CHANINDEX_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int CHANINDEX_FIELD_NUMBER = 8;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData
+CLUSTER_NAME	./src/main/java/common/es/ESConfig.java	/^    public static final String CLUSTER_NAME = "Es_Cluster";$/;"	f	interface:ESConfig
+COLORDEPTH_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int COLORDEPTH_FIELD_NUMBER = 3;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel
+COLOR_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int COLOR_FIELD_NUMBER = 2;$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel
+COLOR_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int COLOR_FIELD_NUMBER = 4;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel
+COMPRESSION_CODEC_PROPERTY	./src/main/java/common/kafka/KafkaConfig.java	/^    public static final String COMPRESSION_CODEC_PROPERTY = "compression.codec";$/;"	f	interface:KafkaConfig
+COPILOTSAFEBELT_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int COPILOTSAFEBELT_FIELD_NUMBER = 16;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData
+COPILOTSUBVISOR_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int COPILOTSUBVISOR_FIELD_NUMBER = 18;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData
+COUNTRY_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int COUNTRY_FIELD_NUMBER = 5;$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel
+ConnectionException	./src/main/java/common/ConnectionException.java	/^    public ConnectionException() {$/;"	m	class:ConnectionException
+ConnectionException	./src/main/java/common/ConnectionException.java	/^    public ConnectionException(String message) {$/;"	m	class:ConnectionException
+ConnectionException	./src/main/java/common/ConnectionException.java	/^    public ConnectionException(String message, Throwable cause) {$/;"	m	class:ConnectionException
+ConnectionException	./src/main/java/common/ConnectionException.java	/^    public ConnectionException(Throwable e) {$/;"	m	class:ConnectionException
+ConnectionException	./src/main/java/common/ConnectionException.java	/^public class ConnectionException extends RuntimeException {$/;"	c
+ConnectionFactory	./src/main/java/common/ConnectionFactory.java	/^public interface ConnectionFactory<T> extends PooledObjectFactory<T>, Serializable {$/;"	i
+ConnectionPool	./src/main/java/common/ConnectionPool.java	/^public interface ConnectionPool<T> extends Serializable {$/;"	i
+DATA_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int DATA_FIELD_NUMBER = 5;$/;"	f	class:OffenceSnapDataProtos.PicInfoModel
+DEFAULT_ACKS	./src/main/java/common/kafka/KafkaConfig.java	/^    public static final String DEFAULT_ACKS = "0";$/;"	f	interface:KafkaConfig
+DEFAULT_BATCH	./src/main/java/common/kafka/KafkaConfig.java	/^    public static final String DEFAULT_BATCH = "200";$/;"	f	interface:KafkaConfig
+DEFAULT_BROKERS	./src/main/java/common/kafka/KafkaConfig.java	/^    public static final String DEFAULT_BROKERS = "localhost:9092";$/;"	f	interface:KafkaConfig
+DEFAULT_CODEC	./src/main/java/common/kafka/KafkaConfig.java	/^    public static final String DEFAULT_CODEC = "none";$/;"	f	interface:KafkaConfig
+DEFAULT_HOST	./src/main/java/common/es/ESConfig.java	/^    public static final String DEFAULT_HOST = "localhost";$/;"	f	interface:ESConfig
+DEFAULT_KEY_SERIALIZER	./src/main/java/common/kafka/KafkaConfig.java	/^    public static final String DEFAULT_KEY_SERIALIZER = "org.apache.kafka.common.serialization.ByteArraySerializer";$/;"	f	interface:KafkaConfig
+DEFAULT_MIN_EVICTABLE_IDLE_TIME_MILLIS	./src/main/java/common/PoolConfig.java	/^    public static final long DEFAULT_MIN_EVICTABLE_IDLE_TIME_MILLIS = 60000;$/;"	f	class:PoolConfig
+DEFAULT_NUM_TESTS_PER_EVICTION_RUN	./src/main/java/common/PoolConfig.java	/^    public static final int DEFAULT_NUM_TESTS_PER_EVICTION_RUN = -1;$/;"	f	class:PoolConfig
+DEFAULT_PORT	./src/main/java/common/es/ESConfig.java	/^    public static final String DEFAULT_PORT = "9300";$/;"	f	interface:ESConfig
+DEFAULT_TEST_WHILE_IDLE	./src/main/java/common/PoolConfig.java	/^    public static final boolean DEFAULT_TEST_WHILE_IDLE = true;$/;"	f	class:PoolConfig
+DEFAULT_TIME_BETWEEN_EVICTION_RUNS_MILLIS	./src/main/java/common/PoolConfig.java	/^    public static final long DEFAULT_TIME_BETWEEN_EVICTION_RUNS_MILLIS = 30000;$/;"	f	class:PoolConfig
+DEFAULT_TYPE	./src/main/java/common/kafka/KafkaConfig.java	/^    public static final String DEFAULT_TYPE = "sync";$/;"	f	interface:KafkaConfig
+DEFAULT_VAL_SERIALIZER	./src/main/java/common/kafka/KafkaConfig.java	/^    public static final String DEFAULT_VAL_SERIALIZER = "org.apache.kafka.common.serialization.ByteArraySerializer";$/;"	f	interface:KafkaConfig
+DETECTTYPE_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int DETECTTYPE_FIELD_NUMBER = 14;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData
+DIR_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int DIR_FIELD_NUMBER = 13;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData
+DRIVECHAN_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int DRIVECHAN_FIELD_NUMBER = 2;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData
+ESConfig	./src/main/java/common/es/ESConfig.java	/^public interface ESConfig {$/;"	i
+EsConnectionFactory	./src/main/java/common/es/EsConnectionFactory.java	/^    public EsConnectionFactory(final ElasticsearchClientUri elasticsearchClientUri) {$/;"	m	class:EsConnectionFactory
+EsConnectionFactory	./src/main/java/common/es/EsConnectionFactory.java	/^    public EsConnectionFactory(final ElasticsearchClientUri elasticsearchClientUri, final Settings settings) {$/;"	m	class:EsConnectionFactory
+EsConnectionFactory	./src/main/java/common/es/EsConnectionFactory.java	/^    public EsConnectionFactory(final String host, final int port) {$/;"	m	class:EsConnectionFactory
+EsConnectionFactory	./src/main/java/common/es/EsConnectionFactory.java	/^    public EsConnectionFactory(final String host, final int port, final Settings settings) {$/;"	m	class:EsConnectionFactory
+EsConnectionFactory	./src/main/java/common/es/EsConnectionFactory.java	/^    public EsConnectionFactory(final String url) {$/;"	m	class:EsConnectionFactory
+EsConnectionFactory	./src/main/java/common/es/EsConnectionFactory.java	/^    public EsConnectionFactory(final String url, final Settings settings) {$/;"	m	class:EsConnectionFactory
+EsConnectionFactory	./src/main/java/common/es/EsConnectionFactory.java	/^class EsConnectionFactory implements ConnectionFactory<ElasticClient> {$/;"	c
+EsConnectionPool	./src/main/java/common/es/EsConnectionPool.java	/^    public EsConnectionPool(final PoolConfig poolConfig, final Settings settings, final ElasticsearchClientUri esurl) {$/;"	m	class:EsConnectionPool
+EsConnectionPool	./src/main/java/common/es/EsConnectionPool.java	/^    public EsConnectionPool(final PoolConfig poolConfig, final String host, final int port, final Settings settings) {$/;"	m	class:EsConnectionPool
+EsConnectionPool	./src/main/java/common/es/EsConnectionPool.java	/^    public EsConnectionPool(final PoolConfig poolConfig, final String url) {$/;"	m	class:EsConnectionPool
+EsConnectionPool	./src/main/java/common/es/EsConnectionPool.java	/^    public EsConnectionPool(final String url) {$/;"	m	class:EsConnectionPool
+EsConnectionPool	./src/main/java/common/es/EsConnectionPool.java	/^public class EsConnectionPool extends PoolBase<ElasticClient> implements ConnectionPool<ElasticClient> {$/;"	c
+EsSharedConnPool	./src/main/java/common/es/EsSharedConnPool.java	/^    private EsSharedConnPool(ElasticsearchClientUri url, Settings settings) {$/;"	m	class:EsSharedConnPool	file:
+EsSharedConnPool	./src/main/java/common/es/EsSharedConnPool.java	/^public class EsSharedConnPool implements ConnectionPool<ElasticClient> {$/;"	c
+HEIGHT_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int HEIGHT_FIELD_NUMBER = 4;$/;"	f	class:OffenceSnapDataProtos.PlateRectModel
+HostName	./src/main/java/service/BootStrap.java	/^    public  final  static String HostName = "0.0.0.0";$/;"	f	class:BootStrap
+ID_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int ID_FIELD_NUMBER = 1;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData
+ILLEGALSUBTYPE_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int ILLEGALSUBTYPE_FIELD_NUMBER = 6;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData
+ILLEGALTIMER_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int ILLEGALTIMER_FIELD_NUMBER = 22;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData
+ILLEGALTYPE_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int ILLEGALTYPE_FIELD_NUMBER = 5;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData
+ILLEGALTYPE_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int ILLEGALTYPE_FIELD_NUMBER = 7;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel
+INDEX_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int INDEX_FIELD_NUMBER = 1;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel
+KEY_SERIALIZER_PROPERTY	./src/main/java/common/kafka/KafkaConfig.java	/^    public static final String KEY_SERIALIZER_PROPERTY = "key.serializer";$/;"	f	interface:KafkaConfig
+KafkaConfig	./src/main/java/common/kafka/KafkaConfig.java	/^public interface KafkaConfig {$/;"	i
+KafkaConnectionFactory	./src/main/java/common/kafka/KafkaConnectionFactory.java	/^    public KafkaConnectionFactory(final Properties properties) {$/;"	m	class:KafkaConnectionFactory
+KafkaConnectionFactory	./src/main/java/common/kafka/KafkaConnectionFactory.java	/^    public KafkaConnectionFactory(final String brokers, final String type, final String acks, final String codec, final String batch) {$/;"	m	class:KafkaConnectionFactory
+KafkaConnectionFactory	./src/main/java/common/kafka/KafkaConnectionFactory.java	/^class KafkaConnectionFactory implements ConnectionFactory<Producer<byte[], byte[]>> {$/;"	c
+KafkaConnectionPool	./src/main/java/common/kafka/KafkaConnectionPool.java	/^    public KafkaConnectionPool() {$/;"	m	class:KafkaConnectionPool
+KafkaConnectionPool	./src/main/java/common/kafka/KafkaConnectionPool.java	/^    public KafkaConnectionPool(final PoolConfig poolConfig, final Properties config) {$/;"	m	class:KafkaConnectionPool
+KafkaConnectionPool	./src/main/java/common/kafka/KafkaConnectionPool.java	/^    public KafkaConnectionPool(final PoolConfig poolConfig, final String brokers) {$/;"	m	class:KafkaConnectionPool
+KafkaConnectionPool	./src/main/java/common/kafka/KafkaConnectionPool.java	/^    public KafkaConnectionPool(final PoolConfig poolConfig, final String brokers, final String type) {$/;"	m	class:KafkaConnectionPool
+KafkaConnectionPool	./src/main/java/common/kafka/KafkaConnectionPool.java	/^    public KafkaConnectionPool(final PoolConfig poolConfig, final String brokers, final String type, final String acks, final String codec, final String batch) {$/;"	m	class:KafkaConnectionPool
+KafkaConnectionPool	./src/main/java/common/kafka/KafkaConnectionPool.java	/^    public KafkaConnectionPool(final Properties props) {$/;"	m	class:KafkaConnectionPool
+KafkaConnectionPool	./src/main/java/common/kafka/KafkaConnectionPool.java	/^    public KafkaConnectionPool(final String brokers) {$/;"	m	class:KafkaConnectionPool
+KafkaConnectionPool	./src/main/java/common/kafka/KafkaConnectionPool.java	/^public class KafkaConnectionPool extends PoolBase<Producer<byte[], byte[]>> implements ConnectionPool<Producer<byte[], byte[]>> {$/;"	c
+KafkaSharedConnPool	./src/main/java/common/kafka/KafkaSharedConnPool.java	/^    private KafkaSharedConnPool(Properties properties) {$/;"	m	class:KafkaSharedConnPool	file:
+KafkaSharedConnPool	./src/main/java/common/kafka/KafkaSharedConnPool.java	/^public class KafkaSharedConnPool implements ConnectionPool<Producer<byte[], byte[]>> {$/;"	c
+LENGTH_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int LENGTH_FIELD_NUMBER = 6;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel
+LICENSELEN_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int LICENSELEN_FIELD_NUMBER = 4;$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel
+LICENSE_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int LICENSE_FIELD_NUMBER = 6;$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel
+LLEGALTIME_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int LLEGALTIME_FIELD_NUMBER = 21;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData
+MONITORINGSITEID_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int MONITORINGSITEID_FIELD_NUMBER = 12;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData
+Man	./src/main/java/traffic/Man.java	/^    public Man(String lontiFile, String imageFile){$/;"	m	class:Man
+Man	./src/main/java/traffic/Man.java	/^public class Man {$/;"	c
+OffenceSnapData	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private OffenceSnapData($/;"	m	class:OffenceSnapDataProtos.OffenceSnapData	file:
+OffenceSnapData	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private OffenceSnapData(boolean noInit) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData	file:
+OffenceSnapData	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private OffenceSnapData(com.google.protobuf.GeneratedMessage.Builder<?> builder) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData	file:
+OffenceSnapData	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^    public static final class OffenceSnapData extends$/;"	c	class:OffenceSnapDataProtos
+OffenceSnapDataOrBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^    public interface OffenceSnapDataOrBuilder$/;"	i	class:OffenceSnapDataProtos
+OffenceSnapDataProtos	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^    private OffenceSnapDataProtos() {$/;"	m	class:OffenceSnapDataProtos	file:
+OffenceSnapDataProtos	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^public final class OffenceSnapDataProtos {$/;"	c
+PARSER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static com.google.protobuf.Parser<OffenceSnapData> PARSER =$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData
+PARSER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static com.google.protobuf.Parser<PicInfoModel> PARSER =$/;"	f	class:OffenceSnapDataProtos.PicInfoModel
+PARSER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static com.google.protobuf.Parser<PlateInfoModel> PARSER =$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel
+PARSER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static com.google.protobuf.Parser<PlateRectModel> PARSER =$/;"	f	class:OffenceSnapDataProtos.PlateRectModel
+PARSER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static com.google.protobuf.Parser<VehicleInfoModel> PARSER =$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel
+PICINFO_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int PICINFO_FIELD_NUMBER = 24;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData
+PICNUM_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int PICNUM_FIELD_NUMBER = 23;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData
+PICRECOGMODE_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int PICRECOGMODE_FIELD_NUMBER = 2;$/;"	f	class:OffenceSnapDataProtos.PicInfoModel
+PILOTCALL_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int PILOTCALL_FIELD_NUMBER = 19;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData
+PILOTSAFEBELT_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int PILOTSAFEBELT_FIELD_NUMBER = 15;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData
+PILOTSUBVISOR_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int PILOTSUBVISOR_FIELD_NUMBER = 17;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData
+PLATEINFO_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int PLATEINFO_FIELD_NUMBER = 10;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData
+PLATERECT_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int PLATERECT_FIELD_NUMBER = 4;$/;"	f	class:OffenceSnapDataProtos.PicInfoModel
+PLATETYPE_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int PLATETYPE_FIELD_NUMBER = 1;$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel
+POSTPICNO_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int POSTPICNO_FIELD_NUMBER = 7;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData
+PRODUCER_TYPE_PROPERTY	./src/main/java/common/kafka/KafkaConfig.java	/^    public static final String PRODUCER_TYPE_PROPERTY = "producer.type";$/;"	f	interface:KafkaConfig
+PicInfoModel	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private PicInfoModel($/;"	m	class:OffenceSnapDataProtos.PicInfoModel	file:
+PicInfoModel	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private PicInfoModel(boolean noInit) {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel	file:
+PicInfoModel	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private PicInfoModel(com.google.protobuf.GeneratedMessage.Builder<?> builder) {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel	file:
+PicInfoModel	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^    public static final class PicInfoModel extends$/;"	c	class:OffenceSnapDataProtos
+PicInfoModelOrBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^    public interface PicInfoModelOrBuilder$/;"	i	class:OffenceSnapDataProtos
+PlateInfoModel	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private PlateInfoModel($/;"	m	class:OffenceSnapDataProtos.PlateInfoModel	file:
+PlateInfoModel	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private PlateInfoModel(boolean noInit) {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel	file:
+PlateInfoModel	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private PlateInfoModel(com.google.protobuf.GeneratedMessage.Builder<?> builder) {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel	file:
+PlateInfoModel	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^    public static final class PlateInfoModel extends$/;"	c	class:OffenceSnapDataProtos
+PlateInfoModelOrBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^    public interface PlateInfoModelOrBuilder$/;"	i	class:OffenceSnapDataProtos
+PlateRectModel	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private PlateRectModel($/;"	m	class:OffenceSnapDataProtos.PlateRectModel	file:
+PlateRectModel	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private PlateRectModel(boolean noInit) {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel	file:
+PlateRectModel	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private PlateRectModel(com.google.protobuf.GeneratedMessage.Builder<?> builder) {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel	file:
+PlateRectModel	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^    public static final class PlateRectModel extends$/;"	c	class:OffenceSnapDataProtos
+PlateRectModelOrBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^    public interface PlateRectModelOrBuilder$/;"	i	class:OffenceSnapDataProtos
+PoolBase	./src/main/java/common/PoolBase.java	/^    public PoolBase() {$/;"	m	class:PoolBase
+PoolBase	./src/main/java/common/PoolBase.java	/^    public PoolBase(final GenericObjectPoolConfig poolConfig,$/;"	m	class:PoolBase
+PoolBase	./src/main/java/common/PoolBase.java	/^public abstract class PoolBase<T> implements Closeable, Serializable {$/;"	c
+PoolConfig	./src/main/java/common/PoolConfig.java	/^    public PoolConfig() {$/;"	m	class:PoolConfig
+PoolConfig	./src/main/java/common/PoolConfig.java	/^public class PoolConfig extends GenericObjectPoolConfig implements Serializable {$/;"	c
+Port	./src/main/java/service/BootStrap.java	/^    public  final  static  int Port = 8000;$/;"	f	class:BootStrap
+REDLIGHTTIME_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int REDLIGHTTIME_FIELD_NUMBER = 3;$/;"	f	class:OffenceSnapDataProtos.PicInfoModel
+REQUEST_ACKS_PROPERTY	./src/main/java/common/kafka/KafkaConfig.java	/^    public static final String REQUEST_ACKS_PROPERTY = "request.required.acks";$/;"	f	interface:KafkaConfig
+SPEEDLIMIT_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int SPEEDLIMIT_FIELD_NUMBER = 9;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData
+SPEED_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int SPEED_FIELD_NUMBER = 5;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel
+TYPE_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int TYPE_FIELD_NUMBER = 1;$/;"	f	class:OffenceSnapDataProtos.PicInfoModel
+TrafficApplication	./src/main/java/service/TrafficApplication.java	/^public class TrafficApplication extends Application {$/;"	c
+TrafficResource	./src/main/java/traffic/TrafficResource.java	/^    public TrafficResource(){$/;"	m	class:TrafficResource
+TrafficResource	./src/main/java/traffic/TrafficResource.java	/^public class TrafficResource {$/;"	c
+URL	./src/main/java/common/es/ESConfig.java	/^    public static final String URL = "elasticsearch:\/\/localhost:9300";$/;"	f	interface:ESConfig
+VALIDITY_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int VALIDITY_FIELD_NUMBER = 25;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData
+VAL_SERIALIZER_PROPERTY	./src/main/java/common/kafka/KafkaConfig.java	/^    public static final String VAL_SERIALIZER_PROPERTY = "value.serializer";$/;"	f	interface:KafkaConfig
+VEHICLEATTRIBUTE_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int VEHICLEATTRIBUTE_FIELD_NUMBER = 4;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData
+VEHICLEINFO_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int VEHICLEINFO_FIELD_NUMBER = 11;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData
+VEHICLELOGORECOG_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int VEHICLELOGORECOG_FIELD_NUMBER = 8;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel
+VEHICLEMODEL_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int VEHICLEMODEL_FIELD_NUMBER = 10;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel
+VEHICLESUBLOGORECOG_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int VEHICLESUBLOGORECOG_FIELD_NUMBER = 9;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel
+VEHICLETYPE_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int VEHICLETYPE_FIELD_NUMBER = 2;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel
+VEHICLETYPE_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int VEHICLETYPE_FIELD_NUMBER = 3;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData
+VehicleInfoModel	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private VehicleInfoModel($/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel	file:
+VehicleInfoModel	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private VehicleInfoModel(boolean noInit) {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel	file:
+VehicleInfoModel	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private VehicleInfoModel(com.google.protobuf.GeneratedMessage.Builder<?> builder) {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel	file:
+VehicleInfoModel	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^    public static final class VehicleInfoModel extends$/;"	c	class:OffenceSnapDataProtos
+VehicleInfoModelOrBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^    public interface VehicleInfoModelOrBuilder$/;"	i	class:OffenceSnapDataProtos
+WAITEDLENGTH_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int WAITEDLENGTH_FIELD_NUMBER = 26;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData
+WIDTH_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int WIDTH_FIELD_NUMBER = 3;$/;"	f	class:OffenceSnapDataProtos.PlateRectModel
+X_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int X_FIELD_NUMBER = 1;$/;"	f	class:OffenceSnapDataProtos.PlateRectModel
+Y_FIELD_NUMBER	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static final int Y_FIELD_NUMBER = 2;$/;"	f	class:OffenceSnapDataProtos.PlateRectModel
+activateObject	./src/main/java/common/es/EsConnectionFactory.java	/^    public void activateObject(PooledObject<ElasticClient> p) throws Exception {$/;"	m	class:EsConnectionFactory
+activateObject	./src/main/java/common/kafka/KafkaConnectionFactory.java	/^    public void activateObject(PooledObject<Producer<byte[], byte[]>> p)$/;"	m	class:KafkaConnectionFactory
+addAllPicInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder addAllPicInfo($/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+addObjects	./src/main/java/common/PoolBase.java	/^    protected void addObjects(final int count) {$/;"	m	class:PoolBase
+addPicInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder addPicInfo($/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+addPicInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder addPicInfo(PicInfoModel value) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+addPicInfoBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public PicInfoModel.Builder addPicInfoBuilder($/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+addPicInfoBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public PicInfoModel.Builder addPicInfoBuilder() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+alarmDataType_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int alarmDataType_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+alarmDataType_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int alarmDataType_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+believe_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private Object believe_ = "";$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel.Builder	file:
+believe_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private Object believe_;$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel	file:
+bitField0_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int bitField0_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+bitField0_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int bitField0_;$/;"	f	class:OffenceSnapDataProtos.PicInfoModel.Builder	file:
+bitField0_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int bitField0_;$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel.Builder	file:
+bitField0_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int bitField0_;$/;"	f	class:OffenceSnapDataProtos.PlateRectModel.Builder	file:
+bitField0_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int bitField0_;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel.Builder	file:
+bitField0_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int bitField0_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+bitField0_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int bitField0_;$/;"	f	class:OffenceSnapDataProtos.PicInfoModel	file:
+bitField0_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int bitField0_;$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel	file:
+bitField0_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int bitField0_;$/;"	f	class:OffenceSnapDataProtos.PlateRectModel	file:
+bitField0_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int bitField0_;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel	file:
+bright_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int bright_;$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel.Builder	file:
+bright_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int bright_;$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel	file:
+bud	./src/main/java/traffic/Man.java	/^    public  int bud = 0;$/;"	f	class:Man
+build	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public OffenceSnapData build() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+build	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public PicInfoModel build() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+build	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public PlateInfoModel build() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+build	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public PlateRectModel build() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+build	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public VehicleInfoModel build() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+buildPartial	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public OffenceSnapData buildPartial() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+buildPartial	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public PicInfoModel buildPartial() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+buildPartial	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public PlateInfoModel buildPartial() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+buildPartial	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public PlateRectModel buildPartial() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+buildPartial	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public VehicleInfoModel buildPartial() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+c	./src/main/java/traffic/TrafficResource.java	/^    private static  AtomicLong c = new AtomicLong();$/;"	f	class:TrafficResource	file:
+chanIndex_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int chanIndex_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+chanIndex_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int chanIndex_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+city	./src/main/java/traffic/Man.java	/^    public   static String[] city = {"A", "B", "C", "D", "E"};$/;"	f	class:Man
+citys	./src/main/java/traffic/TrafficResource.java	/^    private static String[] citys = {"四川省","贵州省","云南省","重庆市","河北省","山西省","江苏省","浙江省","安徽省","江西省","山东省","河南省","湖北省","湖南省","陕西省","甘肃省","北京市","天津市","上海市","广东省","海南省","福建省","青海省","辽宁省","吉林省","黑龙江省"};$/;"	f	class:TrafficResource	file:
+clear	./src/main/java/common/PoolBase.java	/^    public void clear() {$/;"	m	class:PoolBase
+clear	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clear() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clear	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clear() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+clear	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clear() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+clear	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clear() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+clear	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clear() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+clearAlarmDataType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearAlarmDataType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clearBelieve	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearBelieve() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+clearBright	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearBright() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+clearChanIndex	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearChanIndex() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clearColor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearColor() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+clearColor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearColor() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+clearColorDepth	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearColorDepth() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+clearCopilotSafebelt	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearCopilotSafebelt() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clearCopilotSubVisor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearCopilotSubVisor() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clearCountry	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearCountry() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+clearData	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearData() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+clearDetectType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearDetectType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clearDir	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearDir() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clearDriveChan	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearDriveChan() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clearHeight	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearHeight() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+clearId	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearId() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clearIllegalSubType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearIllegalSubType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clearIllegalTimer	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearIllegalTimer() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clearIllegalType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearIllegalType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clearIllegalType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearIllegalType() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+clearIndex	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearIndex() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+clearLength	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearLength() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+clearLicense	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearLicense() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+clearLicenseLen	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearLicenseLen() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+clearLlegalTime	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearLlegalTime() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clearMonitoringSiteID	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearMonitoringSiteID() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clearPicInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearPicInfo() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clearPicNum	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearPicNum() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clearPicRecogMode	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearPicRecogMode() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+clearPilotCall	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearPilotCall() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clearPilotSafebelt	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearPilotSafebelt() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clearPilotSubVisor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearPilotSubVisor() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clearPlateInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearPlateInfo() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clearPlateRect	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearPlateRect() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+clearPlateType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearPlateType() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+clearPostPicNo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearPostPicNo() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clearRedLightTime	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearRedLightTime() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+clearSpeed	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearSpeed() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+clearSpeedLimit	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearSpeedLimit() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clearType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearType() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+clearValidity	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearValidity() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clearVehicleAttribute	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearVehicleAttribute() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clearVehicleInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearVehicleInfo() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clearVehicleLogoRecog	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearVehicleLogoRecog() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+clearVehicleModel	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearVehicleModel() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+clearVehicleSubLogoRecog	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearVehicleSubLogoRecog() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+clearVehicleType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearVehicleType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clearVehicleType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearVehicleType() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+clearWaitedLength	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearWaitedLength() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clearWidth	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearWidth() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+clearX	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearX() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+clearY	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clearY() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+client	./src/main/java/common/es/EsSharedConnPool.java	/^    private final ElasticClient client;$/;"	f	class:EsSharedConnPool	file:
+clone	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clone() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+clone	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clone() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+clone	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clone() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+clone	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clone() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+clone	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder clone() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+close	./src/main/java/common/PoolBase.java	/^    public void close() {$/;"	m	class:PoolBase
+close	./src/main/java/common/kafka/KafkaSharedConnPool.java	/^    public void close() {$/;"	m	class:KafkaSharedConnPool
+colorDepth_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int colorDepth_;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel.Builder	file:
+colorDepth_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int colorDepth_;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel	file:
+color_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private Object color_ = "";$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel.Builder	file:
+color_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private Object color_ = "";$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel.Builder	file:
+color_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private Object color_;$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel	file:
+color_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private Object color_;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel	file:
+common	./src/main/java/common/ConnectionException.java	/^package common;$/;"	p
+common	./src/main/java/common/ConnectionFactory.java	/^package common;$/;"	p
+common	./src/main/java/common/ConnectionPool.java	/^package common;$/;"	p
+common	./src/main/java/common/PoolBase.java	/^package common;$/;"	p
+common	./src/main/java/common/PoolConfig.java	/^package common;$/;"	p
+common.es	./src/main/java/common/es/ESConfig.java	/^package common.es;$/;"	p
+common.es	./src/main/java/common/es/EsConnectionFactory.java	/^package common.es;$/;"	p
+common.es	./src/main/java/common/es/EsConnectionPool.java	/^package common.es;$/;"	p
+common.es	./src/main/java/common/es/EsSharedConnPool.java	/^package common.es;$/;"	p
+common.kafka	./src/main/java/common/kafka/KafkaConfig.java	/^package common.kafka;$/;"	p
+common.kafka	./src/main/java/common/kafka/KafkaConnectionFactory.java	/^package common.kafka;$/;"	p
+common.kafka	./src/main/java/common/kafka/KafkaConnectionPool.java	/^package common.kafka;$/;"	p
+common.kafka	./src/main/java/common/kafka/KafkaSharedConnPool.java	/^package common.kafka;$/;"	p
+config	./src/main/java/common/kafka/KafkaConnectionFactory.java	/^    private final Properties config;$/;"	f	class:KafkaConnectionFactory	file:
+copilotSafebelt_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int copilotSafebelt_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+copilotSafebelt_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int copilotSafebelt_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+copilotSubVisor_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int copilotSubVisor_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+copilotSubVisor_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int copilotSubVisor_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+cos	./src/main/java/traffic/TrafficResource.java	/^    private  static String[] cos = {"成都","眉山","德阳","资阳","绵阳","雅安","乐山","自贡","泸州","广安","巴中","广元","遂宁","内江","宜宾","南充","达州","攀枝花",$/;"	f	class:TrafficResource	file:
+count	./src/main/java/traffic/Man.java	/^    public  static AtomicLong count = new AtomicLong();$/;"	f	class:Man
+country_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int country_;$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel.Builder	file:
+country_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int country_;$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel	file:
+create	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private static Builder create() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+create	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private static Builder create() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder	file:
+create	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private static Builder create() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder	file:
+create	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private static Builder create() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder	file:
+create	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private static Builder create() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder	file:
+createConnection	./src/main/java/common/ConnectionFactory.java	/^    public abstract T createConnection() throws Exception;$/;"	m	interface:ConnectionFactory
+createConnection	./src/main/java/common/es/EsConnectionFactory.java	/^    public ElasticClient createConnection() throws Exception {$/;"	m	class:EsConnectionFactory
+createConnection	./src/main/java/common/kafka/KafkaConnectionFactory.java	/^    public Producer<byte[], byte[]> createConnection() throws Exception {$/;"	m	class:KafkaConnectionFactory
+data_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private Object data_ = "";$/;"	f	class:OffenceSnapDataProtos.PicInfoModel.Builder	file:
+data_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private Object data_;$/;"	f	class:OffenceSnapDataProtos.PicInfoModel	file:
+defaultInstance	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private static final OffenceSnapData defaultInstance;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+defaultInstance	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private static final PicInfoModel defaultInstance;$/;"	f	class:OffenceSnapDataProtos.PicInfoModel	file:
+defaultInstance	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private static final PlateInfoModel defaultInstance;$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel	file:
+defaultInstance	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private static final PlateRectModel defaultInstance;$/;"	f	class:OffenceSnapDataProtos.PlateRectModel	file:
+defaultInstance	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private static final VehicleInfoModel defaultInstance;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel	file:
+descriptor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            descriptor;$/;"	f	class:OffenceSnapDataProtos	file:
+destroy	./src/main/java/common/PoolBase.java	/^    protected void destroy() {$/;"	m	class:PoolBase
+destroyObject	./src/main/java/common/es/EsConnectionFactory.java	/^    public void destroyObject(PooledObject<ElasticClient> p) throws Exception {$/;"	m	class:EsConnectionFactory
+destroyObject	./src/main/java/common/kafka/KafkaConnectionFactory.java	/^    public void destroyObject(PooledObject<Producer<byte[], byte[]>> p)$/;"	m	class:KafkaConnectionFactory
+detectType_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int detectType_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+detectType_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int detectType_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+deviceNumber	./src/main/java/traffic/TrafficResource.java	/^    private  static  int deviceNumber = 300;$/;"	f	class:TrafficResource	file:
+df	./src/main/java/traffic/TrafficResource.java	/^    private static DecimalFormat df = new DecimalFormat("#.###");$/;"	f	class:TrafficResource	file:
+dir_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int dir_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+dir_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int dir_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+driveChan_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int driveChan_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+driveChan_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int driveChan_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+elasticsearchClientUri	./src/main/java/common/es/EsConnectionFactory.java	/^    private final ElasticsearchClientUri elasticsearchClientUri;$/;"	f	class:EsConnectionFactory	file:
+ensurePicInfoIsMutable	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private void ensurePicInfoIsMutable() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+getAlarmDataType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getAlarmDataType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getAlarmDataType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getAlarmDataType();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getAlarmDataType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getAlarmDataType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getBelieve	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public String getBelieve() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+getBelieve	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        String getBelieve();$/;"	m	interface:OffenceSnapDataProtos.PlateInfoModelOrBuilder
+getBelieve	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public String getBelieve() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+getBelieveBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getBelieveBytes() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+getBelieveBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getBelieveBytes() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+getBelieveBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getBelieveBytes();$/;"	m	interface:OffenceSnapDataProtos.PlateInfoModelOrBuilder
+getBright	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getBright() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+getBright	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getBright();$/;"	m	interface:OffenceSnapDataProtos.PlateInfoModelOrBuilder
+getBright	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getBright() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+getChanIndex	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getChanIndex() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getChanIndex	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getChanIndex();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getChanIndex	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getChanIndex() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getClasses	./src/main/java/service/TrafficApplication.java	/^    public Set<Class<?>> getClasses() {$/;"	m	class:TrafficApplication
+getColor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public String getColor() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+getColor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public String getColor() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+getColor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        String getColor();$/;"	m	interface:OffenceSnapDataProtos.PlateInfoModelOrBuilder
+getColor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        String getColor();$/;"	m	interface:OffenceSnapDataProtos.VehicleInfoModelOrBuilder
+getColor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public String getColor() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+getColor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public String getColor() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+getColorBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getColorBytes() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+getColorBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getColorBytes() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+getColorBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getColorBytes() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+getColorBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getColorBytes() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+getColorBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getColorBytes();$/;"	m	interface:OffenceSnapDataProtos.PlateInfoModelOrBuilder
+getColorBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getColorBytes();$/;"	m	interface:OffenceSnapDataProtos.VehicleInfoModelOrBuilder
+getColorDepth	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getColorDepth() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+getColorDepth	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getColorDepth();$/;"	m	interface:OffenceSnapDataProtos.VehicleInfoModelOrBuilder
+getColorDepth	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getColorDepth() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+getConnection	./src/main/java/common/ConnectionPool.java	/^    public abstract T getConnection();$/;"	m	interface:ConnectionPool
+getConnection	./src/main/java/common/es/EsConnectionPool.java	/^    public ElasticClient getConnection() {$/;"	m	class:EsConnectionPool
+getConnection	./src/main/java/common/es/EsSharedConnPool.java	/^    public ElasticClient getConnection() {$/;"	m	class:EsSharedConnPool
+getConnection	./src/main/java/common/kafka/KafkaConnectionPool.java	/^    public Producer<byte[], byte[]> getConnection() {$/;"	m	class:KafkaConnectionPool
+getConnection	./src/main/java/common/kafka/KafkaSharedConnPool.java	/^    public Producer<byte[], byte[]> getConnection() {$/;"	m	class:KafkaSharedConnPool
+getCopilotSafebelt	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getCopilotSafebelt() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getCopilotSafebelt	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getCopilotSafebelt();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getCopilotSafebelt	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getCopilotSafebelt() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getCopilotSubVisor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getCopilotSubVisor() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getCopilotSubVisor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getCopilotSubVisor();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getCopilotSubVisor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getCopilotSubVisor() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getCountry	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getCountry() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+getCountry	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getCountry();$/;"	m	interface:OffenceSnapDataProtos.PlateInfoModelOrBuilder
+getCountry	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getCountry() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+getData	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public String getData() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+getData	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        String getData();$/;"	m	interface:OffenceSnapDataProtos.PicInfoModelOrBuilder
+getData	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public String getData() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+getDataBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getDataBytes() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+getDataBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getDataBytes() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+getDataBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getDataBytes();$/;"	m	interface:OffenceSnapDataProtos.PicInfoModelOrBuilder
+getDefaultInstance	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static OffenceSnapData getDefaultInstance() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getDefaultInstance	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static PicInfoModel getDefaultInstance() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+getDefaultInstance	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static PlateInfoModel getDefaultInstance() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+getDefaultInstance	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static PlateRectModel getDefaultInstance() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+getDefaultInstance	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static VehicleInfoModel getDefaultInstance() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+getDefaultInstanceForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public OffenceSnapData getDefaultInstanceForType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getDefaultInstanceForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public PicInfoModel getDefaultInstanceForType() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+getDefaultInstanceForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public PlateInfoModel getDefaultInstanceForType() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+getDefaultInstanceForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public PlateRectModel getDefaultInstanceForType() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+getDefaultInstanceForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public VehicleInfoModel getDefaultInstanceForType() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+getDefaultInstanceForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public OffenceSnapData getDefaultInstanceForType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getDefaultInstanceForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public PicInfoModel getDefaultInstanceForType() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+getDefaultInstanceForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public PlateInfoModel getDefaultInstanceForType() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+getDefaultInstanceForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public PlateRectModel getDefaultInstanceForType() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+getDefaultInstanceForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public VehicleInfoModel getDefaultInstanceForType() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+getDescriptor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getDescriptor() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getDescriptor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getDescriptor() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+getDescriptor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getDescriptor() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+getDescriptor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getDescriptor() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+getDescriptor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getDescriptor() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+getDescriptor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getDescriptor() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getDescriptor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getDescriptor() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+getDescriptor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getDescriptor() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+getDescriptor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getDescriptor() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+getDescriptor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getDescriptor() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+getDescriptor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^    getDescriptor() {$/;"	m	class:OffenceSnapDataProtos
+getDescriptorForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getDescriptorForType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getDescriptorForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getDescriptorForType() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+getDescriptorForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getDescriptorForType() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+getDescriptorForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getDescriptorForType() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+getDescriptorForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getDescriptorForType() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+getDetectType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getDetectType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getDetectType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getDetectType();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getDetectType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getDetectType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getDir	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getDir() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getDir	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getDir();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getDir	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getDir() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getDriveChan	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getDriveChan() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getDriveChan	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getDriveChan();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getDriveChan	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getDriveChan() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getHeight	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getHeight() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+getHeight	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getHeight();$/;"	m	interface:OffenceSnapDataProtos.PlateRectModelOrBuilder
+getHeight	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getHeight() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+getId	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public String getId() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getId	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        String getId();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getId	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public String getId() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getIdBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getIdBytes() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getIdBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getIdBytes() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getIdBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getIdBytes();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getIllegalSubType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public String getIllegalSubType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getIllegalSubType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        String getIllegalSubType();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getIllegalSubType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public String getIllegalSubType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getIllegalSubTypeBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getIllegalSubTypeBytes() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getIllegalSubTypeBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getIllegalSubTypeBytes() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getIllegalSubTypeBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getIllegalSubTypeBytes();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getIllegalTimer	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getIllegalTimer() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getIllegalTimer	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getIllegalTimer();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getIllegalTimer	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getIllegalTimer() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getIllegalType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getIllegalType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getIllegalType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getIllegalType() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+getIllegalType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getIllegalType();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getIllegalType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getIllegalType();$/;"	m	interface:OffenceSnapDataProtos.VehicleInfoModelOrBuilder
+getIllegalType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getIllegalType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getIllegalType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getIllegalType() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+getIndex	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getIndex() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+getIndex	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getIndex();$/;"	m	interface:OffenceSnapDataProtos.VehicleInfoModelOrBuilder
+getIndex	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getIndex() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+getInstance	./src/main/java/common/es/EsSharedConnPool.java	/^    public synchronized static EsSharedConnPool getInstance(ElasticsearchClientUri url, Settings settings) {$/;"	m	class:EsSharedConnPool
+getInstance	./src/main/java/common/es/EsSharedConnPool.java	/^    public synchronized static EsSharedConnPool getInstance(String url) {$/;"	m	class:EsSharedConnPool
+getInstance	./src/main/java/common/kafka/KafkaSharedConnPool.java	/^    public synchronized static KafkaSharedConnPool getInstance(final Properties properties) {$/;"	m	class:KafkaSharedConnPool
+getInstance	./src/main/java/common/kafka/KafkaSharedConnPool.java	/^    public synchronized static KafkaSharedConnPool getInstance(final String brokers, final String codec, final String keySer, final String valSer) {$/;"	m	class:KafkaSharedConnPool
+getLength	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public float getLength() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+getLength	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        float getLength();$/;"	m	interface:OffenceSnapDataProtos.VehicleInfoModelOrBuilder
+getLength	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public float getLength() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+getLicense	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public String getLicense() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+getLicense	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        String getLicense();$/;"	m	interface:OffenceSnapDataProtos.PlateInfoModelOrBuilder
+getLicense	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public String getLicense() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+getLicenseBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getLicenseBytes() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+getLicenseBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getLicenseBytes() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+getLicenseBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getLicenseBytes();$/;"	m	interface:OffenceSnapDataProtos.PlateInfoModelOrBuilder
+getLicenseLen	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getLicenseLen() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+getLicenseLen	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getLicenseLen();$/;"	m	interface:OffenceSnapDataProtos.PlateInfoModelOrBuilder
+getLicenseLen	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getLicenseLen() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+getLlegalTime	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public String getLlegalTime() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getLlegalTime	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        String getLlegalTime();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getLlegalTime	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public String getLlegalTime() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getLlegalTimeBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getLlegalTimeBytes() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getLlegalTimeBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getLlegalTimeBytes() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getLlegalTimeBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getLlegalTimeBytes();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getMaxBorrowWaitTimeMillis	./src/main/java/common/PoolBase.java	/^    public long getMaxBorrowWaitTimeMillis() {$/;"	m	class:PoolBase
+getMeanBorrowWaitTimeMillis	./src/main/java/common/PoolBase.java	/^    public long getMeanBorrowWaitTimeMillis() {$/;"	m	class:PoolBase
+getMonitoringSiteID	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public String getMonitoringSiteID() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getMonitoringSiteID	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        String getMonitoringSiteID();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getMonitoringSiteID	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public String getMonitoringSiteID() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getMonitoringSiteIDBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getMonitoringSiteIDBytes() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getMonitoringSiteIDBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getMonitoringSiteIDBytes() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getMonitoringSiteIDBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getMonitoringSiteIDBytes();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getNumActive	./src/main/java/common/PoolBase.java	/^    public int getNumActive() {$/;"	m	class:PoolBase
+getNumIdle	./src/main/java/common/PoolBase.java	/^    public int getNumIdle() {$/;"	m	class:PoolBase
+getNumWaiters	./src/main/java/common/PoolBase.java	/^    public int getNumWaiters() {$/;"	m	class:PoolBase
+getParserForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public com.google.protobuf.Parser<OffenceSnapData> getParserForType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getParserForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public com.google.protobuf.Parser<PicInfoModel> getParserForType() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+getParserForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public com.google.protobuf.Parser<PlateInfoModel> getParserForType() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+getParserForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public com.google.protobuf.Parser<PlateRectModel> getParserForType() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+getParserForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public com.google.protobuf.Parser<VehicleInfoModel> getParserForType() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+getPicInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public PicInfoModel getPicInfo(int index) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getPicInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        PicInfoModel getPicInfo(int index);$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getPicInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public PicInfoModel getPicInfo(int index) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getPicInfoBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public PicInfoModel.Builder getPicInfoBuilder($/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getPicInfoBuilderList	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getPicInfoBuilderList() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getPicInfoCount	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getPicInfoCount() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getPicInfoCount	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getPicInfoCount();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getPicInfoCount	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getPicInfoCount() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getPicInfoFieldBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getPicInfoFieldBuilder() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+getPicInfoList	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public java.util.List<PicInfoModel> getPicInfoList() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getPicInfoList	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getPicInfoList();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getPicInfoList	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public java.util.List<PicInfoModel> getPicInfoList() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getPicInfoOrBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public PicInfoModelOrBuilder getPicInfoOrBuilder($/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getPicInfoOrBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        PicInfoModelOrBuilder getPicInfoOrBuilder($/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getPicInfoOrBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public PicInfoModelOrBuilder getPicInfoOrBuilder($/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getPicInfoOrBuilderList	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getPicInfoOrBuilderList() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getPicInfoOrBuilderList	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getPicInfoOrBuilderList() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getPicInfoOrBuilderList	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getPicInfoOrBuilderList();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getPicNum	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getPicNum() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getPicNum	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getPicNum();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getPicNum	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getPicNum() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getPicRecogMode	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getPicRecogMode() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+getPicRecogMode	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getPicRecogMode();$/;"	m	interface:OffenceSnapDataProtos.PicInfoModelOrBuilder
+getPicRecogMode	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getPicRecogMode() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+getPilotCall	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getPilotCall() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getPilotCall	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getPilotCall();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getPilotCall	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getPilotCall() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getPilotSafebelt	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getPilotSafebelt() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getPilotSafebelt	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getPilotSafebelt();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getPilotSafebelt	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getPilotSafebelt() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getPilotSubVisor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getPilotSubVisor() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getPilotSubVisor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getPilotSubVisor();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getPilotSubVisor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getPilotSubVisor() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getPlateInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public PlateInfoModel getPlateInfo() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getPlateInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        PlateInfoModel getPlateInfo();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getPlateInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public PlateInfoModel getPlateInfo() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getPlateInfoBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public PlateInfoModel.Builder getPlateInfoBuilder() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getPlateInfoFieldBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getPlateInfoFieldBuilder() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+getPlateInfoOrBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public PlateInfoModelOrBuilder getPlateInfoOrBuilder() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getPlateInfoOrBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        PlateInfoModelOrBuilder getPlateInfoOrBuilder();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getPlateInfoOrBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public PlateInfoModelOrBuilder getPlateInfoOrBuilder() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getPlateRect	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public PlateRectModel getPlateRect() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+getPlateRect	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        PlateRectModel getPlateRect();$/;"	m	interface:OffenceSnapDataProtos.PicInfoModelOrBuilder
+getPlateRect	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public PlateRectModel getPlateRect() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+getPlateRectBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public PlateRectModel.Builder getPlateRectBuilder() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+getPlateRectFieldBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getPlateRectFieldBuilder() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder	file:
+getPlateRectOrBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public PlateRectModelOrBuilder getPlateRectOrBuilder() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+getPlateRectOrBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        PlateRectModelOrBuilder getPlateRectOrBuilder();$/;"	m	interface:OffenceSnapDataProtos.PicInfoModelOrBuilder
+getPlateRectOrBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public PlateRectModelOrBuilder getPlateRectOrBuilder() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+getPlateType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public String getPlateType() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+getPlateType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        String getPlateType();$/;"	m	interface:OffenceSnapDataProtos.PlateInfoModelOrBuilder
+getPlateType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public String getPlateType() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+getPlateTypeBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getPlateTypeBytes() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+getPlateTypeBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getPlateTypeBytes() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+getPlateTypeBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getPlateTypeBytes();$/;"	m	interface:OffenceSnapDataProtos.PlateInfoModelOrBuilder
+getPostPicNo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getPostPicNo() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getPostPicNo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getPostPicNo();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getPostPicNo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getPostPicNo() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getRedLightTime	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getRedLightTime() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+getRedLightTime	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getRedLightTime();$/;"	m	interface:OffenceSnapDataProtos.PicInfoModelOrBuilder
+getRedLightTime	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getRedLightTime() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+getResource	./src/main/java/common/PoolBase.java	/^    protected T getResource() {$/;"	m	class:PoolBase
+getSerializedSize	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getSerializedSize() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getSerializedSize	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getSerializedSize() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+getSerializedSize	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getSerializedSize() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+getSerializedSize	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getSerializedSize() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+getSerializedSize	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getSerializedSize() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+getSpeed	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public float getSpeed() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+getSpeed	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        float getSpeed();$/;"	m	interface:OffenceSnapDataProtos.VehicleInfoModelOrBuilder
+getSpeed	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public float getSpeed() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+getSpeedLimit	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getSpeedLimit() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getSpeedLimit	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getSpeedLimit();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getSpeedLimit	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getSpeedLimit() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getType() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+getType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getType();$/;"	m	interface:OffenceSnapDataProtos.PicInfoModelOrBuilder
+getType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getType() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+getUnknownFields	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getUnknownFields() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getUnknownFields	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getUnknownFields() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+getUnknownFields	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getUnknownFields() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+getUnknownFields	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getUnknownFields() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+getUnknownFields	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getUnknownFields() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+getValidity	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getValidity() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getValidity	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getValidity();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getValidity	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getValidity() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getVehicleAttribute	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getVehicleAttribute() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getVehicleAttribute	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getVehicleAttribute();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getVehicleAttribute	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getVehicleAttribute() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getVehicleInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public VehicleInfoModel getVehicleInfo() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getVehicleInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        VehicleInfoModel getVehicleInfo();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getVehicleInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public VehicleInfoModel getVehicleInfo() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getVehicleInfoBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public VehicleInfoModel.Builder getVehicleInfoBuilder() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getVehicleInfoFieldBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getVehicleInfoFieldBuilder() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+getVehicleInfoOrBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public VehicleInfoModelOrBuilder getVehicleInfoOrBuilder() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getVehicleInfoOrBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        VehicleInfoModelOrBuilder getVehicleInfoOrBuilder();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getVehicleInfoOrBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public VehicleInfoModelOrBuilder getVehicleInfoOrBuilder() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getVehicleLogoRecog	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public String getVehicleLogoRecog() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+getVehicleLogoRecog	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        String getVehicleLogoRecog();$/;"	m	interface:OffenceSnapDataProtos.VehicleInfoModelOrBuilder
+getVehicleLogoRecog	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public String getVehicleLogoRecog() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+getVehicleLogoRecogBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getVehicleLogoRecogBytes() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+getVehicleLogoRecogBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getVehicleLogoRecogBytes() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+getVehicleLogoRecogBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getVehicleLogoRecogBytes();$/;"	m	interface:OffenceSnapDataProtos.VehicleInfoModelOrBuilder
+getVehicleModel	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public String getVehicleModel() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+getVehicleModel	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        String getVehicleModel();$/;"	m	interface:OffenceSnapDataProtos.VehicleInfoModelOrBuilder
+getVehicleModel	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public String getVehicleModel() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+getVehicleModelBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getVehicleModelBytes() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+getVehicleModelBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getVehicleModelBytes() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+getVehicleModelBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getVehicleModelBytes();$/;"	m	interface:OffenceSnapDataProtos.VehicleInfoModelOrBuilder
+getVehicleSubLogoRecog	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public String getVehicleSubLogoRecog() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+getVehicleSubLogoRecog	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        String getVehicleSubLogoRecog();$/;"	m	interface:OffenceSnapDataProtos.VehicleInfoModelOrBuilder
+getVehicleSubLogoRecog	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public String getVehicleSubLogoRecog() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+getVehicleSubLogoRecogBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            getVehicleSubLogoRecogBytes() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+getVehicleSubLogoRecogBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getVehicleSubLogoRecogBytes() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+getVehicleSubLogoRecogBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        getVehicleSubLogoRecogBytes();$/;"	m	interface:OffenceSnapDataProtos.VehicleInfoModelOrBuilder
+getVehicleType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getVehicleType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getVehicleType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getVehicleType() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+getVehicleType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getVehicleType();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getVehicleType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getVehicleType();$/;"	m	interface:OffenceSnapDataProtos.VehicleInfoModelOrBuilder
+getVehicleType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getVehicleType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getVehicleType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getVehicleType() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+getWaitedLength	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getWaitedLength() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+getWaitedLength	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getWaitedLength();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+getWaitedLength	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getWaitedLength() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+getWidth	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getWidth() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+getWidth	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getWidth();$/;"	m	interface:OffenceSnapDataProtos.PlateRectModelOrBuilder
+getWidth	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getWidth() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+getX	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getX() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+getX	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getX();$/;"	m	interface:OffenceSnapDataProtos.PlateRectModelOrBuilder
+getX	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getX() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+getY	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public int getY() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+getY	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        int getY();$/;"	m	interface:OffenceSnapDataProtos.PlateRectModelOrBuilder
+getY	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public int getY() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+hasAlarmDataType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasAlarmDataType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+hasAlarmDataType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasAlarmDataType();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+hasAlarmDataType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasAlarmDataType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+hasBelieve	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasBelieve() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+hasBelieve	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasBelieve();$/;"	m	interface:OffenceSnapDataProtos.PlateInfoModelOrBuilder
+hasBelieve	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasBelieve() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+hasBright	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasBright() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+hasBright	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasBright();$/;"	m	interface:OffenceSnapDataProtos.PlateInfoModelOrBuilder
+hasBright	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasBright() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+hasChanIndex	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasChanIndex() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+hasChanIndex	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasChanIndex();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+hasChanIndex	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasChanIndex() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+hasColor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasColor() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+hasColor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasColor() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+hasColor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasColor();$/;"	m	interface:OffenceSnapDataProtos.PlateInfoModelOrBuilder
+hasColor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasColor();$/;"	m	interface:OffenceSnapDataProtos.VehicleInfoModelOrBuilder
+hasColor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasColor() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+hasColor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasColor() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+hasColorDepth	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasColorDepth() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+hasColorDepth	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasColorDepth();$/;"	m	interface:OffenceSnapDataProtos.VehicleInfoModelOrBuilder
+hasColorDepth	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasColorDepth() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+hasCopilotSafebelt	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasCopilotSafebelt() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+hasCopilotSafebelt	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasCopilotSafebelt();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+hasCopilotSafebelt	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasCopilotSafebelt() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+hasCopilotSubVisor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasCopilotSubVisor() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+hasCopilotSubVisor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasCopilotSubVisor();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+hasCopilotSubVisor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasCopilotSubVisor() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+hasCountry	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasCountry() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+hasCountry	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasCountry();$/;"	m	interface:OffenceSnapDataProtos.PlateInfoModelOrBuilder
+hasCountry	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasCountry() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+hasData	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasData() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+hasData	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasData();$/;"	m	interface:OffenceSnapDataProtos.PicInfoModelOrBuilder
+hasData	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasData() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+hasDetectType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasDetectType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+hasDetectType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasDetectType();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+hasDetectType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasDetectType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+hasDir	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasDir() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+hasDir	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasDir();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+hasDir	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasDir() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+hasDriveChan	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasDriveChan() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+hasDriveChan	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasDriveChan();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+hasDriveChan	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasDriveChan() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+hasHeight	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasHeight() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+hasHeight	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasHeight();$/;"	m	interface:OffenceSnapDataProtos.PlateRectModelOrBuilder
+hasHeight	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasHeight() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+hasId	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasId() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+hasId	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasId();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+hasId	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasId() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+hasIllegalSubType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasIllegalSubType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+hasIllegalSubType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasIllegalSubType();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+hasIllegalSubType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasIllegalSubType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+hasIllegalTimer	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasIllegalTimer() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+hasIllegalTimer	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasIllegalTimer();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+hasIllegalTimer	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasIllegalTimer() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+hasIllegalType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasIllegalType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+hasIllegalType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasIllegalType() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+hasIllegalType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasIllegalType();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+hasIllegalType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasIllegalType();$/;"	m	interface:OffenceSnapDataProtos.VehicleInfoModelOrBuilder
+hasIllegalType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasIllegalType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+hasIllegalType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasIllegalType() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+hasIndex	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasIndex() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+hasIndex	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasIndex();$/;"	m	interface:OffenceSnapDataProtos.VehicleInfoModelOrBuilder
+hasIndex	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasIndex() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+hasLength	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasLength() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+hasLength	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasLength();$/;"	m	interface:OffenceSnapDataProtos.VehicleInfoModelOrBuilder
+hasLength	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasLength() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+hasLicense	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasLicense() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+hasLicense	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasLicense();$/;"	m	interface:OffenceSnapDataProtos.PlateInfoModelOrBuilder
+hasLicense	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasLicense() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+hasLicenseLen	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasLicenseLen() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+hasLicenseLen	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasLicenseLen();$/;"	m	interface:OffenceSnapDataProtos.PlateInfoModelOrBuilder
+hasLicenseLen	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasLicenseLen() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+hasLlegalTime	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasLlegalTime() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+hasLlegalTime	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasLlegalTime();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+hasLlegalTime	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasLlegalTime() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+hasMonitoringSiteID	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasMonitoringSiteID() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+hasMonitoringSiteID	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasMonitoringSiteID();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+hasMonitoringSiteID	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasMonitoringSiteID() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+hasPicNum	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasPicNum() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+hasPicNum	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasPicNum();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+hasPicNum	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasPicNum() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+hasPicRecogMode	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasPicRecogMode() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+hasPicRecogMode	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasPicRecogMode();$/;"	m	interface:OffenceSnapDataProtos.PicInfoModelOrBuilder
+hasPicRecogMode	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasPicRecogMode() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+hasPilotCall	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasPilotCall() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+hasPilotCall	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasPilotCall();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+hasPilotCall	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasPilotCall() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+hasPilotSafebelt	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasPilotSafebelt() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+hasPilotSafebelt	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasPilotSafebelt();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+hasPilotSafebelt	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasPilotSafebelt() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+hasPilotSubVisor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasPilotSubVisor() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+hasPilotSubVisor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasPilotSubVisor();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+hasPilotSubVisor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasPilotSubVisor() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+hasPlateInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasPlateInfo() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+hasPlateInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasPlateInfo();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+hasPlateInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasPlateInfo() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+hasPlateRect	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasPlateRect() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+hasPlateRect	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasPlateRect();$/;"	m	interface:OffenceSnapDataProtos.PicInfoModelOrBuilder
+hasPlateRect	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasPlateRect() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+hasPlateType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasPlateType() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+hasPlateType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasPlateType();$/;"	m	interface:OffenceSnapDataProtos.PlateInfoModelOrBuilder
+hasPlateType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasPlateType() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+hasPostPicNo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasPostPicNo() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+hasPostPicNo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasPostPicNo();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+hasPostPicNo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasPostPicNo() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+hasRedLightTime	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasRedLightTime() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+hasRedLightTime	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasRedLightTime();$/;"	m	interface:OffenceSnapDataProtos.PicInfoModelOrBuilder
+hasRedLightTime	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasRedLightTime() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+hasSpeed	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasSpeed() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+hasSpeed	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasSpeed();$/;"	m	interface:OffenceSnapDataProtos.VehicleInfoModelOrBuilder
+hasSpeed	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasSpeed() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+hasSpeedLimit	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasSpeedLimit() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+hasSpeedLimit	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasSpeedLimit();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+hasSpeedLimit	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasSpeedLimit() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+hasType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasType() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+hasType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasType();$/;"	m	interface:OffenceSnapDataProtos.PicInfoModelOrBuilder
+hasType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasType() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+hasValidity	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasValidity() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+hasValidity	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasValidity();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+hasValidity	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasValidity() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+hasVehicleAttribute	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasVehicleAttribute() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+hasVehicleAttribute	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasVehicleAttribute();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+hasVehicleAttribute	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasVehicleAttribute() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+hasVehicleInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasVehicleInfo() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+hasVehicleInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasVehicleInfo();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+hasVehicleInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasVehicleInfo() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+hasVehicleLogoRecog	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasVehicleLogoRecog() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+hasVehicleLogoRecog	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasVehicleLogoRecog();$/;"	m	interface:OffenceSnapDataProtos.VehicleInfoModelOrBuilder
+hasVehicleLogoRecog	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasVehicleLogoRecog() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+hasVehicleModel	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasVehicleModel() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+hasVehicleModel	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasVehicleModel();$/;"	m	interface:OffenceSnapDataProtos.VehicleInfoModelOrBuilder
+hasVehicleModel	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasVehicleModel() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+hasVehicleSubLogoRecog	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasVehicleSubLogoRecog() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+hasVehicleSubLogoRecog	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasVehicleSubLogoRecog();$/;"	m	interface:OffenceSnapDataProtos.VehicleInfoModelOrBuilder
+hasVehicleSubLogoRecog	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasVehicleSubLogoRecog() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+hasVehicleType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasVehicleType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+hasVehicleType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasVehicleType() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+hasVehicleType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasVehicleType();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+hasVehicleType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasVehicleType();$/;"	m	interface:OffenceSnapDataProtos.VehicleInfoModelOrBuilder
+hasVehicleType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasVehicleType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+hasVehicleType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasVehicleType() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+hasWaitedLength	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasWaitedLength() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+hasWaitedLength	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasWaitedLength();$/;"	m	interface:OffenceSnapDataProtos.OffenceSnapDataOrBuilder
+hasWaitedLength	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasWaitedLength() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+hasWidth	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasWidth() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+hasWidth	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasWidth();$/;"	m	interface:OffenceSnapDataProtos.PlateRectModelOrBuilder
+hasWidth	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasWidth() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+hasX	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasX() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+hasX	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasX();$/;"	m	interface:OffenceSnapDataProtos.PlateRectModelOrBuilder
+hasX	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasX() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+hasY	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public boolean hasY() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+hasY	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        boolean hasY();$/;"	m	interface:OffenceSnapDataProtos.PlateRectModelOrBuilder
+hasY	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public boolean hasY() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+height_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int height_;$/;"	f	class:OffenceSnapDataProtos.PlateRectModel.Builder	file:
+height_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int height_;$/;"	f	class:OffenceSnapDataProtos.PlateRectModel	file:
+id_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private Object id_ = "";$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+id_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private Object id_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+illegalSubType_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private Object illegalSubType_ = "";$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+illegalSubType_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private Object illegalSubType_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+illegalTimer_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int illegalTimer_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+illegalTimer_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int illegalTimer_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+illegalType_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int illegalType_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+illegalType_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int illegalType_;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel.Builder	file:
+illegalType_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int illegalType_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+illegalType_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int illegalType_;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel	file:
+imageFile	./src/main/java/traffic/Man.java	/^    public  String imageFile;$/;"	f	class:Man
+index_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int index_;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel.Builder	file:
+index_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int index_;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel	file:
+initFields	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private void initFields() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData	file:
+initFields	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private void initFields() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel	file:
+initFields	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private void initFields() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel	file:
+initFields	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private void initFields() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel	file:
+initFields	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private void initFields() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel	file:
+initPool	./src/main/java/common/PoolBase.java	/^    protected void initPool(final GenericObjectPoolConfig poolConfig,$/;"	m	class:PoolBase
+internalGetFieldAccessorTable	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            internalGetFieldAccessorTable() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+internalGetFieldAccessorTable	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            internalGetFieldAccessorTable() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+internalGetFieldAccessorTable	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            internalGetFieldAccessorTable() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+internalGetFieldAccessorTable	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            internalGetFieldAccessorTable() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+internalGetFieldAccessorTable	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            internalGetFieldAccessorTable() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+internalGetFieldAccessorTable	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        internalGetFieldAccessorTable() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+internalGetFieldAccessorTable	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        internalGetFieldAccessorTable() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+internalGetFieldAccessorTable	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        internalGetFieldAccessorTable() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+internalGetFieldAccessorTable	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        internalGetFieldAccessorTable() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+internalGetFieldAccessorTable	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        internalGetFieldAccessorTable() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+internalPool	./src/main/java/common/PoolBase.java	/^    protected GenericObjectPool<T> internalPool;$/;"	f	class:PoolBase
+internal_static_OffenceSnapData_descriptor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            internal_static_OffenceSnapData_descriptor;$/;"	f	class:OffenceSnapDataProtos	file:
+internal_static_OffenceSnapData_fieldAccessorTable	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            internal_static_OffenceSnapData_fieldAccessorTable;$/;"	f	class:OffenceSnapDataProtos	file:
+internal_static_PicInfoModel_descriptor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            internal_static_PicInfoModel_descriptor;$/;"	f	class:OffenceSnapDataProtos	file:
+internal_static_PicInfoModel_fieldAccessorTable	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            internal_static_PicInfoModel_fieldAccessorTable;$/;"	f	class:OffenceSnapDataProtos	file:
+internal_static_PlateInfoModel_descriptor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            internal_static_PlateInfoModel_descriptor;$/;"	f	class:OffenceSnapDataProtos	file:
+internal_static_PlateInfoModel_fieldAccessorTable	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            internal_static_PlateInfoModel_fieldAccessorTable;$/;"	f	class:OffenceSnapDataProtos	file:
+internal_static_PlateRectModel_descriptor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            internal_static_PlateRectModel_descriptor;$/;"	f	class:OffenceSnapDataProtos	file:
+internal_static_PlateRectModel_fieldAccessorTable	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            internal_static_PlateRectModel_fieldAccessorTable;$/;"	f	class:OffenceSnapDataProtos	file:
+internal_static_VehicleInfoModel_descriptor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            internal_static_VehicleInfoModel_descriptor;$/;"	f	class:OffenceSnapDataProtos	file:
+internal_static_VehicleInfoModel_fieldAccessorTable	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            internal_static_VehicleInfoModel_fieldAccessorTable;$/;"	f	class:OffenceSnapDataProtos	file:
+invalidateConnection	./src/main/java/common/ConnectionPool.java	/^    public void invalidateConnection(T conn);$/;"	m	interface:ConnectionPool
+invalidateConnection	./src/main/java/common/es/EsConnectionPool.java	/^    public void invalidateConnection(ElasticClient client) {$/;"	m	class:EsConnectionPool
+invalidateConnection	./src/main/java/common/es/EsSharedConnPool.java	/^    public void invalidateConnection(ElasticClient client) {$/;"	m	class:EsSharedConnPool
+invalidateConnection	./src/main/java/common/kafka/KafkaConnectionPool.java	/^    public void invalidateConnection(Producer<byte[], byte[]> conn) {$/;"	m	class:KafkaConnectionPool
+invalidateConnection	./src/main/java/common/kafka/KafkaSharedConnPool.java	/^    public void invalidateConnection(Producer<byte[], byte[]> conn) {$/;"	m	class:KafkaSharedConnPool
+invalidateResource	./src/main/java/common/PoolBase.java	/^    protected void invalidateResource(final T resource) {$/;"	m	class:PoolBase
+isClosed	./src/main/java/common/PoolBase.java	/^    public boolean isClosed() {$/;"	m	class:PoolBase
+isInactived	./src/main/java/common/PoolBase.java	/^    private boolean isInactived() {$/;"	m	class:PoolBase	file:
+isInitialized	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public final boolean isInitialized() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+isInitialized	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public final boolean isInitialized() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+isInitialized	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public final boolean isInitialized() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+isInitialized	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public final boolean isInitialized() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+isInitialized	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public final boolean isInitialized() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+isInitialized	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public final boolean isInitialized() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+isInitialized	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public final boolean isInitialized() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+isInitialized	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public final boolean isInitialized() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+isInitialized	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public final boolean isInitialized() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+isInitialized	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public final boolean isInitialized() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+len	./src/main/java/traffic/TrafficResource.java	/^    private  int len ;$/;"	f	class:TrafficResource	file:
+len2	./src/main/java/traffic/TrafficResource.java	/^    private  int len2 ;$/;"	f	class:TrafficResource	file:
+length_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private float length_;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel.Builder	file:
+length_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private float length_;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel	file:
+licenseLen_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int licenseLen_;$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel.Builder	file:
+licenseLen_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int licenseLen_;$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel	file:
+license_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private Object license_ = "";$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel.Builder	file:
+license_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private Object license_;$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel	file:
+llegalTime_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private Object llegalTime_ = "";$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+llegalTime_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private Object llegalTime_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+localtios	./src/main/java/traffic/TrafficResource.java	/^    private static Vector<String>  localtios = null;$/;"	f	class:TrafficResource	file:
+logisticRegression	./src/main/java/traffic/TrafficResource.java	/^    public static double logisticRegression($/;"	m	class:TrafficResource
+lontiFile	./src/main/java/traffic/Man.java	/^    public  String lontiFile;$/;"	f	class:Man
+main	./src/main/java/service/BootStrap.java	/^    public static void main(String[] args){$/;"	m	class:BootStrap
+main	./src/main/java/traffic/Man.java	/^    public static void main(String[] args) throws ConfigurationException {$/;"	m	class:Man
+makeObject	./src/main/java/common/es/EsConnectionFactory.java	/^    public PooledObject<ElasticClient> makeObject() throws Exception {$/;"	m	class:EsConnectionFactory
+makeObject	./src/main/java/common/kafka/KafkaConnectionFactory.java	/^    public PooledObject<Producer<byte[], byte[]>> makeObject() throws Exception {$/;"	m	class:KafkaConnectionFactory
+maybeForceBuilderInitialization	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private void maybeForceBuilderInitialization() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+maybeForceBuilderInitialization	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private void maybeForceBuilderInitialization() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder	file:
+maybeForceBuilderInitialization	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private void maybeForceBuilderInitialization() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder	file:
+maybeForceBuilderInitialization	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private void maybeForceBuilderInitialization() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder	file:
+maybeForceBuilderInitialization	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private void maybeForceBuilderInitialization() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder	file:
+memoizedIsInitialized	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private byte memoizedIsInitialized = -1;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+memoizedIsInitialized	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private byte memoizedIsInitialized = -1;$/;"	f	class:OffenceSnapDataProtos.PicInfoModel	file:
+memoizedIsInitialized	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private byte memoizedIsInitialized = -1;$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel	file:
+memoizedIsInitialized	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private byte memoizedIsInitialized = -1;$/;"	f	class:OffenceSnapDataProtos.PlateRectModel	file:
+memoizedIsInitialized	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private byte memoizedIsInitialized = -1;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel	file:
+memoizedSerializedSize	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int memoizedSerializedSize = -1;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+memoizedSerializedSize	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int memoizedSerializedSize = -1;$/;"	f	class:OffenceSnapDataProtos.PicInfoModel	file:
+memoizedSerializedSize	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int memoizedSerializedSize = -1;$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel	file:
+memoizedSerializedSize	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int memoizedSerializedSize = -1;$/;"	f	class:OffenceSnapDataProtos.PlateRectModel	file:
+memoizedSerializedSize	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int memoizedSerializedSize = -1;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel	file:
+mergeFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder mergeFrom($/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+mergeFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder mergeFrom($/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+mergeFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder mergeFrom($/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+mergeFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder mergeFrom($/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+mergeFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder mergeFrom($/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+mergeFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder mergeFrom(OffenceSnapData other) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+mergeFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder mergeFrom(PicInfoModel other) {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+mergeFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder mergeFrom(PlateInfoModel other) {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+mergeFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder mergeFrom(PlateRectModel other) {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+mergeFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder mergeFrom(VehicleInfoModel other) {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+mergeFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder mergeFrom(com.google.protobuf.Message other) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+mergeFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder mergeFrom(com.google.protobuf.Message other) {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+mergeFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder mergeFrom(com.google.protobuf.Message other) {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+mergeFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder mergeFrom(com.google.protobuf.Message other) {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+mergeFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder mergeFrom(com.google.protobuf.Message other) {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+mergePlateInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder mergePlateInfo(PlateInfoModel value) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+mergePlateRect	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder mergePlateRect(PlateRectModel value) {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+mergeVehicleInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder mergeVehicleInfo(VehicleInfoModel value) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+monitoringSiteID_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private Object monitoringSiteID_ = "";$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+monitoringSiteID_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private Object monitoringSiteID_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+newBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static Builder newBuilder() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+newBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static Builder newBuilder() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+newBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static Builder newBuilder() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+newBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static Builder newBuilder() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+newBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static Builder newBuilder() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+newBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static Builder newBuilder(OffenceSnapData prototype) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+newBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static Builder newBuilder(PicInfoModel prototype) {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+newBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static Builder newBuilder(PlateInfoModel prototype) {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+newBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static Builder newBuilder(PlateRectModel prototype) {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+newBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static Builder newBuilder(VehicleInfoModel prototype) {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+newBuilderForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        protected Builder newBuilderForType($/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+newBuilderForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        protected Builder newBuilderForType($/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+newBuilderForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        protected Builder newBuilderForType($/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+newBuilderForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        protected Builder newBuilderForType($/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+newBuilderForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        protected Builder newBuilderForType($/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+newBuilderForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public Builder newBuilderForType() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+newBuilderForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public Builder newBuilderForType() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+newBuilderForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public Builder newBuilderForType() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+newBuilderForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public Builder newBuilderForType() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+newBuilderForType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public Builder newBuilderForType() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+objectMapper	./src/main/java/traffic/TrafficResource.java	/^    private static ObjectMapper objectMapper = new ObjectMapper();$/;"	f	class:TrafficResource	file:
+parseDelimitedFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static OffenceSnapData parseDelimitedFrom($/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+parseDelimitedFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static OffenceSnapData parseDelimitedFrom(java.io.InputStream input)$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+parseDelimitedFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static PicInfoModel parseDelimitedFrom($/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+parseDelimitedFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static PicInfoModel parseDelimitedFrom(java.io.InputStream input)$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+parseDelimitedFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static PlateInfoModel parseDelimitedFrom($/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+parseDelimitedFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static PlateInfoModel parseDelimitedFrom(java.io.InputStream input)$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+parseDelimitedFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static PlateRectModel parseDelimitedFrom($/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+parseDelimitedFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static PlateRectModel parseDelimitedFrom(java.io.InputStream input)$/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+parseDelimitedFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static VehicleInfoModel parseDelimitedFrom($/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+parseDelimitedFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static VehicleInfoModel parseDelimitedFrom(java.io.InputStream input)$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+parseFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static OffenceSnapData parseFrom($/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+parseFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static OffenceSnapData parseFrom(byte[] data)$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+parseFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static OffenceSnapData parseFrom(java.io.InputStream input)$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+parseFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static PicInfoModel parseFrom($/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+parseFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static PicInfoModel parseFrom(byte[] data)$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+parseFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static PicInfoModel parseFrom(java.io.InputStream input)$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+parseFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static PlateInfoModel parseFrom($/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+parseFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static PlateInfoModel parseFrom(byte[] data)$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+parseFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static PlateInfoModel parseFrom(java.io.InputStream input)$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+parseFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static PlateRectModel parseFrom($/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+parseFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static PlateRectModel parseFrom(byte[] data)$/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+parseFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static PlateRectModel parseFrom(java.io.InputStream input)$/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+parseFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static VehicleInfoModel parseFrom($/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+parseFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static VehicleInfoModel parseFrom(byte[] data)$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+parseFrom	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public static VehicleInfoModel parseFrom(java.io.InputStream input)$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+passivateObject	./src/main/java/common/es/EsConnectionFactory.java	/^    public void passivateObject(PooledObject<ElasticClient> p) throws Exception {$/;"	m	class:EsConnectionFactory
+passivateObject	./src/main/java/common/kafka/KafkaConnectionFactory.java	/^    public void passivateObject(PooledObject<Producer<byte[], byte[]>> p)$/;"	m	class:KafkaConnectionFactory
+picInfoBuilder_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^                    PicInfoModel, PicInfoModel.Builder, PicInfoModelOrBuilder> picInfoBuilder_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+picInfo_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private java.util.List<PicInfoModel> picInfo_ =$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+picInfo_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private java.util.List<PicInfoModel> picInfo_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+picNum_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int picNum_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+picNum_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int picNum_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+picRecogMode_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int picRecogMode_;$/;"	f	class:OffenceSnapDataProtos.PicInfoModel.Builder	file:
+picRecogMode_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int picRecogMode_;$/;"	f	class:OffenceSnapDataProtos.PicInfoModel	file:
+pilotCall_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int pilotCall_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+pilotCall_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int pilotCall_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+pilotSafebelt_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int pilotSafebelt_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+pilotSafebelt_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int pilotSafebelt_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+pilotSubVisor_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int pilotSubVisor_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+pilotSubVisor_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int pilotSubVisor_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+plateInfoBuilder_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^                    PlateInfoModel, PlateInfoModel.Builder, PlateInfoModelOrBuilder> plateInfoBuilder_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+plateInfo_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private PlateInfoModel plateInfo_ = PlateInfoModel.getDefaultInstance();$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+plateInfo_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private PlateInfoModel plateInfo_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+plateRectBuilder_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^                    PlateRectModel, PlateRectModel.Builder, PlateRectModelOrBuilder> plateRectBuilder_;$/;"	f	class:OffenceSnapDataProtos.PicInfoModel.Builder	file:
+plateRect_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private PlateRectModel plateRect_ = PlateRectModel.getDefaultInstance();$/;"	f	class:OffenceSnapDataProtos.PicInfoModel.Builder	file:
+plateRect_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private PlateRectModel plateRect_;$/;"	f	class:OffenceSnapDataProtos.PicInfoModel	file:
+plateType_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private Object plateType_ = "";$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel.Builder	file:
+plateType_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private Object plateType_;$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel	file:
+pool	./src/main/java/common/es/EsSharedConnPool.java	/^    private static final AtomicReference<EsSharedConnPool> pool = new AtomicReference<EsSharedConnPool>();$/;"	f	class:EsSharedConnPool	file:
+pool	./src/main/java/common/kafka/KafkaSharedConnPool.java	/^    private static final AtomicReference<KafkaSharedConnPool> pool = new AtomicReference<KafkaSharedConnPool>();$/;"	f	class:KafkaSharedConnPool	file:
+pool	./src/main/java/service/BootStrap.java	/^    private static JedisPool pool = new JedisPool("0.0.0.0",6379);$/;"	f	class:BootStrap	file:
+postPicNo_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int postPicNo_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+postPicNo_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int postPicNo_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+producer	./src/main/java/common/kafka/KafkaSharedConnPool.java	/^    private final Producer<byte[], byte[]> producer;$/;"	f	class:KafkaSharedConnPool	file:
+protobuf	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^package protobuf;$/;"	p
+province	./src/main/java/traffic/Man.java	/^    public  static String[] province = {"川", "云", "贵", " 京", "津", "渝"};$/;"	f	class:Man
+random	./src/main/java/traffic/TrafficResource.java	/^    private static ThreadLocalRandom random = ThreadLocalRandom.current();$/;"	f	class:TrafficResource	file:
+readLonAndLat	./src/main/java/traffic/Man.java	/^    public  Vector<String> readLonAndLat() throws IOException {$/;"	m	class:Man
+redLightTime_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int redLightTime_;$/;"	f	class:OffenceSnapDataProtos.PicInfoModel.Builder	file:
+redLightTime_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int redLightTime_;$/;"	f	class:OffenceSnapDataProtos.PicInfoModel	file:
+registerAllExtensions	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^    public static void registerAllExtensions($/;"	m	class:OffenceSnapDataProtos
+removePicInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder removePicInfo(int index) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+returnConnection	./src/main/java/common/ConnectionPool.java	/^    public void returnConnection(T conn);$/;"	m	interface:ConnectionPool
+returnConnection	./src/main/java/common/es/EsConnectionPool.java	/^    public void returnConnection(ElasticClient client) {$/;"	m	class:EsConnectionPool
+returnConnection	./src/main/java/common/es/EsSharedConnPool.java	/^    public void returnConnection(ElasticClient client) {$/;"	m	class:EsSharedConnPool
+returnConnection	./src/main/java/common/kafka/KafkaConnectionPool.java	/^    public void returnConnection(Producer<byte[], byte[]> conn) {$/;"	m	class:KafkaConnectionPool
+returnConnection	./src/main/java/common/kafka/KafkaSharedConnPool.java	/^    public void returnConnection(Producer<byte[], byte[]> conn) {$/;"	m	class:KafkaSharedConnPool
+returnResource	./src/main/java/common/PoolBase.java	/^    protected void returnResource(final T resource) {$/;"	m	class:PoolBase
+send	./src/main/java/traffic/Man.java	/^    public  void send(Producer<byte[], byte[]> producer) throws IOException {$/;"	m	class:Man
+sendToKafka	./src/main/java/traffic/Man.java	/^    private void sendToKafka(Producer<byte[], byte[]> producer,ProducerRecord<byte[], byte[]> message){$/;"	m	class:Man	file:
+serialVersionUID	./src/main/java/common/ConnectionException.java	/^    private static final long serialVersionUID = -6503525110247209484L;$/;"	f	class:ConnectionException	file:
+serialVersionUID	./src/main/java/common/PoolBase.java	/^    private static final long serialVersionUID = 536428799879058482L;$/;"	f	class:PoolBase	file:
+serialVersionUID	./src/main/java/common/PoolConfig.java	/^    private static final long serialVersionUID = -2414567557372345057L;$/;"	f	class:PoolConfig	file:
+serialVersionUID	./src/main/java/common/es/EsConnectionFactory.java	/^    private static final long serialVersionUID = 4024923894283696465L;$/;"	f	class:EsConnectionFactory	file:
+serialVersionUID	./src/main/java/common/es/EsConnectionPool.java	/^    private static final long serialVersionUID = -9126420905798370263L;$/;"	f	class:EsConnectionPool	file:
+serialVersionUID	./src/main/java/common/kafka/KafkaConnectionFactory.java	/^    private static final long serialVersionUID = 8271607366818512399L;$/;"	f	class:KafkaConnectionFactory	file:
+serialVersionUID	./src/main/java/common/kafka/KafkaConnectionPool.java	/^    private static final long serialVersionUID = -1506435964498488591L;$/;"	f	class:KafkaConnectionPool	file:
+serialVersionUID	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private static final long serialVersionUID = 0L;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+serialVersionUID	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private static final long serialVersionUID = 0L;$/;"	f	class:OffenceSnapDataProtos.PicInfoModel	file:
+serialVersionUID	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private static final long serialVersionUID = 0L;$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel	file:
+serialVersionUID	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private static final long serialVersionUID = 0L;$/;"	f	class:OffenceSnapDataProtos.PlateRectModel	file:
+serialVersionUID	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private static final long serialVersionUID = 0L;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel	file:
+service	./src/main/java/service/BootStrap.java	/^package service;$/;"	p
+service	./src/main/java/service/TrafficApplication.java	/^package service;$/;"	p
+setAlarmDataType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setAlarmDataType(int value) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setBelieve	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setBelieve($/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+setBelieveBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setBelieveBytes($/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+setBright	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setBright(int value) {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+setChanIndex	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setChanIndex(int value) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setColor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setColor($/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+setColor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setColor($/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+setColorBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setColorBytes($/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+setColorBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setColorBytes($/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+setColorDepth	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setColorDepth(int value) {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+setCopilotSafebelt	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setCopilotSafebelt(int value) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setCopilotSubVisor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setCopilotSubVisor(int value) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setCountry	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setCountry(int value) {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+setData	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setData($/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+setDataBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setDataBytes($/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+setDetectType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setDetectType(int value) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setDir	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setDir(int value) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setDriveChan	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setDriveChan(int value) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setHeight	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setHeight(int value) {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+setId	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setId($/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setIdBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setIdBytes($/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setIllegalSubType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setIllegalSubType($/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setIllegalSubTypeBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setIllegalSubTypeBytes($/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setIllegalTimer	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setIllegalTimer(int value) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setIllegalType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setIllegalType(int value) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setIllegalType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setIllegalType(int value) {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+setIndex	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setIndex(int value) {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+setLength	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setLength(float value) {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+setLicense	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setLicense($/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+setLicenseBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setLicenseBytes($/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+setLicenseLen	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setLicenseLen(int value) {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+setLlegalTime	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setLlegalTime($/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setLlegalTimeBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setLlegalTimeBytes($/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setMonitoringSiteID	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setMonitoringSiteID($/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setMonitoringSiteIDBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setMonitoringSiteIDBytes($/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setPicInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setPicInfo($/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setPicNum	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setPicNum(int value) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setPicRecogMode	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setPicRecogMode(int value) {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+setPilotCall	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setPilotCall(int value) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setPilotSafebelt	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setPilotSafebelt(int value) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setPilotSubVisor	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setPilotSubVisor(int value) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setPlateInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setPlateInfo($/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setPlateInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setPlateInfo(PlateInfoModel value) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setPlateRect	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setPlateRect($/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+setPlateRect	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setPlateRect(PlateRectModel value) {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+setPlateType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setPlateType($/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+setPlateTypeBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setPlateTypeBytes($/;"	m	class:OffenceSnapDataProtos.PlateInfoModel.Builder
+setPostPicNo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setPostPicNo(int value) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setRedLightTime	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setRedLightTime(int value) {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+setSpeed	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setSpeed(float value) {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+setSpeedLimit	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setSpeedLimit(int value) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setType(int value) {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel.Builder
+setValidity	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setValidity(int value) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setVehicleAttribute	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setVehicleAttribute(int value) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setVehicleInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setVehicleInfo($/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setVehicleInfo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setVehicleInfo(VehicleInfoModel value) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setVehicleLogoRecog	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setVehicleLogoRecog($/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+setVehicleLogoRecogBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setVehicleLogoRecogBytes($/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+setVehicleModel	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setVehicleModel($/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+setVehicleModelBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setVehicleModelBytes($/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+setVehicleSubLogoRecog	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setVehicleSubLogoRecog($/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+setVehicleSubLogoRecogBytes	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setVehicleSubLogoRecogBytes($/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+setVehicleType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setVehicleType(int value) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setVehicleType	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setVehicleType(int value) {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel.Builder
+setWaitedLength	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setWaitedLength(int value) {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData.Builder
+setWidth	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setWidth(int value) {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+setX	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setX(int value) {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+setY	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            public Builder setY(int value) {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel.Builder
+settings	./src/main/java/common/es/EsConnectionFactory.java	/^    private final Settings settings;$/;"	f	class:EsConnectionFactory	file:
+speedLimit_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int speedLimit_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+speedLimit_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int speedLimit_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+speed_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private float speed_;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel.Builder	file:
+speed_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private float speed_;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel	file:
+statistics	./src/main/java/traffic/TrafficResource.java	/^    private static  String statistics = "statistics";$/;"	f	class:TrafficResource	file:
+toBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public Builder toBuilder() {$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+toBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public Builder toBuilder() {$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+toBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public Builder toBuilder() {$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+toBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public Builder toBuilder() {$/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+toBuilder	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public Builder toBuilder() {$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+topics	./src/main/java/traffic/Man.java	/^    public  static String[] topics = {"test1", "test2", "test3", "test4", "test5", "test6", "test7", "test8", "test9", "test10"};$/;"	f	class:Man
+traffic	./src/main/java/traffic/Man.java	/^package traffic;$/;"	p
+traffic	./src/main/java/traffic/TrafficResource.java	/^package traffic;$/;"	p
+type_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int type_;$/;"	f	class:OffenceSnapDataProtos.PicInfoModel.Builder	file:
+type_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int type_;$/;"	f	class:OffenceSnapDataProtos.PicInfoModel	file:
+unknownFields	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private final com.google.protobuf.UnknownFieldSet unknownFields;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+unknownFields	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private final com.google.protobuf.UnknownFieldSet unknownFields;$/;"	f	class:OffenceSnapDataProtos.PicInfoModel	file:
+unknownFields	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private final com.google.protobuf.UnknownFieldSet unknownFields;$/;"	f	class:OffenceSnapDataProtos.PlateInfoModel	file:
+unknownFields	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private final com.google.protobuf.UnknownFieldSet unknownFields;$/;"	f	class:OffenceSnapDataProtos.PlateRectModel	file:
+unknownFields	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private final com.google.protobuf.UnknownFieldSet unknownFields;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel	file:
+validateObject	./src/main/java/common/es/EsConnectionFactory.java	/^    public boolean validateObject(PooledObject<ElasticClient> p) {$/;"	m	class:EsConnectionFactory
+validateObject	./src/main/java/common/kafka/KafkaConnectionFactory.java	/^    public boolean validateObject(PooledObject<Producer<byte[], byte[]>> p) {$/;"	m	class:KafkaConnectionFactory
+validity_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int validity_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+validity_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int validity_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+vehicle	./src/main/java/traffic/TrafficResource.java	/^    public Response vehicle() {$/;"	m	class:TrafficResource
+vehicleAttribute_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int vehicleAttribute_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+vehicleAttribute_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int vehicleAttribute_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+vehicleChengDuCount	./src/main/java/traffic/TrafficResource.java	/^    private HashMap<String,Integer> vehicleChengDuCount = new HashMap<String,Integer>();$/;"	f	class:TrafficResource	file:
+vehicleCount	./src/main/java/traffic/TrafficResource.java	/^    private static HashMap<String,Integer> vehicleCount = new HashMap<String,Integer>();$/;"	f	class:TrafficResource	file:
+vehicleCount	./src/main/java/traffic/TrafficResource.java	/^    public Response vehicleCount() {$/;"	m	class:TrafficResource
+vehicleInfoBuilder_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^                    VehicleInfoModel, VehicleInfoModel.Builder, VehicleInfoModelOrBuilder> vehicleInfoBuilder_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+vehicleInfo_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private VehicleInfoModel vehicleInfo_ = VehicleInfoModel.getDefaultInstance();$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+vehicleInfo_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private VehicleInfoModel vehicleInfo_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+vehicleLogoRecog_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private Object vehicleLogoRecog_ = "";$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel.Builder	file:
+vehicleLogoRecog_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private Object vehicleLogoRecog_;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel	file:
+vehicleMap	./src/main/java/traffic/TrafficResource.java	/^    public Response vehicleMap() {$/;"	m	class:TrafficResource
+vehicleMining	./src/main/java/traffic/TrafficResource.java	/^    public Response vehicleMining(){$/;"	m	class:TrafficResource
+vehicleModel_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private Object vehicleModel_ = "";$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel.Builder	file:
+vehicleModel_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private Object vehicleModel_;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel	file:
+vehicleSiChuanCount	./src/main/java/traffic/TrafficResource.java	/^    public Response vehicleSiChuanCount() {$/;"	m	class:TrafficResource
+vehicleSubLogoRecog_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private Object vehicleSubLogoRecog_ = "";$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel.Builder	file:
+vehicleSubLogoRecog_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private Object vehicleSubLogoRecog_;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel	file:
+vehicleType	./src/main/java/traffic/Man.java	/^    public static int[] vehicleType = {1,2,3,4};$/;"	f	class:Man
+vehicleType_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int vehicleType_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+vehicleType_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int vehicleType_;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel.Builder	file:
+vehicleType_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int vehicleType_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+vehicleType_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int vehicleType_;$/;"	f	class:OffenceSnapDataProtos.VehicleInfoModel	file:
+waitedLength_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int waitedLength_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData.Builder	file:
+waitedLength_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int waitedLength_;$/;"	f	class:OffenceSnapDataProtos.OffenceSnapData	file:
+width_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int width_;$/;"	f	class:OffenceSnapDataProtos.PlateRectModel.Builder	file:
+width_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int width_;$/;"	f	class:OffenceSnapDataProtos.PlateRectModel	file:
+writeReplace	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        protected Object writeReplace()$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+writeReplace	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        protected Object writeReplace()$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+writeReplace	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        protected Object writeReplace()$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+writeReplace	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        protected Object writeReplace()$/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+writeReplace	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        protected Object writeReplace()$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+writeTo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public void writeTo(com.google.protobuf.CodedOutputStream output)$/;"	m	class:OffenceSnapDataProtos.OffenceSnapData
+writeTo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public void writeTo(com.google.protobuf.CodedOutputStream output)$/;"	m	class:OffenceSnapDataProtos.PicInfoModel
+writeTo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public void writeTo(com.google.protobuf.CodedOutputStream output)$/;"	m	class:OffenceSnapDataProtos.PlateInfoModel
+writeTo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public void writeTo(com.google.protobuf.CodedOutputStream output)$/;"	m	class:OffenceSnapDataProtos.PlateRectModel
+writeTo	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        public void writeTo(com.google.protobuf.CodedOutputStream output)$/;"	m	class:OffenceSnapDataProtos.VehicleInfoModel
+x_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int x_;$/;"	f	class:OffenceSnapDataProtos.PlateRectModel.Builder	file:
+x_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int x_;$/;"	f	class:OffenceSnapDataProtos.PlateRectModel	file:
+y_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^            private int y_;$/;"	f	class:OffenceSnapDataProtos.PlateRectModel.Builder	file:
+y_	./src/main/java/protobuf/OffenceSnapDataProtos.java	/^        private int y_;$/;"	f	class:OffenceSnapDataProtos.PlateRectModel	file:
