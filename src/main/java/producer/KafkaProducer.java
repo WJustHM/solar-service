@@ -51,7 +51,7 @@ public class KafkaProducer {
   
 	public  String topic;
 
-    public KafkaProducer(String lontiFile, String imageFile,String topic) throws Exception {
+    public KafkaProducer(String imageFile,String topic) throws Exception {
         this.image = new String(Files.readAllBytes(Paths.get(imageFile)));
         this.topic = topic;
 
@@ -198,7 +198,6 @@ public class KafkaProducer {
     public static void main(String[] args) throws Exception {
        String[] command = {"-im","/home/xuefei_wang/Pictures/image.png",
                "-ks","suna:9092,sunb:9092,sunc:9092,sund:9092,sune:9092",
-               "-lt","/home/xuefei_wang/workspace/solar-service/src/main/resources/longAndLati.text",
                 "-tp","solar",
                "-h","master-1",
                "-p","3306",
@@ -208,9 +207,6 @@ public class KafkaProducer {
        };
 
         Options options = new Options();
-        Option lonti = new Option("lt", "lonti", true, " 经纬度文件路径");
-        lonti.setRequired(true);
-        options.addOption(lonti);
 
         Option imagePath = new Option("im", "image", true, "图片路径");
         imagePath.setRequired(true);
@@ -255,7 +251,7 @@ public class KafkaProducer {
         CommandLine cmd;
 
         try {
-            cmd = parser.parse(options, command);
+            cmd = parser.parse(options, args);
         } catch (ParseException e) {
             System.out.println(e.getMessage());
             formatter.printHelp("参数是：", options);
@@ -265,7 +261,6 @@ public class KafkaProducer {
         formatter.printHelp("参数是：", options);
 
         String bootstrapServers = cmd.getOptionValue("kafkaserver");
-        String lontiFile = cmd.getOptionValue("lonti");
         String imageFile = cmd.getOptionValue("image");
         String topic = cmd.getOptionValue("topic");
 
@@ -282,7 +277,7 @@ public class KafkaProducer {
         PoolConfig config = new PoolConfig();
         config.setMaxTotal(30);
         config.setMaxIdle(20);
-        config.setMaxWaitMillis(1000);
+        config.setMaxWaitMillis(10000000);
         config.setTestOnBorrow(true);
 
         Properties props = new Properties();
@@ -303,7 +298,7 @@ public class KafkaProducer {
             e.printStackTrace();
         }
         Executor executors = Executors.newFixedThreadPool(threadNum);
-        final KafkaProducer man = new KafkaProducer(lontiFile,imageFile,topic);
+        final KafkaProducer man = new KafkaProducer(imageFile,topic);
         man.initDevice(url.toString(),userName,password);
         for (int i = 0; i < threadNum; i++) {
             executors.execute(new Runnable() {

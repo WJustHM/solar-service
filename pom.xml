@@ -124,7 +124,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>producer.Man</mainClass>
+                            <mainClass>producer.KafkaProducer</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

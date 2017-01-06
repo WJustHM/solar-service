@@ -1,7 +1,9 @@
 package service;
 
+import org.apache.commons.cli.*;
 import org.jboss.resteasy.plugins.server.netty.NettyJaxrsServer;
 import org.jboss.resteasy.spi.ResteasyDeployment;
+import producer.KafkaProducer;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.JedisPool;
@@ -21,6 +23,8 @@ public class BootStrap {
 
 
     public static void main(String[] args){
+
+
         NettyJaxrsServer server = new NettyJaxrsServer();
         ResteasyDeployment deployment = new ResteasyDeployment();
         deployment.setApplication(new TrafficApplication());
