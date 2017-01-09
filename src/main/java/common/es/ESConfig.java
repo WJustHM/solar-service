@@ -5,11 +5,11 @@ package common.es;
  */
 public interface ESConfig {
 
-    public static final String DEFAULT_HOST = "localhost";
+    public static final String DEFAULT_HOST = "suna";
 
     public static final String DEFAULT_PORT = "9300";
 
-    public static final String CLUSTER_NAME = "Es_Cluster";
+    public static final String CLUSTER_NAME = "myApp";
 
-    public static final String URL = "elasticsearch://localhost:9300";
+    public static final String URL = "elasticsearch://suna:9200";
 }
