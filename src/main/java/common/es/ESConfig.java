@@ -7,7 +7,7 @@ public interface ESConfig {
 
     public static final String DEFAULT_HOST = "suna";
 
-    public static final String DEFAULT_PORT = "9300";
+    public static final int DEFAULT_PORT = 9300;
 
     public static final String CLUSTER_NAME = "myApp";
 

@@ -2,13 +2,6 @@ package service;
 
 import org.jboss.resteasy.plugins.server.netty.NettyJaxrsServer;
 import org.jboss.resteasy.spi.ResteasyDeployment;
-import redis.clients.jedis.HostAndPort;
-import redis.clients.jedis.JedisCluster;
-import redis.clients.jedis.JedisPool;
-
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by xuefei_wang on 16-12-13.
@@ -28,7 +21,7 @@ public class BootStrap {
         server.setHostname(HostName);
         server.setPort(Port);
         server.setExecutorThreadCount(4);
-        server.setRootResourcePath("/traffic");
+        server.setRootResourcePath("/solar");
         server.setSecurityDomain(null);
         server.start();
     }
