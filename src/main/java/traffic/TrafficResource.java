@@ -37,7 +37,7 @@ public class TrafficResource {
     private static AtomicLong c = new AtomicLong();
     private static DecimalFormat df = new DecimalFormat("#.###");
     private JdbcConnectionPool pool;
-    //    private final Client client = ESClient.getClientPool();
+    private final Client client = ESClient.client();
     private final Gson gson = new GsonBuilder().enableComplexMapKeySerialization().setPrettyPrinting().create();
 
     public TrafficResource() {
@@ -104,7 +104,7 @@ public class TrafficResource {
                 "      }\n" +
                 "    }}";
 
-        SearchResponse scrollResp = ESClient.client().prepareSearch().setIndices("solar").setTypes("traffic").setQuery(query).setAggregations(aggs.getBytes())
+        SearchResponse scrollResp = client.prepareSearch().setIndices("solar").setTypes("traffic").setQuery(query).setAggregations(aggs.getBytes())
                 .setSize(0).get();
 
         Map<String, Aggregation> aggMap = scrollResp.getAggregations().asMap();
@@ -131,7 +131,6 @@ public class TrafficResource {
 
         String start = requestparamter.getStart();
         String end = requestparamter.getEnd();
-        String province = requestparamter.getProvince();
 
         long starttime = 0;
         long endtime = 0;
@@ -197,7 +196,7 @@ public class TrafficResource {
                 "    }}";
 
 
-        SearchResponse scrollResp = ESClient.client().prepareSearch().setIndices("solar").setTypes("traffic").setQuery(query).setAggregations(aggssub.getBytes())
+        SearchResponse scrollResp = client.prepareSearch().setIndices("solar").setTypes("traffic").setQuery(query).setAggregations(aggssub.getBytes())
                 .setSize(0).execute().actionGet();
 
         Map<String, Aggregation> aggMap = scrollResp.getAggregations().asMap();
@@ -223,12 +222,11 @@ public class TrafficResource {
     @Path("/{province}")
     @Produces("application/json;charset=UTF-8")
     @Consumes("application/json;charset=UTF-8")
-    public Response vehicleMap(@PathParam("province") String provinces, RequestParamter requestparamter) {
+    public Response vehicleprovincice(@PathParam("province") String provinces, RequestParamter requestparamter) {
         SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         String start = requestparamter.getStart();
         String end = requestparamter.getEnd();
-        String province = requestparamter.getProvince();
 
         long starttime = 0;
         long endtime = 0;
@@ -305,7 +303,7 @@ public class TrafficResource {
                 "    }}";
 
 
-        SearchResponse scrollResp = ESClient.client().prepareSearch().setIndices("solar").setTypes("traffic").setQuery(query).setAggregations(aggssub.getBytes())
+        SearchResponse scrollResp = client.prepareSearch().setIndices("solar").setTypes("traffic").setQuery(query).setAggregations(aggssub.getBytes())
                 .setSize(0).execute().actionGet();
 
         Map<String, Aggregation> aggMap = scrollResp.getAggregations().asMap();
@@ -340,13 +338,11 @@ public class TrafficResource {
     @Path("/{provinces}/{city}")
     @Produces("application/json;charset=utf-8")
     @Consumes("application/json;charset=utf-8")
-    public Response vehicleMap2(@PathParam("provinces") String provinces, @PathParam("city") String city, RequestParamter requestparamter) {
+    public Response vehicleprovincicecity(@PathParam("provinces") String provinces, @PathParam("city") String city, RequestParamter requestparamter) {
         SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         String start = requestparamter.getStart();
         String end = requestparamter.getEnd();
-        String province = requestparamter.getProvince();
-
         long starttime = 0;
         long endtime = 0;
 
@@ -422,7 +418,7 @@ public class TrafficResource {
                 "    }}";
 
 
-        SearchResponse scrollResp = ESClient.client().prepareSearch().setIndices("solar").setTypes("traffic").setQuery(query).setAggregations(aggssub.getBytes())
+        SearchResponse scrollResp = client.prepareSearch().setIndices("solar").setTypes("traffic").setQuery(query).setAggregations(aggssub.getBytes())
                 .setSize(0).execute().actionGet();
 
         Map<String, Aggregation> aggMap = scrollResp.getAggregations().asMap();
@@ -456,7 +452,7 @@ public class TrafficResource {
     @GET
     @Path("/map")
     @Produces("application/json")
-    public Response vehicleMining() {
+    public Response vehicleMap() {
 
         String aggs = "{ \"2\": {\n" +
                 "      \"terms\": {\n" +
@@ -468,7 +464,7 @@ public class TrafficResource {
                 "      }\n" +
                 "    }}";
 
-        SearchResponse scrollResp = ESClient.client().prepareSearch().setIndices("solar").setTypes("traffic").setAggregations(aggs.getBytes())
+        SearchResponse scrollResp = client.prepareSearch().setIndices("solar").setTypes("traffic").setAggregations(aggs.getBytes())
                 .setSize(0).execute().actionGet();
 
         Map<String, Aggregation> aggMap = scrollResp.getAggregations().asMap();
