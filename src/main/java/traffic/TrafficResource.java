@@ -1,14 +1,14 @@
 package traffic;
 
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import common.ESClient;
-import common.jdbc.JdbcConfig;
+
 import common.jdbc.JdbcConnectionPool;
-import common.util.RequestParamter;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.client.Client;
+import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.search.aggregations.Aggregation;
 import org.elasticsearch.search.aggregations.bucket.terms.StringTerms;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
@@ -16,8 +16,10 @@ import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.IOException;
+import java.io.StringWriter;
+import java.net.InetSocketAddress;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +27,6 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Created by xuefei_wang on 16-12-13.
@@ -34,14 +35,29 @@ import java.util.concurrent.atomic.AtomicLong;
 public class TrafficResource {
 
     private final JedisCluster jc;
-    private static AtomicLong c = new AtomicLong();
-    private static DecimalFormat df = new DecimalFormat("#.###");
-    private JdbcConnectionPool pool;
-    //    private final Client client = ESClient.getClientPool();
-    private final Gson gson = new GsonBuilder().enableComplexMapKeySerialization().setPrettyPrinting().create();
+    private final DecimalFormat df = new DecimalFormat("#.###");
+    private final JdbcConnectionPool pool;
+    private final SearchRequestBuilder search;
+    private final ObjectMapper mapper = new ObjectMapper();
+
 
     public TrafficResource() {
-        System.out.println("Init resouce");
+        this.jc = initRedis();
+        this.pool = initMysqlPool();
+        this.search = initSearchRequestBuilder();
+    }
+
+    private SearchRequestBuilder initSearchRequestBuilder(){
+        Settings   setting =  Settings.builder().put("cluster.name", "myApp").build();
+        TransportClient  client =  TransportClient.builder().settings(setting).build();
+        client.addTransportAddress(new InetSocketTransportAddress(new InetSocketAddress("172.18.21.142",9300)));
+        client.addTransportAddress(new InetSocketTransportAddress(new InetSocketAddress("172.18.21.140", 9300)));
+        client.addTransportAddress(new InetSocketTransportAddress(new InetSocketAddress("172.18.21.141", 9300)));
+        SearchRequestBuilder  search = client.prepareSearch().setIndices("solar").setTypes("traffic");
+        return search;
+    }
+
+    private  JedisCluster initRedis(){
         Set<HostAndPort> jedisClusterNodes = new HashSet<HostAndPort>();
         jedisClusterNodes.add(new HostAndPort("suna", 7000));
         jedisClusterNodes.add(new HostAndPort("sunb", 7000));
@@ -49,15 +65,26 @@ public class TrafficResource {
         jedisClusterNodes.add(new HostAndPort("suna", 7001));
         jedisClusterNodes.add(new HostAndPort("sunb", 7001));
         jedisClusterNodes.add(new HostAndPort("sunc", 7001));
-        this.jc = new JedisCluster(jedisClusterNodes);
-        pool = new JdbcConnectionPool("com.mysql.jdbc.Driver", JdbcConfig.DEFAULT_JDBC_URL, JdbcConfig.DEFAULT_JDBC_USERNAME, JdbcConfig.DEFAULT_JDBC_PASSWORD);
+        return new JedisCluster(jedisClusterNodes);
     }
+
+    private JdbcConnectionPool initMysqlPool(){
+        String driver = "com.mysql.jdbc.Driver";
+        String url = "jdbc:mysql://master-1:3306/solar";
+        String user = "root";
+        String passwd = "mysql";
+        return new JdbcConnectionPool(driver, url, user, passwd);
+
+    }
+
 
 
     @GET
     @Path("/device")
     @Produces("application/json")
-    public Response vehicleDynamicCount() {
+    public Response vehicleDynamicCount() throws IOException {
+        StringWriter writer = new StringWriter();
+
         HashMap content = new HashMap();
         Set<String> set = jc.hkeys("trafficD");
         for (String ss : set) {
@@ -69,78 +96,49 @@ public class TrafficResource {
             }
             content.put(ss, carType);
         }
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(gson.toJson(content)).build();
+        mapper.writeValue(writer,content);
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
     }
 
     @GET
     @Path("/device/history")
     @Produces("application/json")
-    public Response vehicleStaticCount() {
+    public Response vehicleStaticCount() throws IOException {
+        StringWriter writer = new StringWriter();
+
         HashMap content = new HashMap();
         Set<String> set = jc.hkeys("trafficS");
         for (String ss : set) {
             content.put(ss, jc.hget("trafficS", ss));
         }
 
-
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(gson.toJson(content)).build();
+        mapper.writeValue(writer,content);
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
     }
+
 
 
     @GET
-    @Path("/sichuan")
-    @Produces("application/json")
-    public Response vehicleSiChuanCount() {
-        String query = "{\"filtered\": {\"filter\": {\"prefix\": {\"licence\": \"川\"}}}}";
-
-        String aggs = "{ \"2\": {\n" +
-                "      \"terms\": {\n" +
-                "        \"field\": \"licence\",\n" +
-                "        \"include\": \"[\\\"a\\\",\\\"b\\\",\\\"c\\\",\\\"d\\\",\\\"e\\\",\\\"f\\\",\\\"g\\\",\\\"h\\\",\\\"i\\\",\\\"j\\\",\\\"k\\\",\\\"l\\\",\\\"m\\\",\\\"n\\\",\\\"o\\\",\\\"p\\\",\\\"q\\\",\\\"r\\\"\\\"s\\\",\\\"t\\\",\\\"u\\\",\\\"v\\\",\\\"w\\\",\\\"x\\\",\\\"y\\\",\\\"z\\\"]\",\n" +
-                "        \"size\": 0,\n" +
-                "        \"order\": {\n" +
-                "          \"_count\": \"desc\"\n" +
-                "        }\n" +
-                "      }\n" +
-                "    }}";
-
-        SearchResponse scrollResp = ESClient.client().prepareSearch().setIndices("solar").setTypes("traffic").setQuery(query).setAggregations(aggs.getBytes())
-                .setSize(0).get();
-
-        Map<String, Aggregation> aggMap = scrollResp.getAggregations().asMap();
-
-        Iterator<Terms.Bucket> entry = ((StringTerms) aggMap.get("2")).getBuckets().iterator();
-        Map<Object, Object> map1 = new HashMap();
-        Map<Object, Object> map2 = new HashMap();
-        while (entry.hasNext()) {
-            Terms.Bucket bb = entry.next();
-            map2.put(bb.getKey(), bb.getDocCount());
-        }
-        map1.put("川", map2);
-        ESClient.client().close();
-
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(gson.toJson(map1)).build();
-    }
-
-
-    @POST
+    @Path("/provinces")
     @Produces("application/json")
     @Consumes("application/json")
-    public Response provincice(RequestParamter requestparamter) {
+    public Response provincices(@QueryParam("start") final String start ,
+                                @QueryParam("end") final String end)throws IOException {
+        StringWriter writer = new StringWriter();
         SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        String start = requestparamter.getStart();
-        String end = requestparamter.getEnd();
-        String province = requestparamter.getProvince();
+        System.out.println(start);
+        System.out.println(end);
 
         long starttime = 0;
         long endtime = 0;
-
         try {
+
             starttime = simple.parse(start).getTime();
             endtime = simple.parse(end).getTime();
-        } catch (ParseException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            starttime = 0;
+            endtime = System.currentTimeMillis();
         }
 
         String query = "{    \"filtered\": {\n" +
@@ -197,38 +195,36 @@ public class TrafficResource {
                 "    }}";
 
 
-        SearchResponse scrollResp = ESClient.client().prepareSearch().setIndices("solar").setTypes("traffic").setQuery(query).setAggregations(aggssub.getBytes())
+        SearchResponse scrollResp = search.setQuery(query).setAggregations(aggssub.getBytes())
                 .setSize(0).execute().actionGet();
 
         Map<String, Aggregation> aggMap = scrollResp.getAggregations().asMap();
         Iterator<Terms.Bucket> entry = ((StringTerms) aggMap.get("2")).getBuckets().iterator();
-        Map<Object, Object> map1 = new LinkedHashMap();
+        Map<Object, Object> content = new LinkedHashMap();
         while (entry.hasNext()) {
-            Map<Object, Long> map2 = new LinkedHashMap();
+            Map<Object, Long> m = new LinkedHashMap();
             Terms.Bucket bb = entry.next();
             Iterator<Terms.Bucket> classBucketIt = ((StringTerms) bb.getAggregations().asMap().get("3")).getBuckets().iterator();
             while (classBucketIt.hasNext()) {
                 Terms.Bucket classBucket = classBucketIt.next();
-                map2.put(classBucket.getKey(), classBucket.getDocCount());
+                m.put(classBucket.getKey(), classBucket.getDocCount());
             }
-            map1.put(bb.getKey(), map2);
+            content.put(bb.getKey(), m);
         }
-        ESClient.client().close();
 
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(gson.toJson(map1)).build();
+        mapper.writeValue(writer,content);
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
     }
 
 
-    @POST
-    @Path("/{province}")
+    @GET
+    @Path("/provinces/{province}")
     @Produces("application/json;charset=UTF-8")
     @Consumes("application/json;charset=UTF-8")
-    public Response vehicleMap(@PathParam("province") String provinces, RequestParamter requestparamter) {
+    public Response vehicleMap(@PathParam("province") String province,
+                               @QueryParam("start") final String start ,
+                               @QueryParam("end") final String end)throws IOException {
         SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-        String start = requestparamter.getStart();
-        String end = requestparamter.getEnd();
-        String province = requestparamter.getProvince();
 
         long starttime = 0;
         long endtime = 0;
@@ -236,8 +232,9 @@ public class TrafficResource {
         try {
             starttime = simple.parse(start).getTime();
             endtime = simple.parse(end).getTime();
-        } catch (ParseException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            starttime = 0;
+            endtime =  System.currentTimeMillis();
         }
 
         String query = "{    \"filtered\": {\n" +
@@ -270,7 +267,7 @@ public class TrafficResource {
                 "      \"terms\": {\n" +
                 "        \"field\": \"licence\",\n" +
                 "        \"include\": {\n" +
-                "          \"pattern\": \"[\\\"" + provinces + "\\\"]\"\n" +
+                "          \"pattern\": \"[\\\"" + province + "\\\"]\"\n" +
                 "        },\n" +
                 "        \"size\": 0,\n" +
                 "        \"order\": {\n" +
@@ -305,7 +302,7 @@ public class TrafficResource {
                 "    }}";
 
 
-        SearchResponse scrollResp = ESClient.client().prepareSearch().setIndices("solar").setTypes("traffic").setQuery(query).setAggregations(aggssub.getBytes())
+        SearchResponse scrollResp = search.setQuery(query).setAggregations(aggssub.getBytes())
                 .setSize(0).execute().actionGet();
 
         Map<String, Aggregation> aggMap = scrollResp.getAggregations().asMap();
@@ -330,22 +327,23 @@ public class TrafficResource {
             }
             map1.put(bb.getKey(), map2);
         }
-        ESClient.client().close();
 
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(gson.toJson(map1)).build();
+
+        StringWriter writer = new StringWriter();
+        mapper.writeValue(writer,map1);
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
+
     }
 
 
-    @POST
-    @Path("/{provinces}/{city}")
+    @GET
+    @Path("/provinces/{provinces}/{city}")
     @Produces("application/json;charset=utf-8")
     @Consumes("application/json;charset=utf-8")
-    public Response vehicleMap2(@PathParam("provinces") String provinces, @PathParam("city") String city, RequestParamter requestparamter) {
+    public Response vehicleMap2(@PathParam("provinces") String provinces, @PathParam("city") String city,
+                                @QueryParam("start") final String start ,
+                                @QueryParam("end") final String end) throws IOException  {
         SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-        String start = requestparamter.getStart();
-        String end = requestparamter.getEnd();
-        String province = requestparamter.getProvince();
 
         long starttime = 0;
         long endtime = 0;
@@ -353,8 +351,10 @@ public class TrafficResource {
         try {
             starttime = simple.parse(start).getTime();
             endtime = simple.parse(end).getTime();
-        } catch (ParseException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+
+             starttime = 0;
+             endtime =  System.currentTimeMillis();
         }
 
         String query = "{    \"filtered\": {\n" +
@@ -422,7 +422,7 @@ public class TrafficResource {
                 "    }}";
 
 
-        SearchResponse scrollResp = ESClient.client().prepareSearch().setIndices("solar").setTypes("traffic").setQuery(query).setAggregations(aggssub.getBytes())
+        SearchResponse scrollResp = search.setQuery(query).setAggregations(aggssub.getBytes())
                 .setSize(0).execute().actionGet();
 
         Map<String, Aggregation> aggMap = scrollResp.getAggregations().asMap();
@@ -447,16 +447,17 @@ public class TrafficResource {
             }
             map1.put(bb.getKey(), map2);
         }
-        ESClient.client().close();
 
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(gson.toJson(map1)).build();
+        StringWriter writer = new StringWriter();
+        mapper.writeValue(writer,map1);
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
     }
 
 
     @GET
-    @Path("/map")
+    @Path("/hotmap")
     @Produces("application/json")
-    public Response vehicleMining() {
+    public Response vehicleMining()  throws IOException {
 
         String aggs = "{ \"2\": {\n" +
                 "      \"terms\": {\n" +
@@ -468,7 +469,7 @@ public class TrafficResource {
                 "      }\n" +
                 "    }}";
 
-        SearchResponse scrollResp = ESClient.client().prepareSearch().setIndices("solar").setTypes("traffic").setAggregations(aggs.getBytes())
+        SearchResponse scrollResp = search.setAggregations(aggs.getBytes())
                 .setSize(0).execute().actionGet();
 
         Map<String, Aggregation> aggMap = scrollResp.getAggregations().asMap();
@@ -495,9 +496,16 @@ public class TrafficResource {
             }
             map1.put(bb.getKey(), map2);
         }
-        ESClient.client().close();
+        StringWriter writer = new StringWriter();
+        mapper.writeValue(writer,map1);
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
 
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(gson.toJson(map1)).build();
     }
 
+
+    static class Contact{
+
+
+
+    }
 }

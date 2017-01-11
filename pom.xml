@@ -95,16 +95,6 @@
             <artifactId>commons-pool</artifactId>
             <version>${commons.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.6.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jackson-provider</artifactId>
-            <version>3.1.0.CR3</version>
-        </dependency>
     </dependencies>
     <build>
         <plugins>
