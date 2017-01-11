@@ -115,7 +115,6 @@ public class TrafficResource {
     }
 
 
-
     @GET
     @Path("/provinces")
     @Produces("application/json")
@@ -124,9 +123,6 @@ public class TrafficResource {
                                 @QueryParam("end") final String end)throws IOException {
         StringWriter writer = new StringWriter();
         SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-        System.out.println(start);
-        System.out.println(end);
 
         long starttime = 0;
         long endtime = 0;
@@ -193,6 +189,7 @@ public class TrafficResource {
                 "    }}";
 
 
+
         SearchResponse scrollResp = search.setQuery(query).setAggregations(aggssub.getBytes())
                 .setSize(0).execute().actionGet();
 
@@ -219,6 +216,7 @@ public class TrafficResource {
     @Path("/provinces/{province}")
     @Produces("application/json;charset=UTF-8")
     @Consumes("application/json;charset=UTF-8")
+
     public Response vehicleMap(@PathParam("province") String province,
                                @QueryParam("start") final String start ,
                                @QueryParam("end") final String end)throws IOException {
@@ -342,7 +340,6 @@ public class TrafficResource {
                                 @QueryParam("start") final String start ,
                                 @QueryParam("end") final String end) throws IOException  {
         SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
         long starttime = 0;
         long endtime = 0;
 
@@ -420,6 +417,7 @@ public class TrafficResource {
                 "    }}";
 
 
+
         SearchResponse scrollResp = search.setQuery(query).setAggregations(aggssub.getBytes())
                 .setSize(0).execute().actionGet();
 
@@ -455,6 +453,7 @@ public class TrafficResource {
     @GET
     @Path("/hotmap")
     @Produces("application/json")
+
     public Response vehicleMining()  throws IOException {
 
         String aggs = "{ \"2\": {\n" +
@@ -466,6 +465,7 @@ public class TrafficResource {
                 "        }\n" +
                 "      }\n" +
                 "    }}";
+
 
         SearchResponse scrollResp = search.setAggregations(aggs.getBytes())
                 .setSize(0).execute().actionGet();
@@ -499,7 +499,6 @@ public class TrafficResource {
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
 
     }
-
 
     static class Contact{
 
