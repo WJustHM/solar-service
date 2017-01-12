@@ -10,7 +10,7 @@ public class BootStrap {
 
     public  final  static String HostName = "0.0.0.0";
 
-    public  final  static  int Port = 8001;
+    public  final  static  int Port = 8000;
 
 
     public static void main(String[] args){
@@ -23,6 +23,8 @@ public class BootStrap {
         server.setExecutorThreadCount(4);
         server.setRootResourcePath("/solar");
         server.setSecurityDomain(null);
+        server.setKeepAlive(true);
+        server.setExecutorThreadCount(10);
         server.start();
     }
 }
