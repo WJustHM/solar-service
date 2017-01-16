@@ -30,12 +30,10 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadLocalRandom;
 
 
-
 /**
  * Created by xuefei_wang on 16-10-31.
  */
 public class KafkaProducer {
-
 
     public  static String[] province = {"川", "云", "贵", " 京", "津", "渝","冀","晋","苏","浙","皖","闽","赣","鲁","豫","鄂","湘","粤","桂","陕","甘","青"};
 
@@ -48,16 +46,13 @@ public class KafkaProducer {
     public  Vector<Device> devices = new Vector<Device>();
 
     public  String image;
-  
+
 	public  String topic;
 
     public KafkaProducer(String imageFile,String topic) throws Exception {
         this.image = new String(Files.readAllBytes(Paths.get(imageFile)));
         this.topic = topic;
-
     }
-
-
     class Device{
         public int deviceId;
         public String longitude;
@@ -96,7 +91,8 @@ public class KafkaProducer {
         int colorSize = colors.length;
         int brightSize = brights.length;
         int deviceLen = devices.size();
-
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        OffenceSnapDataProtos.OffenceSnapData.Builder offenceSnapData = OffenceSnapDataProtos.OffenceSnapData.newBuilder();
         for (int i = 0; ; i++) {
             int provinceRandom = RandomR.nextInt(provinceSize);
             int cityRandom = RandomR.nextInt(citySize);
@@ -113,7 +109,7 @@ public class KafkaProducer {
 
             Device device = devices.get(RandomR.nextInt(deviceLen));
 
-            OffenceSnapDataProtos.OffenceSnapData.Builder offenceSnapData = OffenceSnapDataProtos.OffenceSnapData.newBuilder();
+            offenceSnapData.clear();
             offenceSnapData.setId(String.valueOf(device.deviceId));
             offenceSnapData.setDriveChan(chan);
             offenceSnapData.setVehicleType(vehicleType);
@@ -154,7 +150,6 @@ public class KafkaProducer {
             offenceSnapData.setCopilotSubVisor(0);
             offenceSnapData.setPilotCall(0);
             offenceSnapData.setAlarmDataType(0);
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String dd = df.format(new Date());
             offenceSnapData.setLlegalTime(dd);
             offenceSnapData.setIllegalTimer(100);
@@ -243,8 +238,6 @@ public class KafkaProducer {
         Option passw = new Option("pwd", "password", true, "database name");
         passw.setRequired(true);
         options.addOption(passw);
-
-
 
         CommandLineParser parser = new DefaultParser();
         HelpFormatter formatter = new HelpFormatter();

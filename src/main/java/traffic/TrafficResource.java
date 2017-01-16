@@ -476,6 +476,9 @@ public class TrafficResource {
         Map<Object, Object> map1 = new LinkedHashMap();
         Connection connn = pool.getConnection();
         String sql = null;
+
+
+
         while (entry.hasNext()) {
             Map<String, Object> map2 = new LinkedHashMap();
             Terms.Bucket bb = entry.next();
@@ -500,9 +503,4 @@ public class TrafficResource {
 
     }
 
-    static class Contact{
-
-
-
-    }
 }
