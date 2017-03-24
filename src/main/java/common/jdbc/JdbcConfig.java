@@ -13,7 +13,7 @@ public interface JdbcConfig {
     /**
      * MYSQL DEFAULT_JDBC_URL
      */
-    public static final String DEFAULT_JDBC_URL = "jdbc:mysql://master-1:3306/solar";
+    public static final String DEFAULT_JDBC_URL = "jdbc:mysql://localhost:3306/test";
     /**
      * MYSQL DEFAULT_JDBC_USERNAME
      */
@@ -21,7 +21,7 @@ public interface JdbcConfig {
     /**
      * MYSQL DEFAULT_JDBC_PASSWORD
      */
-    public static final String DEFAULT_JDBC_PASSWORD = "mysql";
+    public static final String DEFAULT_JDBC_PASSWORD = "root";
 
     /**
      * DRIVER_CLASS_PROPERTY

@@ -10,8 +10,7 @@ public class BootStrap {
 
     public  final  static String HostName = "0.0.0.0";
 
-    public  final  static  int Port = 8000;
-
+    public  final  static  int Port = 8001;
 
     public static void main(String[] args){
         NettyJaxrsServer server = new NettyJaxrsServer();

@@ -3,14 +3,13 @@ package common.kafka;
 
 
 
-
-
 import common.ConnectionException;
 import common.ConnectionFactory;
 import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.impl.DefaultPooledObject;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
+
 
 import java.util.Properties;
 

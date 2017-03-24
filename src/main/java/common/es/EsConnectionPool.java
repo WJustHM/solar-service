@@ -1,18 +1,22 @@
 package common.es;
 
 
-import com.sksamuel.elastic4s.ElasticClient;
-import com.sksamuel.elastic4s.ElasticsearchClientUri;
+
 import common.ConnectionPool;
 import common.PoolBase;
 import common.PoolConfig;
+import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.plugins.Plugin;
+
+import java.util.Collection;
 
 
 /**
  * Created by cloud computing on 2016/9/21 0021.
  */
-public class EsConnectionPool extends PoolBase<ElasticClient> implements ConnectionPool<ElasticClient> {
+public class EsConnectionPool extends PoolBase<TransportClient> implements ConnectionPool<TransportClient> {
 
     /**
      * serialVersionUID
@@ -20,40 +24,28 @@ public class EsConnectionPool extends PoolBase<ElasticClient> implements Connect
     private static final long serialVersionUID = -9126420905798370263L;
 
 
-    public EsConnectionPool(final PoolConfig poolConfig, final String host, final int port, final Settings settings) {
+    public EsConnectionPool(final PoolConfig poolConfig, final Settings settings, Collection<InetSocketTransportAddress> transportAddress, Class<? extends Plugin>... plugins){
 
-        super(poolConfig, new EsConnectionFactory(host, port, settings));
+       super(poolConfig , new EsConnectionFactory(settings,transportAddress,plugins));
 
     }
 
-    public EsConnectionPool(final PoolConfig poolConfig, final String url) {
-        super(poolConfig, new EsConnectionFactory(url));
-    }
-
-    public EsConnectionPool(final PoolConfig poolConfig, final Settings settings, final ElasticsearchClientUri esurl) {
-        super(poolConfig, new EsConnectionFactory(esurl, settings));
-    }
-
-    public EsConnectionPool(final String url) {
-
-        this(new PoolConfig(), url);
-    }
 
 
     @Override
-    public ElasticClient getConnection() {
+    public TransportClient getConnection() {
 
         return super.getResource();
     }
 
     @Override
-    public void returnConnection(ElasticClient client) {
+    public void returnConnection(TransportClient client) {
 
         super.returnResource(client);
     }
 
     @Override
-    public void invalidateConnection(ElasticClient client) {
+    public void invalidateConnection(TransportClient client) {
 
         super.invalidateResource(client);
     }

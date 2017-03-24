@@ -1,11 +1,10 @@
 package common.kafka;
 
 
-
-
 import common.ConnectionPool;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
+
 
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicReference;

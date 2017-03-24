@@ -30,11 +30,11 @@
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-queries:5.5.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-memory:5.5.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-highlighter:5.5.2" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-join:5.5.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-queryparser:5.5.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-sandbox:5.5.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-suggest:5.5.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-misc:5.5.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-join:5.5.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-grouping:5.5.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-spatial:5.5.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-spatial3d:5.5.2" level="project" />
@@ -47,9 +47,8 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.8.1" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-smile:2.8.1" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.1" level="project" />
-    <orderEntry type="library" name="Maven: org.yaml:snakeyaml:1.15" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:2.8.1" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty:3.10.6.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.yaml:snakeyaml:1.15" level="project" />
     <orderEntry type="library" name="Maven: com.ning:compress-lzf:1.0.2" level="project" />
     <orderEntry type="library" name="Maven: com.tdunning:t-digest:3.0" level="project" />
     <orderEntry type="library" name="Maven: org.hdrhistogram:HdrHistogram:2.1.6" level="project" />
@@ -57,19 +56,20 @@
     <orderEntry type="library" name="Maven: org.scalactic:scalactic_2.11:3.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.scala-lang:scala-reflect:2.11.8" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.resteasy:resteasy-netty:3.1.0.Beta2" level="project" />
-    <orderEntry type="library" name="Maven: org.jboss.resteasy:resteasy-jaxrs:3.1.0.CR3" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty:3.10.6.Final" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.resteasy:resteasy-client:3.1.0.Beta2" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.logging:jboss-logging:3.3.0.Final" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.5.2" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.resteasy:async-http-servlet-3.0:3.1.0.Beta2" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.13" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.13" level="project" />
     <orderEntry type="library" name="Maven: redis.clients:jedis:2.9.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-pool2:2.4.2" level="project" />
+    <orderEntry type="library" name="Maven: org.jboss.resteasy:resteasy-jaxrs:3.1.0.CR3" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.spec.javax.ws.rs:jboss-jaxrs-api_2.0_spec:1.0.1.Beta1" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.resteasy:resteasy-jaxrs-services:3.1.0.CR3" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.spec.javax.annotation:jboss-annotations-api_1.2_spec:1.0.0.Final" level="project" />
     <orderEntry type="library" name="Maven: javax.activation:activation:1.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.5.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.4.4" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.9" level="project" />
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.5" level="project" />

@@ -3,7 +3,6 @@ package common.jdbc;
 
 
 
-
 import common.ConnectionException;
 import common.ConnectionFactory;
 import org.apache.commons.pool2.PooledObject;
