@@ -28,14 +28,11 @@
             <id>JBoss repository</id>
             <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
         </repository>
-    </repositories>
-    <repositories>
         <repository>
             <id>Hortonworks repository</id>
             <url>http://repo.hortonworks.com/content/groups/public/</url>
         </repository>
     </repositories>
-
     <dependencies>
         <dependency>
             <groupId>mysql</groupId>

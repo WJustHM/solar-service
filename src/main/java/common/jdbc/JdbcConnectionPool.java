@@ -1,11 +1,4 @@
 package common.jdbc;
-
-
-
-
-
-
-
 import common.ConnectionPool;
 import common.PoolBase;
 import common.PoolConfig;
