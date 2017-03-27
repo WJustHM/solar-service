@@ -16,6 +16,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * Created by xuefei_wang on 17-3-27.
@@ -53,7 +54,6 @@ public class InternalPools extends Pools {
             }catch (Exception e){
                 e.printStackTrace();
             }
-
         }
             return new EsConnectionPool(getPoolConfig(),settings.build(),address);
     }
@@ -61,18 +61,43 @@ public class InternalPools extends Pools {
 
     @Override
     public JdbcConnectionPool getJdbcConnectionPool() {
-        return null;
+        String MYSQL_DRIVER = paramters.getOrDefault("mysql.driver","");
+        String MYSQL_JDBC_URL = paramters.getOrDefault("mysql.jdbc.url","");
+        String MYSQL_USER_NAME = paramters.getOrDefault("mysql.user.name","");
+        String MYSQL_USER_PASSWORD = paramters.getOrDefault("mysql.user.password","");
+        JdbcConnectionPool mysqlPool = new JdbcConnectionPool(
+                getPoolConfig(),
+                MYSQL_DRIVER,
+                MYSQL_JDBC_URL,
+                MYSQL_USER_NAME,
+                MYSQL_USER_PASSWORD
+        );
+        return mysqlPool;
     }
 
     @Override
     public KafkaConnectionPool getKafkaConnectionPool() {
-        return null;
+        Properties kafkaConfig = new Properties();
+        kafkaConfig.setProperty("bootstrap.servers", paramters.getOrDefault("bootstrap.servers",""));
+        kafkaConfig.setProperty("producer.type", paramters.getOrDefault("producer.type",""));
+        kafkaConfig.setProperty("key.serializer", paramters.getOrDefault("key.serializer",""));
+        kafkaConfig.setProperty("value.serializer", paramters.getOrDefault("value.serializer",""));
+        kafkaConfig.setProperty("batch.num.messages", paramters.getOrDefault("batch.num.messages",""));
+        kafkaConfig.setProperty("max.request.size", paramters.getOrDefault("max.request.size",""));
+        kafkaConfig.setProperty("enable.auto.commit", paramters.getOrDefault("enable.auto.commit",""));
+        kafkaConfig.setProperty("auto.offset.reset", paramters.getOrDefault("auto.offset.reset",""));
+        KafkaConnectionPool kafkaPool = new KafkaConnectionPool(getPoolConfig(), kafkaConfig);
+        return kafkaPool;
     }
 
     @Override
     public JedisPool getRedisPool() {
-        return null;
+        String REDIS_HOST = paramters.getOrDefault("redis.host","");
+        String REDIS_PORT = paramters.getOrDefault("redis.port","");
+        JedisPool jedisPool = new JedisPool(
+                getPoolConfig(),
+                REDIS_HOST,
+                Integer.valueOf(REDIS_PORT));
+        return jedisPool;
     }
-
-
 }

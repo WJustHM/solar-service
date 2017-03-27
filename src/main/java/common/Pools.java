@@ -133,5 +133,5 @@ abstract public class Pools {
    abstract public EsConnectionPool getEsConnectionPool() ;
    abstract public JdbcConnectionPool getJdbcConnectionPool();
    abstract public KafkaConnectionPool getKafkaConnectionPool();
-   abstract  public  JedisPool getRedisPool();
+   abstract public JedisPool getRedisPool();
 }
