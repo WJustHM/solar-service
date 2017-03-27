@@ -19,6 +19,7 @@ public class TrafficApplication extends Application {
     public  Set<Object> getSingletons() {
         HashSet<Object> objects = new HashSet<Object>();
         objects.add(new TrafficResource(getParamters()));
+
         return  objects;
     }
 
