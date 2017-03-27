@@ -28,12 +28,12 @@ abstract public class Pools {
 
     protected JedisPool jedisPool;
 
-    protected Map paramters ;
+    public Map<String,String> paramters ;
 
-    protected PoolConfig poolConfig;
+    public PoolConfig poolConfig;
 
 
-    public Pools(PoolConfig poolConfig, Map paramters){
+    public Pools(PoolConfig poolConfig, Map<String,String> paramters){
         this.poolConfig = poolConfig;
         this.paramters = paramters;
     }
@@ -51,82 +51,79 @@ abstract public class Pools {
         return poolConfig;
     }
 
-    public Connection getHbaseConnection(){
-        synchronized(hbaseConnectionPool){
+    public synchronized Connection getHbaseConnection(){
+
             if (hbaseConnectionPool == null || hbaseConnectionPool.isClosed()){
                 hbaseConnectionPool = getHbaseConnectionPool();
             }
-            return hbaseConnectionPool.getConnection();
-        }
+
+        return hbaseConnectionPool.getConnection();
     }
 
-    public void returnHbaseConnection(Connection connection){
-        synchronized(hbaseConnectionPool){
+    public synchronized void returnHbaseConnection(Connection connection){
+
             hbaseConnectionPool.returnConnection(connection);
-        }
     }
 
-    public TransportClient getEsConnection(){
-        synchronized(esConnectionPool){
+    public synchronized TransportClient getEsConnection(){
+
             if (esConnectionPool == null || esConnectionPool.isClosed()){
                 esConnectionPool = getEsConnectionPool();
             }
             return esConnectionPool.getConnection();
-        }
+
     }
 
-    public void returnEsConnection(TransportClient connection){
-        synchronized(esConnectionPool){
+    public synchronized void returnEsConnection(TransportClient connection){
+
             esConnectionPool.returnConnection(connection);
-        }
+
     }
 
 
-    public java.sql.Connection getMysqlConnection(){
-        synchronized(jdbcConnectionPool){
+    public synchronized java.sql.Connection getMysqlConnection(){
+
             if (jdbcConnectionPool == null || jdbcConnectionPool.isClosed()){
                 jdbcConnectionPool = getJdbcConnectionPool();
             }
             return jdbcConnectionPool.getConnection();
-        }
+
     }
 
-    public void returnMysqlConnection(java.sql.Connection connection){
-        synchronized(jdbcConnectionPool){
+    public synchronized void returnMysqlConnection(java.sql.Connection connection){
+
             jdbcConnectionPool.returnConnection(connection);
-        }
+
     }
 
 
-    public Producer getKafkaProducer(){
-        synchronized(kafkaConnectionPool){
+    public synchronized Producer getKafkaProducer(){
+
             if (kafkaConnectionPool == null || kafkaConnectionPool.isClosed()){
                 kafkaConnectionPool = getKafkaConnectionPool();
             }
             return kafkaConnectionPool.getConnection();
-        }
+
     }
 
-    public void returnKafkaProducer(Producer producer){
-        synchronized(kafkaConnectionPool){
+    public synchronized void returnKafkaProducer(Producer producer){
+
             kafkaConnectionPool.returnConnection(producer);
-        }
+
     }
 
 
-    public Jedis getRedis() {
-        synchronized (jedisPool){
+    public synchronized Jedis getRedis() {
+
             if (jedisPool == null || jedisPool.isClosed()){
                 jedisPool = getRedisPool();
             }
             return jedisPool.getResource();
-        }
+
     }
 
-    public void returnRedis(Jedis client){
-        synchronized (jedisPool){
+    public synchronized void returnRedis(Jedis client){
             jedisPool.returnResource(client);
-        }
     }
 
 
