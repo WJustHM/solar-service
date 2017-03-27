@@ -1,7 +1,7 @@
 package common.es;
 
 
-import common.ConnectionFactory;
+import common.Ipool.ConnectionFactory;
 import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.impl.DefaultPooledObject;
 import org.elasticsearch.client.transport.TransportClient;

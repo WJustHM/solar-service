@@ -5,7 +5,7 @@ package producer;
  */
 
 
-import common.PoolConfig;
+import common.Ipool.PoolConfig;
 import common.jdbc.JdbcConnectionPool;
 import common.kafka.KafkaConnectionPool;
 import org.apache.commons.cli.*;

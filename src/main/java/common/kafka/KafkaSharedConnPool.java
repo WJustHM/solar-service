@@ -1,7 +1,7 @@
 package common.kafka;
 
 
-import common.ConnectionPool;
+import common.Ipool.ConnectionPool;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 

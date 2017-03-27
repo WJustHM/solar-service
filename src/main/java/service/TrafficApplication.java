@@ -1,5 +1,7 @@
 package service;
 
+import common.Pools;
+import common.hbase.HbaseConnectionPool;
 import traffic.TrafficResource;
 
 import javax.ws.rs.core.Application;
@@ -17,4 +19,5 @@ public class TrafficApplication extends Application {
         objects.add(new TrafficResource());
         return  objects;
     }
+
 }

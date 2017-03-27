@@ -3,8 +3,8 @@ package common.kafka;
 
 
 
-import common.ConnectionException;
-import common.ConnectionFactory;
+import common.Ipool.ConnectionException;
+import common.Ipool.ConnectionFactory;
 import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.impl.DefaultPooledObject;
 import org.apache.kafka.clients.producer.KafkaProducer;

@@ -2,9 +2,9 @@ package common.es;
 
 
 
-import common.ConnectionPool;
-import common.PoolBase;
-import common.PoolConfig;
+import common.Ipool.ConnectionPool;
+import common.Ipool.PoolBase;
+import common.Ipool.PoolConfig;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;

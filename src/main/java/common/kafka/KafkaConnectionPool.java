@@ -3,9 +3,9 @@ package common.kafka;
 
 
 
-import common.ConnectionPool;
-import common.PoolBase;
-import common.PoolConfig;
+import common.Ipool.ConnectionPool;
+import common.Ipool.PoolBase;
+import common.Ipool.PoolConfig;
 import org.apache.kafka.clients.producer.Producer;
 
 
