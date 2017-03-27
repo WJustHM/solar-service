@@ -28,6 +28,9 @@ public class TrafficApplication extends Application {
        paramters.put("hbase.zookeeper.quorum","datanode1,datanode2,datanode3");
        paramters.put("hbase.zookeeper.property.clientPort","2181");
        paramters.put("zookeeper.znode.parent","/hbase-unsecure");
+
+       paramters.put("cluster.name","handge-cloud");
+       paramters.put("es.url","datanode1:9300,datanode2:9300,datanode3:9300");
         return paramters;
     }
 

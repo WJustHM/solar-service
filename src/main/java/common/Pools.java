@@ -11,6 +11,7 @@ import org.elasticsearch.client.transport.TransportClient;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
+import java.net.UnknownHostException;
 import java.util.Map;
 
 /**
@@ -129,7 +130,7 @@ abstract public class Pools {
 
 
    abstract public HbaseConnectionPool getHbaseConnectionPool();
-   abstract public EsConnectionPool getEsConnectionPool();
+   abstract public EsConnectionPool getEsConnectionPool() ;
    abstract public JdbcConnectionPool getJdbcConnectionPool();
    abstract public KafkaConnectionPool getKafkaConnectionPool();
    abstract  public  JedisPool getRedisPool();

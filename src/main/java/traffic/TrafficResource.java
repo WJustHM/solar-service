@@ -5,12 +5,15 @@ import common.InternalPools;
 import org.apache.hadoop.hbase.HRegionInfo;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.Connection;
+import org.elasticsearch.action.index.IndexRequestBuilder;
+import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.transport.TransportClient;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,9 +41,13 @@ public class TrafficResource extends InternalPools {
 
     @GET
     @Path("/es")
-    public Response testES() throws IOException{
+    public Response testES() throws Exception{
         TransportClient es = getEsConnection();
-
+        HashMap data = new HashMap();
+        data.put("test","test");
+        IndexRequestBuilder request = es.prepareIndex("traffic", "traffic").setSource(data);
+        IndexResponse response = request.execute().get();
+        System.out.println(response.toString());
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("OK").build();
     }
 
