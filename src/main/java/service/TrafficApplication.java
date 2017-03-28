@@ -16,11 +16,11 @@ import java.util.Set;
 public class TrafficApplication extends Application {
 
     @Override
-    public  Set<Object> getSingletons() {
+    public Set<Object> getSingletons() {
         HashSet<Object> objects = new HashSet<Object>();
         objects.add(new TrafficResource(getParamters()));
 
-        return  objects;
+        return objects;
     }
 
 
@@ -47,7 +47,7 @@ public class TrafficApplication extends Application {
        paramters.put("enable.auto.commit","true");
        paramters.put("auto.offset.reset","latest");
 
-       paramters.put("redis.host","DataStore");
+       paramters.put("redis.host","172.20.31.127");
        paramters.put("redis.port","6379");
        return paramters;
     }
