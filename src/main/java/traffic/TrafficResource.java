@@ -37,10 +37,12 @@ import java.util.Map;
 public class TrafficResource extends InternalPools {
 
     private final ObjectMapper mapper = new ObjectMapper();
-    private final SearchRequestBuilder request = getEsConnection().prepareSearch().setIndices("djj").setTypes("djj");
+    private  TransportClient conn =null;
+
 
     public TrafficResource(Map paramters) {
         super(paramters);
+        conn=getEsConnection();
     }
 
     @GET
@@ -56,31 +58,24 @@ public class TrafficResource extends InternalPools {
     }
 
     @GET
-    @Path("/es")
+    @Path("/Trajectory")
     public Response testES(@QueryParam("start") final String start,
                            @QueryParam("end") final String end,
                            @QueryParam("PlateLicense") final String PlateLicense) throws Exception {
         StringWriter writer = new StringWriter();
         HashMap content = new HashMap();
 
-        SearchResponse response = request
-                .setQuery(QueryBuilders.termQuery("HPHM", "川H16357"))
-                .setPostFilter(QueryBuilders.rangeQuery("JGSJ").gte("2017-03-16 16:08:28").lte("2017-03-20 16:08:28"))
+        SearchResponse response = conn.prepareSearch().setIndices("traffic").setTypes("traffic")
+                .setQuery(QueryBuilders.termQuery("Plate_License.keyword", PlateLicense))
+                .setPostFilter(QueryBuilders.rangeQuery("Time.keyword").gte(start.replace("\"","")).lte(end.replace("\"","")))
                 .setSize(10000)
                 .execute().actionGet();
 
-//        SearchResponse respons=request
-//                .setQuery(QueryBuilders.termQuery("HPHM","川H16357"))
-//                .addAggregation(
-//                AggregationBuilders.dateRange("JGSJ").addRange("2017-03-16 16:08:28","2017-04-00 16:08:28"))
-//                .execute().actionGet();
-//        Map<String, Aggregation> aggMap = respons.getAggregations().asMap();
-
-
         for (SearchHit i : response.getHits().getHits()) {
-            content.put(i.getSource().get("JGSJ").toString(), i.getSource().get("KKBH").toString());
+            content.put(i.getSource().get("Time").toString(), i.getSource().get("SBBH").toString());
         }
         mapper.writeValue(writer, content);
+        returnEsConnection(conn);
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
     }
 
