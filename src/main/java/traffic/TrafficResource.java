@@ -55,8 +55,8 @@ public class TrafficResource extends InternalPools {
     }
 
     @GET
-    @Path("/Trajectory")
-    public Response testES(@QueryParam("start") final String start,
+    @Path("/track")
+    public Response trackQuery(@QueryParam("start") final String start,
                            @QueryParam("end") final String end,
                            @QueryParam("PlateLicense") final String PlateLicense) throws Exception {
         TransportClient conn = getEsConnection();
