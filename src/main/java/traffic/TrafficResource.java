@@ -138,18 +138,96 @@ public class TrafficResource extends InternalPools {
                     monthcount.put(year + "-" + month + "|" + typenum[0], Integer.parseInt(typenum[1]));
                 }
 
-                typetotal.put("total",typetotal.getOrDefault("total",0)+Integer.parseInt(typenum[1]));
+                typetotal.put("total", typetotal.getOrDefault("total", 0) + Integer.parseInt(typenum[1]));
                 if (typetotal.containsKey(typenum[0])) {
-                    typetotal.put(typenum[0], typetotal.get(typenum[0])+Integer.parseInt(typenum[1]));
-                }else{
-                    typetotal.put(typenum[0],Integer.parseInt(typenum[1]));
+                    typetotal.put(typenum[0], typetotal.get(typenum[0]) + Integer.parseInt(typenum[1]));
+                } else {
+                    typetotal.put(typenum[0], Integer.parseInt(typenum[1]));
                 }
             }
         }
-        mapper.writeValue(writer,typetotal);
+        mapper.writeValue(writer, typetotal);
         mapper.writeValue(writer, monthcount);
         returnHbaseConnection(hbase);
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
     }
 
+    @GET
+    @Path("/queryTrafficStatistics/Day")
+    public Response HbasequeryTrafficStatisticsDay(
+            @QueryParam("start") final String start,
+            @QueryParam("end") final String end,
+            @QueryParam("deviceId") final String deviceId
+    ) throws IOException {
+        Connection hbase = getHbaseConnection();
+        Table table = hbase.getTable(TableName.valueOf("TrafficInfo"));
+        Map<String, Integer> typetotal = new LinkedHashMap<String, Integer>();
+        Map<String, Integer> daycount = new LinkedHashMap<String, Integer>();
+
+        int regionnum = Integer.parseInt(deviceId.substring(deviceId.length() - 1)) % 3;
+        String startrow = regionnum + "|" + deviceId + "_" + start.replace("\"", "").split(" ")[0];
+        String endrow = regionnum + "|" + deviceId + "_" + end.replace("\"", "").split(" ")[0];
+        StringWriter writer = new StringWriter();
+
+        Scan scan = new Scan();
+        scan.setStartRow(startrow.getBytes());
+        scan.setStopRow(endrow.getBytes());
+        ResultScanner rs = table.getScanner(scan);
+        for (Result r : rs) {
+            String row = new String(r.getRow());
+            String date = row.split("\\_")[1];
+            String value = Bytes.toString(r.getValue("trafficinfo" .getBytes(), "D" .getBytes()));
+            String[] vehicleTypes = value.split("\\|");
+            for(String str:vehicleTypes){
+                String[] typenum = str.split("\\:");
+                daycount.put(date+"|"+typenum[0],daycount.getOrDefault(date+"|"+typenum[0],0)+Integer.parseInt(typenum[1]));
+
+                typetotal.put("total", typetotal.getOrDefault("total", 0) + Integer.parseInt(typenum[1]));
+                if (typetotal.containsKey(typenum[0])) {
+                    typetotal.put(typenum[0], typetotal.get(typenum[0]) + Integer.parseInt(typenum[1]));
+                } else {
+                    typetotal.put(typenum[0], Integer.parseInt(typenum[1]));
+                }
+            }
+
+        }
+        mapper.writeValue(writer, typetotal);
+        mapper.writeValue(writer, daycount);
+        returnHbaseConnection(hbase);
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
+    }
+
+    @GET
+    @Path("/queryTrafficStatistics/Hour")
+    public Response HbasequeryTrafficStatisticsHour(
+            @QueryParam("start") final String start,
+            @QueryParam("end") final String end,
+            @QueryParam("deviceId") final String deviceId
+    ) throws IOException {
+        Connection hbase = getHbaseConnection();
+        Table table = hbase.getTable(TableName.valueOf("TrafficInfo"));
+        Map<String, Integer> typetotal = new LinkedHashMap<String, Integer>();
+        Map<String, Integer> daycount = new LinkedHashMap<String, Integer>();
+
+        int regionnum = Integer.parseInt(deviceId.substring(deviceId.length() - 1)) % 3;
+        String startrow = regionnum + "|" + deviceId + "_" + start.replace("\"", "").split(" ")[0];
+        String endrow = regionnum + "|" + deviceId + "_" + end.replace("\"", "").split(" ")[0];
+        StringWriter writer = new StringWriter();
+
+        Scan scan = new Scan();
+        scan.setStartRow(startrow.getBytes());
+        scan.setStopRow(endrow.getBytes());
+        ResultScanner rs = table.getScanner(scan);
+        for (Result r : rs) {
+            String row = new String(r.getRow());
+            String date = row.split("\\_")[1];
+            String value = Bytes.toString(r.getValue("trafficinfo" .getBytes(), "17h" .getBytes()));
+            String[] vehicleTypes = value.split("\\|");
+
+        }
+        mapper.writeValue(writer, typetotal);
+        mapper.writeValue(writer, daycount);
+        returnHbaseConnection(hbase);
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
+    }
 }
