@@ -102,7 +102,7 @@ public class TrafficResource extends InternalPools {
 
     @GET
     @Path("/queryTrafficStatistics/Month")
-    public Response testHbase(
+    public Response HbasequeryTrafficStatisticsMonth(
             @QueryParam("start") final String start,
             @QueryParam("end") final String end,
             @QueryParam("deviceId") final String deviceId
@@ -151,4 +151,5 @@ public class TrafficResource extends InternalPools {
         returnHbaseConnection(hbase);
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
     }
+
 }
