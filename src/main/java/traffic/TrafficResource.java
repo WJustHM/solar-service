@@ -118,6 +118,7 @@ public class TrafficResource extends InternalPools {
         }
         mapper.writeValue(writer, map);
         returnEsConnection(conn);
+        returnMysqlConnection(connmysql);
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
     }
 
