@@ -37,12 +37,9 @@ import java.util.Map;
 public class TrafficResource extends InternalPools {
 
     private final ObjectMapper mapper = new ObjectMapper();
-    private  TransportClient conn =null;
-
 
     public TrafficResource(Map paramters) {
         super(paramters);
-        conn=getEsConnection();
     }
 
     @GET
@@ -62,12 +59,13 @@ public class TrafficResource extends InternalPools {
     public Response testES(@QueryParam("start") final String start,
                            @QueryParam("end") final String end,
                            @QueryParam("PlateLicense") final String PlateLicense) throws Exception {
+        TransportClient conn = getEsConnection();
         StringWriter writer = new StringWriter();
         HashMap content = new HashMap();
 
         SearchResponse response = conn.prepareSearch().setIndices("traffic").setTypes("traffic")
                 .setQuery(QueryBuilders.termQuery("Plate_License.keyword", PlateLicense))
-                .setPostFilter(QueryBuilders.rangeQuery("Time.keyword").gte(start.replace("\"","")).lte(end.replace("\"","")))
+                .setPostFilter(QueryBuilders.rangeQuery("Time.keyword").gte(start.replace("\"", "")).lte(end.replace("\"", "")))
                 .setSize(10000)
                 .execute().actionGet();
 
