@@ -2,22 +2,26 @@ package traffic;
 
 
 import common.InternalPools;
+import common.jdbc.JdbcConnectionPool;
 import org.apache.hadoop.hbase.HRegionInfo;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
 
+import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.sort.SortOrder;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.io.StringWriter;
 
+import java.sql.*;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -30,9 +34,11 @@ import java.util.Map;
 public class TrafficResource extends InternalPools {
 
     private final ObjectMapper mapper = new ObjectMapper();
+    private JdbcConnectionPool jdbc = null;
 
     public TrafficResource(Map paramters) {
         super(paramters);
+        jdbc = getJdbcConnectionPool();
     }
 
     @GET
@@ -84,18 +90,33 @@ public class TrafficResource extends InternalPools {
             @QueryParam("PlateLicense") final String PlateLicense) throws Exception {
         TransportClient conn = getEsConnection();
         StringWriter writer = new StringWriter();
-        HashMap content = new HashMap();
+        Map<String, HashMap> map = new LinkedHashMap<String, HashMap>();
+        java.sql.Connection connmysql = jdbc.getConnection();
+        String query = "SELECT id,lonlat FROM gate";
+        ResultSet rs = connmysql.prepareStatement(query).executeQuery();
+        HashMap<String, String> mysqlmap = new HashMap<String, String>();
+        while (rs.next()) {
+            mysqlmap.put(rs.getString(1), rs.getString(2));
+        }
 
         SearchResponse response = conn.prepareSearch().setIndices("traffic").setTypes("traffic")
                 .setQuery(QueryBuilders.termQuery("Plate_License.keyword", PlateLicense))
                 .setPostFilter(QueryBuilders.rangeQuery("Time.keyword").gte(start.replace("\"", "")).lte(end.replace("\"", "")))
+                .addSort("Time.keyword", SortOrder.ASC)
                 .setSize(10000)
                 .execute().actionGet();
-
         for (SearchHit i : response.getHits().getHits()) {
-            content.put(i.getSource().get("Time").toString(), i.getSource().get("SBBH").toString());
+            HashMap content = new HashMap();
+            content.put("SBBH", i.getSource().get("SBBH").toString());
+            for (Map.Entry<String, String> entry : mysqlmap.entrySet()) {
+                String lonlat = entry.getKey();
+                if (i.getSource().get("SBBH").toString().equals(lonlat)) {
+                    content.put("lonlat", entry.getValue());
+                }
+            }
+            map.put(i.getSource().get("Time").toString(), content);
         }
-        mapper.writeValue(writer, content);
+        mapper.writeValue(writer, map);
         returnEsConnection(conn);
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
     }
@@ -178,9 +199,9 @@ public class TrafficResource extends InternalPools {
             String date = row.split("\\_")[1];
             String value = Bytes.toString(r.getValue("trafficinfo" .getBytes(), "D" .getBytes()));
             String[] vehicleTypes = value.split("\\|");
-            for(String str:vehicleTypes){
+            for (String str : vehicleTypes) {
                 String[] typenum = str.split("\\:");
-                daycount.put(date+"|"+typenum[0],daycount.getOrDefault(date+"|"+typenum[0],0)+Integer.parseInt(typenum[1]));
+                daycount.put(date + "|" + typenum[0], daycount.getOrDefault(date + "|" + typenum[0], 0) + Integer.parseInt(typenum[1]));
 
                 typetotal.put("total", typetotal.getOrDefault("total", 0) + Integer.parseInt(typenum[1]));
                 if (typetotal.containsKey(typenum[0])) {
