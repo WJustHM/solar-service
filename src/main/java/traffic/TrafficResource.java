@@ -35,11 +35,9 @@ import java.util.Map;
 public class TrafficResource extends InternalPools {
 
     private final ObjectMapper mapper = new ObjectMapper();
-    private JdbcConnectionPool jdbc = null;
 
     public TrafficResource(Map paramters) {
         super(paramters);
-        jdbc = getJdbcConnectionPool();
     }
 
     @GET
@@ -75,7 +73,7 @@ public class TrafficResource extends InternalPools {
         TransportClient conn = getEsConnection();
         StringWriter writer = new StringWriter();
         Map<String, HashMap> map = new LinkedHashMap<String, HashMap>();
-        java.sql.Connection connmysql = jdbc.getConnection();
+        java.sql.Connection connmysql = getMysqlConnection();
         String query = "SELECT id,lonlat FROM gate";
         ResultSet rs = connmysql.prepareStatement(query).executeQuery();
         HashMap<String, String> mysqlmap = new HashMap<String, String>();
@@ -103,11 +101,26 @@ public class TrafficResource extends InternalPools {
     }
 
     @GET
-    @Path("/statistics/month")
-    public Response HbasequeryTrafficStatisticsMonth(
+    @Path("/statistics")
+    public Response statisticsQuery(
+            @QueryParam("by") final String by,
             @QueryParam("start") final String start,
             @QueryParam("end") final String end,
             @QueryParam("deviceId") final String deviceId
+    ) throws IOException, ParseException {
+        switch (by){
+            case "month" : return HbasequeryTrafficStatisticsMonth(start, end, deviceId);
+            case "day" : return HbasequeryTrafficStatisticsDay(start, end, deviceId);
+            case "hour" : return HbasequeryTrafficStatisticsHour(start, end, deviceId);
+            case "minute" : return HbasequeryTrafficStatisticsMinute(start, end, deviceId);
+            default : return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("search by are not found!").build();
+        }
+    }
+
+    public Response HbasequeryTrafficStatisticsMonth(
+            String start,
+            String end,
+            String deviceId
     ) throws IOException {
         Connection hbase = getHbaseConnection();
         Table table = hbase.getTable(TableName.valueOf("TrafficInfo"));
@@ -128,7 +141,6 @@ public class TrafficResource extends InternalPools {
             String date = row.split("\\_")[1];
             String year = date.split("\\-")[0];
             String month = date.split("\\-")[1];
-            String day = date.split("\\-")[2];
             String value = Bytes.toString(r.getValue("trafficinfo".getBytes(), "D".getBytes()));
             String[] vehicleTypes = value.split("\\|");
             for (String str : vehicleTypes) {
@@ -154,12 +166,11 @@ public class TrafficResource extends InternalPools {
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
     }
 
-    @GET
-    @Path("/statistics/day")
+
     public Response HbasequeryTrafficStatisticsDay(
-            @QueryParam("start") final String start,
-            @QueryParam("end") final String end,
-            @QueryParam("deviceId") final String deviceId
+            String start,
+            String end,
+            String deviceId
     ) throws IOException {
         Connection hbase = getHbaseConnection();
         Table table = hbase.getTable(TableName.valueOf("TrafficInfo"));
@@ -199,12 +210,10 @@ public class TrafficResource extends InternalPools {
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
     }
 
-    @GET
-    @Path("/statistics/hour")
     public Response HbasequeryTrafficStatisticsHour(
-            @QueryParam("start") final String start,
-            @QueryParam("end") final String end,
-            @QueryParam("deviceId") final String deviceId
+            String start,
+            String end,
+            String deviceId
     ) throws IOException, ParseException {
         Connection hbase = getHbaseConnection();
         Table table = hbase.getTable(TableName.valueOf("TrafficInfo"));
@@ -261,12 +270,10 @@ public class TrafficResource extends InternalPools {
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
     }
 
-    @GET
-    @Path("/statistics/miunte")
-    public Response HbasequeryTrafficStatisticsMiunte(
-            @QueryParam("start") final String start,
-            @QueryParam("end") final String end,
-            @QueryParam("deviceId") final String deviceId
+    public Response HbasequeryTrafficStatisticsMinute(
+            String start,
+            String end,
+            String deviceId
     ) throws IOException, ParseException {
         Connection hbase = getHbaseConnection();
         Table table = hbase.getTable(TableName.valueOf("TrafficInfo"));
@@ -295,15 +302,9 @@ public class TrafficResource extends InternalPools {
                 int hour = minute / 60;
                 int minutes = minute % 60;
                 String rowhour = "";
-                if (hour < 10 && minutes < 10) {
-                    rowhour = date + " " + "0" + hour + ":" + "0" + minutes;
-                } else if (hour < 10) {
-                    rowhour = date + " " + "0" + hour + ":" + minutes;
-                } else if (minutes < 10) {
-                    rowhour = date + " " + hour + ":" + "0" + minutes;
-                } else {
-                    rowhour = date + " " + hour + ":" + minutes;
-                }
+
+                rowhour = date + " " + String.format("%02d", hour) + ":" + String.format("%02d", minutes);
+
                 long format = simplehm.parse(rowhour).getTime();
                 if (value != null) {
                     if (starttime <= format && endtime >= format) {
