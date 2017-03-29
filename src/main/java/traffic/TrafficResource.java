@@ -172,10 +172,7 @@ public class TrafficResource extends InternalPools {
     }
 
 
-    public Response HbasequeryTrafficStatisticsDay(
-            String start,
-            String end,
-            String deviceId
+    public Response HbasequeryTrafficStatisticsDay(String start, String end, String deviceId
     ) throws IOException {
         Connection hbase = getHbaseConnection();
         Table table = hbase.getTable(TableName.valueOf("TrafficInfo"));
@@ -214,10 +211,7 @@ public class TrafficResource extends InternalPools {
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
     }
 
-    public Response HbasequeryTrafficStatisticsHour(
-            String start,
-            String end,
-            String deviceId
+    public Response HbasequeryTrafficStatisticsHour(String start, String end, String deviceId
     ) throws IOException, ParseException {
         Connection hbase = getHbaseConnection();
         Table table = hbase.getTable(TableName.valueOf("TrafficInfo"));
@@ -275,10 +269,7 @@ public class TrafficResource extends InternalPools {
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
     }
 
-    public Response HbasequeryTrafficStatisticsMinute(
-            String start,
-            String end,
-            String deviceId
+    public Response HbasequeryTrafficStatisticsMinute(String start, String end, String deviceId
     ) throws IOException, ParseException {
         Connection hbase = getHbaseConnection();
         Table table = hbase.getTable(TableName.valueOf("TrafficInfo"));
