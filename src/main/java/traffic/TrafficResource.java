@@ -310,15 +310,15 @@ public class TrafficResource extends InternalPools {
             String date = row.split("\\_")[1];
             if (date.equals(startsplit)) {
                 if(date.equals(endsplit)){
-                    startminute = (int) ((simplehms.parse(startsplit).getTime() - simpleymd.parse(date).getTime()) / 60000);
-                    endminute = (int) ((simplehms.parse(endsplit).getTime() - simpleymd.parse(date).getTime()) / 60000);
+                    startminute = (int) ((simplehms.parse(start.replace("\"","")).getTime() - simpleymd.parse(date).getTime()) / 60000);
+                    endminute = (int) ((simplehms.parse(end.replace("\"","")).getTime() - simpleymd.parse(date).getTime()) / 60000);
                 }else{
-                    startminute = (int) ((simplehms.parse(startsplit).getTime() - simpleymd.parse(date).getTime()) / 60000);
+                    startminute = (int) ((simplehms.parse(start.replace("\"","")).getTime() - simpleymd.parse(date).getTime()) / 60000);
                     endminute = 1439;
                 }
             } else if (date.equals(endsplit)) {
                 startminute = 0;
-                endminute = (int) ((simplehms.parse(endsplit).getTime() - simpleymd.parse(date).getTime()) / 60000);
+                endminute = (int) ((simplehms.parse(end.replace("\"","")).getTime() - simpleymd.parse(date).getTime()) / 60000);
             } else {
                 startminute = 0;
                 endminute = 1439;
