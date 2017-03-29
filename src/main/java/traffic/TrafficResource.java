@@ -2,6 +2,7 @@ package traffic;
 
 
 import common.InternalPools;
+import common.jdbc.JdbcConnectionPool;
 
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
@@ -26,7 +27,9 @@ import java.io.StringWriter;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Created by xuefei_wang on 16-12-13.
@@ -337,34 +340,42 @@ public class TrafficResource extends InternalPools {
     }
 
     @POST
-    @Path("test")
+    @Path("/authenticate")
     @Produces("application/json; charset=utf-8")
-    public Map<String, Object> getName(String data)
-            throws JsonGenerationException, JsonMappingException, IOException {
+    public Response login(String data) throws IOException {
+        StringWriter writer = new StringWriter();
         String name = null;
         String password = null;
-        //解析传入json数据
-        ObjectMapper objectMapper = new ObjectMapper();
+        String department = null;
+
         Map<String, Object> maps;
         try {
-            maps = objectMapper.readValue(data, Map.class);
+            maps = mapper.readValue(data, Map.class);
             name = (String) maps.get("name");
             password = (String) maps.get("password");
+            department = (String) maps.get("department");
+            if(!name.equals("admin")||!password.equals("admin123")||!department.equals("国防部")){
+                Map<String,String> res=new LinkedHashMap<>();
+                res.put("Result","0");
+                res.put("Err","Username or Password entered incorrectly");
+                mapper.writeValue(writer, res);
+                return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
+            }
         } catch (JsonParseException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (JsonMappingException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        //输出map
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("name", name);
-        map.put("password", password);
-        return map;
+
+        Map<String, Map<String, String>> resp = new LinkedHashMap<>();
+        Map<String, String> tokens = new LinkedHashMap<>();
+        tokens.put("token", "TTT");
+        tokens.put("endpoint", "/solar/traffic");
+        resp.put("access", tokens);
+        mapper.writeValue(writer, resp);
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
     }
 
     @GET
