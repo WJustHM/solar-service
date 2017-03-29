@@ -2,7 +2,6 @@ package traffic;
 
 
 import common.InternalPools;
-import common.jdbc.JdbcConnectionPool;
 
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
@@ -27,9 +26,7 @@ import java.io.StringWriter;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by xuefei_wang on 16-12-13.
@@ -38,8 +35,8 @@ import java.util.Map;
 public class TrafficResource extends InternalPools {
 
     private final ObjectMapper mapper = new ObjectMapper();
-    private HashMap<String, String> mysqlmap = new HashMap<String, String>();
-
+    private HashMap<String, String> mysqlmap = null;
+    private List deviceList = null;
     public TrafficResource(Map paramters) {
         super(paramters);
     }
@@ -78,6 +75,7 @@ public class TrafficResource extends InternalPools {
         StringWriter writer = new StringWriter();
         Map<String, HashMap> map = new LinkedHashMap<String, HashMap>();
         if (mysqlmap == null) {
+            mysqlmap = new HashMap<String, String>();
             java.sql.Connection connmysql = getMysqlConnection();
             String query = "SELECT id,lonlat FROM gate";
             ResultSet rs = connmysql.prepareStatement(query).executeQuery();
@@ -369,4 +367,32 @@ public class TrafficResource extends InternalPools {
         return map;
     }
 
+    @GET
+    @Path("devices")
+    public Response devicesQuery() throws SQLException, IOException {
+        StringWriter writer = new StringWriter();
+        if (deviceList == null) {
+            deviceList = new LinkedList();
+            java.sql.Connection conn = getMysqlConnection();
+            String query = "SELECT id,lonlat,type FROM gate";
+            ResultSet rs = conn.prepareStatement(query).executeQuery();
+            while (rs.next()) {
+                if(!rs.getString(1).equals("0")) {
+                    HashMap coordinateMap = new HashMap();
+                    coordinateMap.put("longitude", rs.getString(2).split(",")[0]);
+                    coordinateMap.put("latitude", rs.getString(2).split(",")[1]);
+                    Map deviceMap = new HashMap();
+                    deviceMap.put("coordinate", coordinateMap);
+                    deviceMap.put("id", rs.getString(1));
+                    deviceMap.put("monitortype", rs.getString(3));
+                    deviceList.add(deviceMap);
+                }
+            }
+            returnMysqlConnection(conn);
+        }
+        HashMap content = new HashMap();
+        content.put("devices", deviceList);
+        mapper.writeValue(writer, content);
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
+    }
 }
