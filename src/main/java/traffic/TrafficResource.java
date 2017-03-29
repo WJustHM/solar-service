@@ -9,6 +9,9 @@ import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.util.Bytes;
 
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -109,12 +112,17 @@ public class TrafficResource extends InternalPools {
             @QueryParam("end") final String end,
             @QueryParam("deviceId") final String deviceId
     ) throws IOException, ParseException {
-        switch (by){
-            case "month" : return HbasequeryTrafficStatisticsMonth(start, end, deviceId);
-            case "day" : return HbasequeryTrafficStatisticsDay(start, end, deviceId);
-            case "hour" : return HbasequeryTrafficStatisticsHour(start, end, deviceId);
-            case "minute" : return HbasequeryTrafficStatisticsMinute(start, end, deviceId);
-            default : return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("search by are not found!").build();
+        switch (by) {
+            case "month":
+                return HbasequeryTrafficStatisticsMonth(start, end, deviceId);
+            case "day":
+                return HbasequeryTrafficStatisticsDay(start, end, deviceId);
+            case "hour":
+                return HbasequeryTrafficStatisticsHour(start, end, deviceId);
+            case "minute":
+                return HbasequeryTrafficStatisticsMinute(start, end, deviceId);
+            default:
+                return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("search by are not found!").build();
         }
     }
 
@@ -236,10 +244,10 @@ public class TrafficResource extends InternalPools {
         for (Result r : rs) {
             String row = new String(r.getRow());
             String date = row.split("\\_")[1];
-            if (row.equals(startsplit)) {
+            if (date.equals(startsplit)) {
                 starthour = Integer.parseInt(start.replace("\"", "").split(" ")[1].split("\\:")[0]);
                 endhour = 23;
-            } else if (row.equals(endsplit)) {
+            } else if (date.equals(endsplit)) {
                 starthour = 0;
                 endhour = Integer.parseInt(end.replace("\"", "").split(" ")[1].split("\\:")[0]);
             } else {
@@ -300,16 +308,17 @@ public class TrafficResource extends InternalPools {
         for (Result r : rs) {
             String row = new String(r.getRow());
             String date = row.split("\\_")[1];
-            if (row.equals(startsplit)) {
-                long st1=simplehms.parse(start).getTime();
-                long st2=simpleymd.parse(row).getTime();
-                startminute = (int)((st1-st2)/60000);
-                endminute = 1439;
-            } else if (row.equals(endsplit)) {
-                long end1=simplehms.parse(end).getTime();
-                long end2=simpleymd.parse(row).getTime();
+            if (date.equals(startsplit)) {
+                if(date.equals(endsplit)){
+                    startminute = (int) ((simplehms.parse(start).getTime() - simpleymd.parse(date).getTime()) / 60000);
+                    endminute = (int) ((simplehms.parse(end).getTime() - simpleymd.parse(date).getTime()) / 60000);
+                }else{
+                    startminute = (int) ((simplehms.parse(start).getTime() - simpleymd.parse(date).getTime()) / 60000);
+                    endminute = 1439;
+                }
+            } else if (date.equals(endsplit)) {
                 startminute = 0;
-                endminute = (int)((end1-end2)/60000);
+                endminute = (int) ((simplehms.parse(end).getTime() - simpleymd.parse(date).getTime()) / 60000);
             } else {
                 startminute = 0;
                 endminute = 1439;
@@ -320,23 +329,55 @@ public class TrafficResource extends InternalPools {
                 int minutes = minute % 60;
                 String rowhour = date + " " + String.format("%02d", hour) + ":" + String.format("%02d", minutes);
                 if (value != null) {
-                        String[] vehicleTypes = value.split("\\|");
-                        for (String str : vehicleTypes) {
-                            String[] typenum = str.split("\\:");
-                            minutecount.put(rowhour + "|" + typenum[0], minutecount.getOrDefault(rowhour + "|" + typenum[0], 0) + Integer.parseInt(typenum[1]));
-                            typetotal.put("total", typetotal.getOrDefault("total", 0) + Integer.parseInt(typenum[1]));
-                            if (typetotal.containsKey(typenum[0])) {
-                                typetotal.put(typenum[0], typetotal.get(typenum[0]) + Integer.parseInt(typenum[1]));
-                            } else {
-                                typetotal.put(typenum[0], Integer.parseInt(typenum[1]));
-                            }
+                    String[] vehicleTypes = value.split("\\|");
+                    for (String str : vehicleTypes) {
+                        String[] typenum = str.split("\\:");
+                        minutecount.put(rowhour + "|" + typenum[0], minutecount.getOrDefault(rowhour + "|" + typenum[0], 0) + Integer.parseInt(typenum[1]));
+                        typetotal.put("total", typetotal.getOrDefault("total", 0) + Integer.parseInt(typenum[1]));
+                        if (typetotal.containsKey(typenum[0])) {
+                            typetotal.put(typenum[0], typetotal.get(typenum[0]) + Integer.parseInt(typenum[1]));
+                        } else {
+                            typetotal.put(typenum[0], Integer.parseInt(typenum[1]));
                         }
                     }
                 }
+            }
         }
         mapper.writeValue(writer, typetotal);
         mapper.writeValue(writer, minutecount);
         returnHbaseConnection(hbase);
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
     }
+
+    @POST
+    @Path("test")
+    @Produces("application/json; charset=utf-8")
+    public Map<String, Object> getName(String data)
+            throws JsonGenerationException, JsonMappingException, IOException {
+        String name = null;
+        String password = null;
+        //解析传入json数据
+        ObjectMapper objectMapper = new ObjectMapper();
+        Map<String, Object> maps;
+        try {
+            maps = objectMapper.readValue(data, Map.class);
+            name = (String) maps.get("name");
+            password = (String) maps.get("password");
+        } catch (JsonParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (JsonMappingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        //输出map
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("name", name);
+        map.put("password", password);
+        return map;
+    }
+
 }
