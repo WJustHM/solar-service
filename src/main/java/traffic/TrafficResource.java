@@ -102,11 +102,26 @@ public class TrafficResource extends InternalPools {
     }
 
     @GET
-    @Path("/statistics/month")
-    public Response HbasequeryTrafficStatisticsMonth(
+    @Path("/statistics")
+    public Response statisticsQuery(
+            @QueryParam("by") final String by,
             @QueryParam("start") final String start,
             @QueryParam("end") final String end,
             @QueryParam("deviceId") final String deviceId
+    ) throws IOException, ParseException {
+        switch (by){
+            case "month" : return HbasequeryTrafficStatisticsMonth(start, end, deviceId);
+            case "day" : return HbasequeryTrafficStatisticsDay(start, end, deviceId);
+            case "hour" : return HbasequeryTrafficStatisticsHour(start, end, deviceId);
+            case "minute" : return HbasequeryTrafficStatisticsMinute(start, end, deviceId);
+            default : return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("search by are not found!").build();
+        }
+    }
+
+    public Response HbasequeryTrafficStatisticsMonth(
+            String start,
+            String end,
+            String deviceId
     ) throws IOException {
         Connection hbase = getHbaseConnection();
         Table table = hbase.getTable(TableName.valueOf("TrafficInfo"));
@@ -127,7 +142,6 @@ public class TrafficResource extends InternalPools {
             String date = row.split("\\_")[1];
             String year = date.split("\\-")[0];
             String month = date.split("\\-")[1];
-            String day = date.split("\\-")[2];
             String value = Bytes.toString(r.getValue("trafficinfo".getBytes(), "D".getBytes()));
             String[] vehicleTypes = value.split("\\|");
             for (String str : vehicleTypes) {
@@ -153,12 +167,11 @@ public class TrafficResource extends InternalPools {
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
     }
 
-    @GET
-    @Path("/statistics/day")
+
     public Response HbasequeryTrafficStatisticsDay(
-            @QueryParam("start") final String start,
-            @QueryParam("end") final String end,
-            @QueryParam("deviceId") final String deviceId
+            String start,
+            String end,
+            String deviceId
     ) throws IOException {
         Connection hbase = getHbaseConnection();
         Table table = hbase.getTable(TableName.valueOf("TrafficInfo"));
@@ -197,12 +210,10 @@ public class TrafficResource extends InternalPools {
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
     }
 
-    @GET
-    @Path("/statistics/hour")
-    public Response HbasequeryTrafficStatisticsHsss(
-            @QueryParam("start") final String start,
-            @QueryParam("end") final String end,
-            @QueryParam("deviceId") final String deviceId
+    public Response HbasequeryTrafficStatisticsHour(
+            String start,
+            String end,
+            String deviceId
     ) throws IOException, ParseException {
         Connection hbase = getHbaseConnection();
         Table table = hbase.getTable(TableName.valueOf("TrafficInfo"));
@@ -260,12 +271,10 @@ public class TrafficResource extends InternalPools {
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
     }
 
-    @GET
-    @Path("/statistics/miunte")
-    public Response HbasequeryTrafficStatisticsMiunte(
-            @QueryParam("start") final String start,
-            @QueryParam("end") final String end,
-            @QueryParam("deviceId") final String deviceId
+    public Response HbasequeryTrafficStatisticsMinute(
+            String start,
+            String end,
+            String deviceId
     ) throws IOException, ParseException {
         Connection hbase = getHbaseConnection();
         Table table = hbase.getTable(TableName.valueOf("TrafficInfo"));
@@ -315,7 +324,6 @@ public class TrafficResource extends InternalPools {
                         for (String str : vehicleTypes) {
                             String[] typenum = str.split("\\:");
                             minutecount.put(rowhour + "|" + typenum[0], minutecount.getOrDefault(rowhour + "|" + typenum[0], 0) + Integer.parseInt(typenum[1]));
-
                             typetotal.put("total", typetotal.getOrDefault("total", 0) + Integer.parseInt(typenum[1]));
                             if (typetotal.containsKey(typenum[0])) {
                                 typetotal.put(typenum[0], typetotal.get(typenum[0]) + Integer.parseInt(typenum[1]));
