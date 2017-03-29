@@ -38,6 +38,7 @@ import java.util.Map;
 public class TrafficResource extends InternalPools {
 
     private final ObjectMapper mapper = new ObjectMapper();
+    private HashMap<String, String> mysqlmap = new HashMap<String, String>();
 
     public TrafficResource(Map paramters) {
         super(paramters);
@@ -76,12 +77,14 @@ public class TrafficResource extends InternalPools {
         TransportClient conn = getEsConnection();
         StringWriter writer = new StringWriter();
         Map<String, HashMap> map = new LinkedHashMap<String, HashMap>();
-        java.sql.Connection connmysql = getMysqlConnection();
-        String query = "SELECT id,lonlat FROM gate";
-        ResultSet rs = connmysql.prepareStatement(query).executeQuery();
-        HashMap<String, String> mysqlmap = new HashMap<String, String>();
-        while (rs.next()) {
-            mysqlmap.put(rs.getString(1), rs.getString(2));
+        if (mysqlmap == null) {
+            java.sql.Connection connmysql = getMysqlConnection();
+            String query = "SELECT id,lonlat FROM gate";
+            ResultSet rs = connmysql.prepareStatement(query).executeQuery();
+            while (rs.next()) {
+                mysqlmap.put(rs.getString(1), rs.getString(2));
+            }
+            returnMysqlConnection(connmysql);
         }
 
         SearchResponse response = conn.prepareSearch().setIndices("traffic").setTypes("traffic")
@@ -100,7 +103,6 @@ public class TrafficResource extends InternalPools {
         }
         mapper.writeValue(writer, map);
         returnEsConnection(conn);
-        returnMysqlConnection(connmysql);
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
     }
 
@@ -296,16 +298,16 @@ public class TrafficResource extends InternalPools {
             String row = new String(r.getRow());
             String date = row.split("\\_")[1];
             if (date.equals(startsplit)) {
-                if(date.equals(endsplit)){
-                    startminute = (int) ((simplehms.parse(start.replace("\"","")).getTime() - simpleymd.parse(date).getTime()) / 60000);
-                    endminute = (int) ((simplehms.parse(end.replace("\"","")).getTime() - simpleymd.parse(date).getTime()) / 60000);
-                }else{
-                    startminute = (int) ((simplehms.parse(start.replace("\"","")).getTime() - simpleymd.parse(date).getTime()) / 60000);
+                if (date.equals(endsplit)) {
+                    startminute = (int) ((simplehms.parse(start.replace("\"", "")).getTime() - simpleymd.parse(date).getTime()) / 60000);
+                    endminute = (int) ((simplehms.parse(end.replace("\"", "")).getTime() - simpleymd.parse(date).getTime()) / 60000);
+                } else {
+                    startminute = (int) ((simplehms.parse(start.replace("\"", "")).getTime() - simpleymd.parse(date).getTime()) / 60000);
                     endminute = 1439;
                 }
             } else if (date.equals(endsplit)) {
                 startminute = 0;
-                endminute = (int) ((simplehms.parse(end.replace("\"","")).getTime() - simpleymd.parse(date).getTime()) / 60000);
+                endminute = (int) ((simplehms.parse(end.replace("\"", "")).getTime() - simpleymd.parse(date).getTime()) / 60000);
             } else {
                 startminute = 0;
                 endminute = 1439;
