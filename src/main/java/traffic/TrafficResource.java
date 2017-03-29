@@ -47,7 +47,7 @@ public class TrafficResource extends InternalPools {
         HashMap metadata = new HashMap();
 
         Connection hbase = getHbaseConnection();
-        HTable table = (HTable)hbase.getTable(TableName.valueOf("TrafficImage"));
+        HTable table = (HTable) hbase.getTable(TableName.valueOf("TrafficImage"));
         Result rs = table.get(new Get(rowkey.getBytes()));
         byte[] image = rs.getValue("Image".getBytes(), "Data".getBytes());
         String redLightTime = new String(rs.getValue("Image".getBytes(), "RedLightTime".getBytes()));
@@ -59,8 +59,8 @@ public class TrafficResource extends InternalPools {
         returnHbaseConnection(hbase);
         return Response.status(200)
                 .header("Access-Control-Allow-Origin", "*")
-                .header("Content-Type","image/jpeg")
-                .header("metadata",writer.toString())
+                .header("Content-Type", "image/jpeg")
+                .header("metadata", writer.toString())
                 .entity(image).build();
     }
 
@@ -115,7 +115,7 @@ public class TrafficResource extends InternalPools {
 
         int regionnum = Integer.parseInt(deviceId.substring(deviceId.length() - 1)) % 3;
         String startrow = regionnum + "|" + deviceId + "_" + start.replace("\"", "").split(" ")[0];
-        String endrow = regionnum + "|" + deviceId + "_" + end.replace("\"", "").split(" ")[0];
+        String endrow = regionnum + "|" + deviceId + "_" + end.replace("\"", "").split(" ")[0] + "1";
         StringWriter writer = new StringWriter();
 
         Scan scan = new Scan();
@@ -167,7 +167,7 @@ public class TrafficResource extends InternalPools {
 
         int regionnum = Integer.parseInt(deviceId.substring(deviceId.length() - 1)) % 3;
         String startrow = regionnum + "|" + deviceId + "_" + start.replace("\"", "").split(" ")[0];
-        String endrow = regionnum + "|" + deviceId + "_" + end.replace("\"", "").split(" ")[0];
+        String endrow = regionnum + "|" + deviceId + "_" + end.replace("\"", "").split(" ")[0] + "1";
         StringWriter writer = new StringWriter();
 
         Scan scan = new Scan();
@@ -190,7 +190,6 @@ public class TrafficResource extends InternalPools {
                     typetotal.put(typenum[0], Integer.parseInt(typenum[1]));
                 }
             }
-
         }
         mapper.writeValue(writer, typetotal);
         mapper.writeValue(writer, daycount);
@@ -200,7 +199,7 @@ public class TrafficResource extends InternalPools {
 
     @GET
     @Path("/statistics/hour")
-    public Response HbasequeryTrafficStatisticsHour(
+    public Response HbasequeryTrafficStatisticsHsss(
             @QueryParam("start") final String start,
             @QueryParam("end") final String end,
             @QueryParam("deviceId") final String deviceId
@@ -210,45 +209,46 @@ public class TrafficResource extends InternalPools {
         Map<String, Integer> typetotal = new LinkedHashMap<String, Integer>();
         Map<String, Integer> hourcount = new LinkedHashMap<String, Integer>();
 
-        SimpleDateFormat simplehms = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        SimpleDateFormat simpleh = new SimpleDateFormat("yyyy-MM-dd HH");
-        long starttime = simplehms.parse(start.replace("\"", "")).getTime();
-        long endtime = simplehms.parse(end.replace("\"", "")).getTime();
-
+        String startsplit = start.replace("\"", "").split(" ")[0];
+        String endsplit = end.replace("\"", "").split(" ")[0];
         int regionnum = Integer.parseInt(deviceId.substring(deviceId.length() - 1)) % 3;
-        String startrow = regionnum + "|" + deviceId + "_" + start.replace("\"", "").split(" ")[0];
-        String endrow = regionnum + "|" + deviceId + "_" + end.replace("\"", "").split(" ")[0];
+        String startrow = regionnum + "|" + deviceId + "_" + startsplit;
+        String endrow = regionnum + "|" + deviceId + "_" + endsplit + "1";
         StringWriter writer = new StringWriter();
 
         Scan scan = new Scan();
         scan.setStartRow(startrow.getBytes());
         scan.setStopRow(endrow.getBytes());
         ResultScanner rs = table.getScanner(scan);
+        int starthour;
+        int endhour;
         for (Result r : rs) {
             String row = new String(r.getRow());
             String date = row.split("\\_")[1];
-            for (int hour = 0; hour < 23; hour++) {
+            if (row.equals(startsplit)) {
+                starthour = Integer.parseInt(start.replace("\"", "").split(" ")[1].split("\\:")[0]);
+                endhour = 23;
+            } else if (row.equals(endsplit)) {
+                starthour = 0;
+                endhour = Integer.parseInt(end.replace("\"", "").split(" ")[1].split("\\:")[0]);
+            } else {
+                starthour = 0;
+                endhour = 23;
+            }
+            for (int hour = starthour; hour <= endhour; hour++) {
                 String value = Bytes.toString(r.getValue("trafficinfo".getBytes(), (hour + "h").getBytes()));
-                String rowhour = "";
-                if (hour < 10) {
-                    rowhour = date + " " + "0" + hour;
-                } else {
-                    rowhour = date + " " + hour;
-                }
-                long format = simpleh.parse(rowhour).getTime();
+                String rowhour = date + " " + String.format("%02d", hour);
                 if (value != null) {
-                    if (starttime <= format && endtime >= format) {
-                        String[] vehicleTypes = value.split("\\|");
-                        for (String str : vehicleTypes) {
-                            String[] typenum = str.split("\\:");
-                            hourcount.put(rowhour + "|" + typenum[0], hourcount.getOrDefault(rowhour + "|" + typenum[0], 0) + Integer.parseInt(typenum[1]));
+                    String[] vehicleTypes = value.split("\\|");
+                    for (String str : vehicleTypes) {
+                        String[] typenum = str.split("\\:");
+                        hourcount.put(rowhour + "|" + typenum[0], hourcount.getOrDefault(rowhour + "|" + typenum[0], 0) + Integer.parseInt(typenum[1]));
 
-                            typetotal.put("total", typetotal.getOrDefault("total", 0) + Integer.parseInt(typenum[1]));
-                            if (typetotal.containsKey(typenum[0])) {
-                                typetotal.put(typenum[0], typetotal.get(typenum[0]) + Integer.parseInt(typenum[1]));
-                            } else {
-                                typetotal.put(typenum[0], Integer.parseInt(typenum[1]));
-                            }
+                        typetotal.put("total", typetotal.getOrDefault("total", 0) + Integer.parseInt(typenum[1]));
+                        if (typetotal.containsKey(typenum[0])) {
+                            typetotal.put(typenum[0], typetotal.get(typenum[0]) + Integer.parseInt(typenum[1]));
+                        } else {
+                            typetotal.put(typenum[0], Integer.parseInt(typenum[1]));
                         }
                     }
                 }
@@ -273,39 +273,44 @@ public class TrafficResource extends InternalPools {
         Map<String, Integer> minutecount = new LinkedHashMap<String, Integer>();
 
         SimpleDateFormat simplehms = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        SimpleDateFormat simplehm = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        long starttime = simplehms.parse(start.replace("\"", "")).getTime();
-        long endtime = simplehms.parse(end.replace("\"", "")).getTime();
-
+        SimpleDateFormat simpleymd = new SimpleDateFormat("yyyy-MM-dd");
+        String startsplit = start.replace("\"", "").split(" ")[0];
+        String endsplit = end.replace("\"", "").split(" ")[0];
         int regionnum = Integer.parseInt(deviceId.substring(deviceId.length() - 1)) % 3;
-        String startrow = regionnum + "|" + deviceId + "_" + start.replace("\"", "").split(" ")[0];
-        String endrow = regionnum + "|" + deviceId + "_" + end.replace("\"", "").split(" ")[0];
+        String startrow = regionnum + "|" + deviceId + "_" + startsplit;
+        String endrow = regionnum + "|" + deviceId + "_" + endsplit + "1";
         StringWriter writer = new StringWriter();
 
         Scan scan = new Scan();
         scan.setStartRow(startrow.getBytes());
         scan.setStopRow(endrow.getBytes());
         ResultScanner rs = table.getScanner(scan);
+
+        int startminute;
+        int endminute;
         for (Result r : rs) {
             String row = new String(r.getRow());
             String date = row.split("\\_")[1];
-            for (int minute = 0; minute < 1439; minute++) {
+            if (row.equals(startsplit)) {
+                long st1=simplehms.parse(start).getTime();
+                long st2=simpleymd.parse(row).getTime();
+                startminute = (int)((st1-st2)/60000);
+                endminute = 1439;
+            } else if (row.equals(endsplit)) {
+                long end1=simplehms.parse(end).getTime();
+                long end2=simpleymd.parse(row).getTime();
+                startminute = 0;
+                endminute = (int)((end1-end2)/60000);
+            } else {
+                startminute = 0;
+                endminute = 1439;
+            }
+            for (int minute = startminute; minute <= endminute; minute++) {
                 String value = Bytes.toString(r.getValue("trafficinfo".getBytes(), String.valueOf(minute).getBytes()));
                 int hour = minute / 60;
                 int minutes = minute % 60;
-                String rowhour = "";
-                if (hour < 10 && minutes < 10) {
-                    rowhour = date + " " + "0" + hour + ":" + "0" + minutes;
-                } else if (hour < 10) {
-                    rowhour = date + " " + "0" + hour + ":" + minutes;
-                } else if (minutes < 10) {
-                    rowhour = date + " " + hour + ":" + "0" + minutes;
-                } else {
-                    rowhour = date + " " + hour + ":" + minutes;
-                }
-                long format = simplehm.parse(rowhour).getTime();
+                String rowhour = date + " " + String.format("%02d", hour) + ":" + String.format("%02d", minutes);
                 if (value != null) {
-                    if (starttime <= format && endtime >= format) {
                         String[] vehicleTypes = value.split("\\|");
                         for (String str : vehicleTypes) {
                             String[] typenum = str.split("\\:");
@@ -320,7 +325,6 @@ public class TrafficResource extends InternalPools {
                         }
                     }
                 }
-            }
         }
         mapper.writeValue(writer, typetotal);
         mapper.writeValue(writer, minutecount);
