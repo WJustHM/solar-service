@@ -22,6 +22,8 @@ import java.io.IOException;
 import java.io.StringWriter;
 
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -90,12 +92,7 @@ public class TrafficResource extends InternalPools {
         for (SearchHit i : response.getHits().getHits()) {
             HashMap content = new HashMap();
             content.put("SBBH", i.getSource().get("SBBH").toString());
-            for (Map.Entry<String, String> entry : mysqlmap.entrySet()) {
-                String lonlat = entry.getKey();
-                if (i.getSource().get("SBBH").toString().equals(lonlat)) {
-                    content.put("lonlat", entry.getValue());
-                }
-            }
+            content.put("lonlat", mysqlmap.get(i.getSource().get("SBBH").toString()));
             map.put(i.getSource().get("Time").toString(), content);
         }
         mapper.writeValue(writer, map);
@@ -105,7 +102,7 @@ public class TrafficResource extends InternalPools {
     }
 
     @GET
-    @Path("/queryTrafficStatistics/Month")
+    @Path("/statistics/month")
     public Response HbasequeryTrafficStatisticsMonth(
             @QueryParam("start") final String start,
             @QueryParam("end") final String end,
@@ -131,7 +128,7 @@ public class TrafficResource extends InternalPools {
             String year = date.split("\\-")[0];
             String month = date.split("\\-")[1];
             String day = date.split("\\-")[2];
-            String value = Bytes.toString(r.getValue("trafficinfo" .getBytes(), "D" .getBytes()));
+            String value = Bytes.toString(r.getValue("trafficinfo".getBytes(), "D".getBytes()));
             String[] vehicleTypes = value.split("\\|");
             for (String str : vehicleTypes) {
                 String[] typenum = str.split("\\:");
@@ -157,7 +154,7 @@ public class TrafficResource extends InternalPools {
     }
 
     @GET
-    @Path("/queryTrafficStatistics/Day")
+    @Path("/statistics/day")
     public Response HbasequeryTrafficStatisticsDay(
             @QueryParam("start") final String start,
             @QueryParam("end") final String end,
@@ -180,7 +177,7 @@ public class TrafficResource extends InternalPools {
         for (Result r : rs) {
             String row = new String(r.getRow());
             String date = row.split("\\_")[1];
-            String value = Bytes.toString(r.getValue("trafficinfo" .getBytes(), "D" .getBytes()));
+            String value = Bytes.toString(r.getValue("trafficinfo".getBytes(), "D".getBytes()));
             String[] vehicleTypes = value.split("\\|");
             for (String str : vehicleTypes) {
                 String[] typenum = str.split("\\:");
@@ -202,16 +199,21 @@ public class TrafficResource extends InternalPools {
     }
 
     @GET
-    @Path("/queryTrafficStatistics/Hour")
+    @Path("/statistics/hour")
     public Response HbasequeryTrafficStatisticsHour(
             @QueryParam("start") final String start,
             @QueryParam("end") final String end,
             @QueryParam("deviceId") final String deviceId
-    ) throws IOException {
+    ) throws IOException, ParseException {
         Connection hbase = getHbaseConnection();
         Table table = hbase.getTable(TableName.valueOf("TrafficInfo"));
         Map<String, Integer> typetotal = new LinkedHashMap<String, Integer>();
-        Map<String, Integer> daycount = new LinkedHashMap<String, Integer>();
+        Map<String, Integer> hourcount = new LinkedHashMap<String, Integer>();
+
+        SimpleDateFormat simplehms = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat simpleh = new SimpleDateFormat("yyyy-MM-dd HH");
+        long starttime = simplehms.parse(start.replace("\"", "")).getTime();
+        long endtime = simplehms.parse(end.replace("\"", "")).getTime();
 
         int regionnum = Integer.parseInt(deviceId.substring(deviceId.length() - 1)) % 3;
         String startrow = regionnum + "|" + deviceId + "_" + start.replace("\"", "").split(" ")[0];
@@ -225,12 +227,103 @@ public class TrafficResource extends InternalPools {
         for (Result r : rs) {
             String row = new String(r.getRow());
             String date = row.split("\\_")[1];
-            String value = Bytes.toString(r.getValue("trafficinfo" .getBytes(), "17h" .getBytes()));
-            String[] vehicleTypes = value.split("\\|");
+            for (int hour = 0; hour < 23; hour++) {
+                String value = Bytes.toString(r.getValue("trafficinfo".getBytes(), (hour + "h").getBytes()));
+                String rowhour = "";
+                if (hour < 10) {
+                    rowhour = date + " " + "0" + hour;
+                } else {
+                    rowhour = date + " " + hour;
+                }
+                long format = simpleh.parse(rowhour).getTime();
+                if (value != null) {
+                    if (starttime <= format && endtime >= format) {
+                        String[] vehicleTypes = value.split("\\|");
+                        for (String str : vehicleTypes) {
+                            String[] typenum = str.split("\\:");
+                            hourcount.put(rowhour + "|" + typenum[0], hourcount.getOrDefault(rowhour + "|" + typenum[0], 0) + Integer.parseInt(typenum[1]));
 
+                            typetotal.put("total", typetotal.getOrDefault("total", 0) + Integer.parseInt(typenum[1]));
+                            if (typetotal.containsKey(typenum[0])) {
+                                typetotal.put(typenum[0], typetotal.get(typenum[0]) + Integer.parseInt(typenum[1]));
+                            } else {
+                                typetotal.put(typenum[0], Integer.parseInt(typenum[1]));
+                            }
+                        }
+                    }
+                }
+            }
         }
         mapper.writeValue(writer, typetotal);
-        mapper.writeValue(writer, daycount);
+        mapper.writeValue(writer, hourcount);
+        returnHbaseConnection(hbase);
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
+    }
+
+    @GET
+    @Path("/statistics/miunte")
+    public Response HbasequeryTrafficStatisticsMiunte(
+            @QueryParam("start") final String start,
+            @QueryParam("end") final String end,
+            @QueryParam("deviceId") final String deviceId
+    ) throws IOException, ParseException {
+        Connection hbase = getHbaseConnection();
+        Table table = hbase.getTable(TableName.valueOf("TrafficInfo"));
+        Map<String, Integer> typetotal = new LinkedHashMap<String, Integer>();
+        Map<String, Integer> minutecount = new LinkedHashMap<String, Integer>();
+
+        SimpleDateFormat simplehms = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat simplehm = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        long starttime = simplehms.parse(start.replace("\"", "")).getTime();
+        long endtime = simplehms.parse(end.replace("\"", "")).getTime();
+
+        int regionnum = Integer.parseInt(deviceId.substring(deviceId.length() - 1)) % 3;
+        String startrow = regionnum + "|" + deviceId + "_" + start.replace("\"", "").split(" ")[0];
+        String endrow = regionnum + "|" + deviceId + "_" + end.replace("\"", "").split(" ")[0];
+        StringWriter writer = new StringWriter();
+
+        Scan scan = new Scan();
+        scan.setStartRow(startrow.getBytes());
+        scan.setStopRow(endrow.getBytes());
+        ResultScanner rs = table.getScanner(scan);
+        for (Result r : rs) {
+            String row = new String(r.getRow());
+            String date = row.split("\\_")[1];
+            for (int minute = 0; minute < 1439; minute++) {
+                String value = Bytes.toString(r.getValue("trafficinfo".getBytes(), String.valueOf(minute).getBytes()));
+                int hour = minute / 60;
+                int minutes = minute % 60;
+                String rowhour = "";
+                if (hour < 10 && minutes < 10) {
+                    rowhour = date + " " + "0" + hour + ":" + "0" + minutes;
+                } else if (hour < 10) {
+                    rowhour = date + " " + "0" + hour + ":" + minutes;
+                } else if (minutes < 10) {
+                    rowhour = date + " " + hour + ":" + "0" + minutes;
+                } else {
+                    rowhour = date + " " + hour + ":" + minutes;
+                }
+                long format = simplehm.parse(rowhour).getTime();
+                if (value != null) {
+                    if (starttime <= format && endtime >= format) {
+                        String[] vehicleTypes = value.split("\\|");
+                        for (String str : vehicleTypes) {
+                            String[] typenum = str.split("\\:");
+                            minutecount.put(rowhour + "|" + typenum[0], minutecount.getOrDefault(rowhour + "|" + typenum[0], 0) + Integer.parseInt(typenum[1]));
+
+                            typetotal.put("total", typetotal.getOrDefault("total", 0) + Integer.parseInt(typenum[1]));
+                            if (typetotal.containsKey(typenum[0])) {
+                                typetotal.put(typenum[0], typetotal.get(typenum[0]) + Integer.parseInt(typenum[1]));
+                            } else {
+                                typetotal.put(typenum[0], Integer.parseInt(typenum[1]));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        mapper.writeValue(writer, typetotal);
+        mapper.writeValue(writer, minutecount);
         returnHbaseConnection(hbase);
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
     }
