@@ -21,6 +21,7 @@ import org.elasticsearch.search.sort.SortOrder;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.StringWriter;
 
@@ -352,21 +353,29 @@ public class TrafficResource extends InternalPools {
             name = (String) maps.get("name");
             password = (String) maps.get("password");
             department = (String) maps.get("department");
-            if(!name.equals("admin")||!password.equals("admin123")||!department.equals("国防部")){
-                Map<String,String> res=new LinkedHashMap<>();
-                res.put("Result","0");
-                res.put("Err","Username or Password entered incorrectly");
+            if (!name.equals("admin") || !password.equals("admin123") || !department.equals("国防部")) {
+                Map<String, String> res = new LinkedHashMap<>();
+                res.put("Result", "0");
+                res.put("Err", "Username or Password entered incorrectly");
                 mapper.writeValue(writer, res);
                 return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
             }
         } catch (JsonParseException e) {
             e.printStackTrace();
+            return catchCase("JsonParseException");
         } catch (JsonMappingException e) {
             e.printStackTrace();
+            return catchCase("JsonMappingException");
+        } catch (EOFException e) {
+            e.printStackTrace();
+            return catchCase("EOFException");
         } catch (IOException e) {
             e.printStackTrace();
+            return catchCase("IOException");
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            return catchCase("NullPointerException");
         }
-
         Map<String, Map<String, String>> resp = new LinkedHashMap<>();
         Map<String, String> tokens = new LinkedHashMap<>();
         tokens.put("token", "TTT");
@@ -374,6 +383,29 @@ public class TrafficResource extends InternalPools {
         resp.put("access", tokens);
         mapper.writeValue(writer, resp);
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
+    }
+
+    public Response catchCase(String error) {
+        String resp;
+        if(error.equals("JsonParseException")) {
+            resp = "Json format is incorrect";
+        }
+        else if(error.equals("JsonMappingException")) {
+            resp = "That's not Json";
+        }
+        else if(error.equals("EOFException")) {
+            resp = "Don't accept any data";
+        }
+        else if(error.equals("IOException")) {
+            resp = "I/O error";
+        }
+        else if(error.equals("NullPointerException")) {
+            resp = "Json content is empty";
+        }
+        else {
+            resp = "unknow error";
+        }
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(resp).build();
     }
 
     @GET
