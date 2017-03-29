@@ -126,11 +126,7 @@ public class TrafficResource extends InternalPools {
         }
     }
 
-    public Response HbasequeryTrafficStatisticsMonth(
-            String start,
-            String end,
-            String deviceId
-    ) throws IOException {
+    public Response HbasequeryTrafficStatisticsMonth(String start, String end, String deviceId) throws IOException {
         Connection hbase = getHbaseConnection();
         Table table = hbase.getTable(TableName.valueOf("TrafficInfo"));
         Map<String, Integer> typetotal = new LinkedHashMap<String, Integer>();
@@ -310,15 +306,15 @@ public class TrafficResource extends InternalPools {
             String date = row.split("\\_")[1];
             if (date.equals(startsplit)) {
                 if(date.equals(endsplit)){
-                    startminute = (int) ((simplehms.parse(start).getTime() - simpleymd.parse(date).getTime()) / 60000);
-                    endminute = (int) ((simplehms.parse(end).getTime() - simpleymd.parse(date).getTime()) / 60000);
+                    startminute = (int) ((simplehms.parse(start.replace("\"","")).getTime() - simpleymd.parse(date).getTime()) / 60000);
+                    endminute = (int) ((simplehms.parse(end.replace("\"","")).getTime() - simpleymd.parse(date).getTime()) / 60000);
                 }else{
-                    startminute = (int) ((simplehms.parse(start).getTime() - simpleymd.parse(date).getTime()) / 60000);
+                    startminute = (int) ((simplehms.parse(start.replace("\"","")).getTime() - simpleymd.parse(date).getTime()) / 60000);
                     endminute = 1439;
                 }
             } else if (date.equals(endsplit)) {
                 startminute = 0;
-                endminute = (int) ((simplehms.parse(end).getTime() - simpleymd.parse(date).getTime()) / 60000);
+                endminute = (int) ((simplehms.parse(end.replace("\"","")).getTime() - simpleymd.parse(date).getTime()) / 60000);
             } else {
                 startminute = 0;
                 endminute = 1439;
