@@ -92,6 +92,7 @@ public class TrafficResource extends InternalPools {
         for (SearchHit i : response.getHits().getHits()) {
             HashMap content = new HashMap();
             content.put("SBBH", i.getSource().get("SBBH").toString());
+            content.put("RowKey", i.getSource().get("RowKey").toString());
             content.put("lonlat", mysqlmap.get(i.getSource().get("SBBH").toString()));
             map.put(i.getSource().get("Time").toString(), content);
         }
