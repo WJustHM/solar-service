@@ -35,11 +35,9 @@ import java.util.Map;
 public class TrafficResource extends InternalPools {
 
     private final ObjectMapper mapper = new ObjectMapper();
-    private JdbcConnectionPool jdbc = null;
 
     public TrafficResource(Map paramters) {
         super(paramters);
-        jdbc = getJdbcConnectionPool();
     }
 
     @GET
@@ -75,7 +73,7 @@ public class TrafficResource extends InternalPools {
         TransportClient conn = getEsConnection();
         StringWriter writer = new StringWriter();
         Map<String, HashMap> map = new LinkedHashMap<String, HashMap>();
-        java.sql.Connection connmysql = jdbc.getConnection();
+        java.sql.Connection connmysql = getMysqlConnection();
         String query = "SELECT id,lonlat FROM gate";
         ResultSet rs = connmysql.prepareStatement(query).executeQuery();
         HashMap<String, String> mysqlmap = new HashMap<String, String>();
