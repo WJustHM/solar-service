@@ -310,15 +310,15 @@ public class TrafficResource extends InternalPools {
             String date = row.split("\\_")[1];
             if (date.equals(startsplit)) {
                 if(date.equals(endsplit)){
-                    startminute = (int) ((simplehms.parse(start).getTime() - simpleymd.parse(date).getTime()) / 60000);
-                    endminute = (int) ((simplehms.parse(end).getTime() - simpleymd.parse(date).getTime()) / 60000);
+                    startminute = (int) ((simplehms.parse(startsplit).getTime() - simpleymd.parse(date).getTime()) / 60000);
+                    endminute = (int) ((simplehms.parse(endsplit).getTime() - simpleymd.parse(date).getTime()) / 60000);
                 }else{
-                    startminute = (int) ((simplehms.parse(start).getTime() - simpleymd.parse(date).getTime()) / 60000);
+                    startminute = (int) ((simplehms.parse(startsplit).getTime() - simpleymd.parse(date).getTime()) / 60000);
                     endminute = 1439;
                 }
             } else if (date.equals(endsplit)) {
                 startminute = 0;
-                endminute = (int) ((simplehms.parse(end).getTime() - simpleymd.parse(date).getTime()) / 60000);
+                endminute = (int) ((simplehms.parse(endsplit).getTime() - simpleymd.parse(date).getTime()) / 60000);
             } else {
                 startminute = 0;
                 endminute = 1439;
@@ -350,7 +350,7 @@ public class TrafficResource extends InternalPools {
     }
 
     @POST
-    @Path("test")
+    @Path("/test")
     @Produces("application/json; charset=utf-8")
     public Map<String, Object> getName(String data)
             throws JsonGenerationException, JsonMappingException, IOException {
