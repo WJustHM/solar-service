@@ -342,7 +342,7 @@ public class TrafficResource extends InternalPools {
     @POST
     @Path("/authenticate")
     @Produces("application/json; charset=utf-8")
-    public Response getName(String data) throws IOException {
+    public Response login(String data) throws IOException {
         StringWriter writer = new StringWriter();
         String name = null;
         String password = null;
