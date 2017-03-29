@@ -38,7 +38,7 @@ import java.util.Map;
 public class TrafficResource extends InternalPools {
 
     private final ObjectMapper mapper = new ObjectMapper();
-    private HashMap<String, String> mysqlmap = new HashMap<String, String>();
+    private HashMap<String, String> mysqlmap = null;
 
     public TrafficResource(Map paramters) {
         super(paramters);
@@ -78,6 +78,7 @@ public class TrafficResource extends InternalPools {
         StringWriter writer = new StringWriter();
         Map<String, HashMap> map = new LinkedHashMap<String, HashMap>();
         if (mysqlmap == null) {
+            mysqlmap = new HashMap<String, String>();
             java.sql.Connection connmysql = getMysqlConnection();
             String query = "SELECT id,lonlat FROM gate";
             ResultSet rs = connmysql.prepareStatement(query).executeQuery();
@@ -339,34 +340,41 @@ public class TrafficResource extends InternalPools {
     }
 
     @POST
-    @Path("test")
+    @Path("/authenticate")
     @Produces("application/json; charset=utf-8")
-    public Map<String, Object> getName(String data)
-            throws JsonGenerationException, JsonMappingException, IOException {
+    public Response getName(String data) throws IOException {
+        StringWriter writer = new StringWriter();
         String name = null;
         String password = null;
-        //解析传入json数据
-        ObjectMapper objectMapper = new ObjectMapper();
+        String department = null;
+
         Map<String, Object> maps;
         try {
-            maps = objectMapper.readValue(data, Map.class);
+            maps = mapper.readValue(data, Map.class);
             name = (String) maps.get("name");
             password = (String) maps.get("password");
+            department = (String) maps.get("department");
+            if(!name.equals("admin")||!password.equals("admin123")||!department.equals("国防部")){
+                Map<String,String> res=new LinkedHashMap<>();
+                res.put("Result","0");
+                res.put("Err","Username or Password entered incorrectly");
+                mapper.writeValue(writer, res);
+                return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
+            }
         } catch (JsonParseException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (JsonMappingException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        //输出map
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("name", name);
-        map.put("password", password);
-        return map;
-    }
 
+        Map<String, Map<String, String>> resp = new LinkedHashMap<>();
+        Map<String, String> tokens = new LinkedHashMap<>();
+        tokens.put("token", "TTT");
+        tokens.put("endpoint", "/solar/traffic");
+        resp.put("access", tokens);
+        mapper.writeValue(writer, resp);
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
+    }
 }
