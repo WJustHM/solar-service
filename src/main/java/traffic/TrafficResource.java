@@ -343,21 +343,29 @@ public class TrafficResource extends InternalPools {
     @Produces("application/json; charset=utf-8")
     public Response login(String data) throws IOException {
         StringWriter writer = new StringWriter();
-        String name = null;
-        String password = null;
-        String department = null;
-
+        String name;
+        String password;
+        String department;
         Map<String, Object> maps;
+
         try {
             maps = mapper.readValue(data, Map.class);
-            name = (String) maps.get("name");
+            name = (String) maps.get("id");
             password = (String) maps.get("password");
             department = (String) maps.get("department");
-            if (!name.equals("admin") || !password.equals("admin123") || !department.equals("国防部")) {
+            if (!name.equals("admin") || !password.equals("admin123") || !department.equals("traffic")) {
                 Map<String, String> res = new LinkedHashMap<>();
                 res.put("Result", "0");
-                res.put("Err", "Username or Password entered incorrectly");
+                res.put("Error", "Identity has been authenticated failure");
                 mapper.writeValue(writer, res);
+                return Response.status(401).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
+            } else {
+                Map<String, Map<String, String>> resp = new LinkedHashMap<>();
+                Map<String, String> tokens = new LinkedHashMap<>();
+                tokens.put("token", "token-XXX");
+                tokens.put("endpoint", "/solar/traffic");
+                resp.put("access", tokens);
+                mapper.writeValue(writer, resp);
                 return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
             }
         } catch (JsonParseException e) {
@@ -376,13 +384,6 @@ public class TrafficResource extends InternalPools {
             e.printStackTrace();
             return catchCase("NullPointerException");
         }
-        Map<String, Map<String, String>> resp = new LinkedHashMap<>();
-        Map<String, String> tokens = new LinkedHashMap<>();
-        tokens.put("token", "TTT");
-        tokens.put("endpoint", "/solar/traffic");
-        resp.put("access", tokens);
-        mapper.writeValue(writer, resp);
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
     }
 
     public Response catchCase(String error) {
@@ -405,7 +406,7 @@ public class TrafficResource extends InternalPools {
         else {
             resp = "unknow error";
         }
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(resp).build();
+        return Response.status(401).header("Access-Control-Allow-Origin", "*").entity(resp).build();
     }
 
     @GET
@@ -422,9 +423,9 @@ public class TrafficResource extends InternalPools {
                     HashMap coordinateMap = new HashMap();
                     coordinateMap.put("longitude", rs.getString(2).split(",")[0]);
                     coordinateMap.put("latitude", rs.getString(2).split(",")[1]);
-                    Map deviceMap = new HashMap();
-                    deviceMap.put("coordinate", coordinateMap);
+                    Map deviceMap = new LinkedHashMap();
                     deviceMap.put("id", rs.getString(1));
+                    deviceMap.put("coordinate", coordinateMap);
                     deviceMap.put("monitortype", rs.getString(3));
                     deviceList.add(deviceMap);
                 }
