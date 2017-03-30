@@ -2,14 +2,12 @@ package traffic;
 
 
 import common.InternalPools;
-import common.jdbc.JdbcConnectionPool;
 
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.util.Bytes;
 
-import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.elasticsearch.action.search.SearchResponse;
@@ -350,7 +348,7 @@ public class TrafficResource extends InternalPools {
 
         try {
             maps = mapper.readValue(data, Map.class);
-            name = (String) maps.get("id");
+            name = (String) maps.get("username");
             password = (String) maps.get("password");
             department = (String) maps.get("department");
             if (!name.equals("admin") || !password.equals("admin123") || !department.equals("traffic")) {
