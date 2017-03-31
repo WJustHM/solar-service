@@ -54,6 +54,7 @@
 >http://datanode1:8001/solar/traffic/statistics?by=month&start="2017-03-29 11:00:00"&end="2017-03-30 15:00:00"&deviceId=12  
 
 * 返回结果:text/json(以按小时统计为例)  
+```json
 		{
     		"total": 133216,
     		"2": 19278,
@@ -71,6 +72,7 @@
     		"2017-03-29 12|2": 1532,
             …………
 		}
+```
 
 ###卡口查询  
 * 请求方式:GET  
@@ -79,6 +81,7 @@
 >http://datanode1:8001/solar/traffic/devices  
 
 * 返回结果:text/json(以部分结果为例)  
+```json
 		{
     		"devices": [
         		{
@@ -100,6 +103,7 @@
                 …………
     		]
 		}
+```
 
 ###登录认证  
 * 请求方式:POST  
@@ -109,6 +113,7 @@
 >POST-body:{"username":"admin","password":"admin123","department":"traffic"}  
 
 * 返回结果:认证成功  
+```json
     	{
         	"access":
         	{
@@ -116,12 +121,14 @@
             	"endpoint": "/solar/traffic"
         	}
     	}
+ ```
 * 返回结果:认证失败
+```json
     	{
         	"Result": "0",
         	"Error": "Failed to authentication"
     	}
-
+```
 
 
 
