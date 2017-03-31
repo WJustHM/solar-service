@@ -34,8 +34,8 @@
 
 * 登录认证  
 请求方式:POST  
-需要提供 : 用户名[id], 密码[password], 部分[department]  
+需要提供 : 用户名[username], 密码[password], 部门[department]  
 示例:  
 >http://datanode1:8001/solar/traffic/authenticate  
->POST-body:{"id":"admin","password":"admin123","department":"traffic"}  
+>POST-body:{"username":"admin","password":"admin123","department":"traffic"}  
 
