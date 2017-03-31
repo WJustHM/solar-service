@@ -42,27 +42,35 @@ public class TrafficResource extends InternalPools {
     }
 
     @GET
-    @Path("/image")
-    public Response imageQuery(@QueryParam("rowkey") final String rowkey) throws IOException {
+    @Path("/image/{rowkey}")
+    public Response imageQuery(@PathParam("rowkey") final String rowkey) {
         StringWriter writer = new StringWriter();
         HashMap metadata = new HashMap();
-
+        int stat = 200;
         Connection hbase = getHbaseConnection();
-        HTable table = (HTable) hbase.getTable(TableName.valueOf("TrafficImage"));
-        Result rs = table.get(new Get(rowkey.getBytes()));
-        byte[] image = rs.getValue("Image".getBytes(), "Data".getBytes());
-        String redLightTime = new String(rs.getValue("Image".getBytes(), "RedLightTime".getBytes()));
-        String recogMode = new String(rs.getValue("Image".getBytes(), "RecogMode".getBytes()));
-        metadata.put("RedLightTime", redLightTime);
-        metadata.put("RecogMode", recogMode);
-        mapper.writeValue(writer, metadata);
-
-        returnHbaseConnection(hbase);
-        return Response.status(200)
-                .header("Access-Control-Allow-Origin", "*")
-                .header("Content-Type", "image/jpeg")
-                .header("metadata", writer.toString())
-                .entity(image).build();
+        HTable table;
+        byte[] image = null;
+        try {
+            table = (HTable) hbase.getTable(TableName.valueOf("TrafficImage"));
+            Result rs = table.get(new Get(rowkey.getBytes()));
+            image = rs.getValue("Image".getBytes(), "Data".getBytes());
+            String redLightTime = new String(rs.getValue("Image".getBytes(), "RedLightTime".getBytes()));
+            String recogMode = new String(rs.getValue("Image".getBytes(), "RecogMode".getBytes()));
+            metadata.put("RedLightTime", redLightTime);
+            metadata.put("RecogMode", recogMode);
+            mapper.writeValue(writer, metadata);
+        } catch (Exception e) {
+            stat = 404;
+            e.printStackTrace();
+        }
+        finally {
+            returnHbaseConnection(hbase);
+            return Response.status(stat)
+                    .header("Access-Control-Allow-Origin", "*")
+                    .header("Content-Type", "image/jpeg")
+                    .header("metadata", writer.toString())
+                    .entity(image).build();
+        }
     }
 
     @GET
@@ -354,7 +362,7 @@ public class TrafficResource extends InternalPools {
             if (!name.equals("admin") || !password.equals("admin123") || !department.equals("traffic")) {
                 Map<String, String> res = new LinkedHashMap<>();
                 res.put("Result", "0");
-                res.put("Error", "Identity has been authenticated failure");
+                res.put("Error", "Failed to authentication");
                 mapper.writeValue(writer, res);
                 return Response.status(401).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
             } else {
@@ -393,7 +401,7 @@ public class TrafficResource extends InternalPools {
             resp = "That's not Json";
         }
         else if(error.equals("EOFException")) {
-            resp = "Don't accept any data";
+            resp = "Failed to get Json";
         }
         else if(error.equals("IOException")) {
             resp = "I/O error";
