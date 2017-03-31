@@ -37,6 +37,7 @@ public class TrafficResource extends InternalPools {
     private final ObjectMapper mapper = new ObjectMapper();
     private HashMap<String, String> mysqlmap = null;
     private List deviceList = null;
+
     public TrafficResource(Map paramters) {
         super(paramters);
     }
@@ -62,8 +63,7 @@ public class TrafficResource extends InternalPools {
         } catch (Exception e) {
             stat = 404;
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             returnHbaseConnection(hbase);
             return Response.status(stat)
                     .header("Access-Control-Allow-Origin", "*")
@@ -159,21 +159,12 @@ public class TrafficResource extends InternalPools {
             for (String str : vehicleTypes) {
                 String[] typenum = str.split("\\:");
                 //2017-02|0,100
-                if (monthcount.containsKey(year + "-" + month + "|" + typenum[0])) {
-                    monthcount.put(year + "-" + month + "|" + typenum[0], monthcount.get(year + "-" + month + "|" + typenum[0]) + Integer.parseInt(typenum[1]));
-                } else {
-                    monthcount.put(year + "-" + month + "|" + typenum[0], Integer.parseInt(typenum[1]));
-                }
+                monthcount.put(year + "-" + month + "|" + typenum[0], monthcount.getOrDefault(year + "-" + month + "|" + typenum[0],0) + Integer.parseInt(typenum[1]));
+                monthcount.put("total", monthcount.getOrDefault("total", 0) + Integer.parseInt(typenum[1]));
+                monthcount.put(typenum[0], monthcount.getOrDefault(typenum[0],0) + Integer.parseInt(typenum[1]));
 
-                typetotal.put("total", typetotal.getOrDefault("total", 0) + Integer.parseInt(typenum[1]));
-                if (typetotal.containsKey(typenum[0])) {
-                    typetotal.put(typenum[0], typetotal.get(typenum[0]) + Integer.parseInt(typenum[1]));
-                } else {
-                    typetotal.put(typenum[0], Integer.parseInt(typenum[1]));
-                }
             }
         }
-        mapper.writeValue(writer, typetotal);
         mapper.writeValue(writer, monthcount);
         returnHbaseConnection(hbase);
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
@@ -204,16 +195,10 @@ public class TrafficResource extends InternalPools {
             for (String str : vehicleTypes) {
                 String[] typenum = str.split("\\:");
                 daycount.put(date + "|" + typenum[0], daycount.getOrDefault(date + "|" + typenum[0], 0) + Integer.parseInt(typenum[1]));
-
-                typetotal.put("total", typetotal.getOrDefault("total", 0) + Integer.parseInt(typenum[1]));
-                if (typetotal.containsKey(typenum[0])) {
-                    typetotal.put(typenum[0], typetotal.get(typenum[0]) + Integer.parseInt(typenum[1]));
-                } else {
-                    typetotal.put(typenum[0], Integer.parseInt(typenum[1]));
-                }
+                daycount.put("total", daycount.getOrDefault("total", 0) + Integer.parseInt(typenum[1]));
+                daycount.put(typenum[0], daycount.getOrDefault(typenum[0],0) + Integer.parseInt(typenum[1]));
             }
         }
-        mapper.writeValue(writer, typetotal);
         mapper.writeValue(writer, daycount);
         returnHbaseConnection(hbase);
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
@@ -223,7 +208,6 @@ public class TrafficResource extends InternalPools {
     ) throws IOException, ParseException {
         Connection hbase = getHbaseConnection();
         Table table = hbase.getTable(TableName.valueOf("TrafficInfo"));
-        Map<String, Integer> typetotal = new LinkedHashMap<String, Integer>();
         Map<String, Integer> hourcount = new LinkedHashMap<String, Integer>();
 
         String startsplit = start.replace("\"", "").split(" ")[0];
@@ -260,18 +244,13 @@ public class TrafficResource extends InternalPools {
                     for (String str : vehicleTypes) {
                         String[] typenum = str.split("\\:");
                         hourcount.put(rowhour + "|" + typenum[0], hourcount.getOrDefault(rowhour + "|" + typenum[0], 0) + Integer.parseInt(typenum[1]));
+                        hourcount.put("total", hourcount.getOrDefault("total", 0) + Integer.parseInt(typenum[1]));
+                        hourcount.put(typenum[0], hourcount.getOrDefault(typenum[0],0) + Integer.parseInt(typenum[1]));
 
-                        typetotal.put("total", typetotal.getOrDefault("total", 0) + Integer.parseInt(typenum[1]));
-                        if (typetotal.containsKey(typenum[0])) {
-                            typetotal.put(typenum[0], typetotal.get(typenum[0]) + Integer.parseInt(typenum[1]));
-                        } else {
-                            typetotal.put(typenum[0], Integer.parseInt(typenum[1]));
-                        }
                     }
                 }
             }
         }
-        mapper.writeValue(writer, typetotal);
         mapper.writeValue(writer, hourcount);
         returnHbaseConnection(hbase);
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
@@ -328,17 +307,13 @@ public class TrafficResource extends InternalPools {
                     for (String str : vehicleTypes) {
                         String[] typenum = str.split("\\:");
                         minutecount.put(rowhour + "|" + typenum[0], minutecount.getOrDefault(rowhour + "|" + typenum[0], 0) + Integer.parseInt(typenum[1]));
-                        typetotal.put("total", typetotal.getOrDefault("total", 0) + Integer.parseInt(typenum[1]));
-                        if (typetotal.containsKey(typenum[0])) {
-                            typetotal.put(typenum[0], typetotal.get(typenum[0]) + Integer.parseInt(typenum[1]));
-                        } else {
-                            typetotal.put(typenum[0], Integer.parseInt(typenum[1]));
-                        }
+                        minutecount.put("total", minutecount.getOrDefault("total", 0) + Integer.parseInt(typenum[1]));
+                        minutecount.put(typenum[0], minutecount.getOrDefault(typenum[0], 0) + Integer.parseInt(typenum[1]));
+
                     }
                 }
             }
         }
-        mapper.writeValue(writer, typetotal);
         mapper.writeValue(writer, minutecount);
         returnHbaseConnection(hbase);
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
@@ -394,22 +369,17 @@ public class TrafficResource extends InternalPools {
 
     public Response catchCase(String error) {
         String resp;
-        if(error.equals("JsonParseException")) {
+        if (error.equals("JsonParseException")) {
             resp = "Json format is incorrect";
-        }
-        else if(error.equals("JsonMappingException")) {
+        } else if (error.equals("JsonMappingException")) {
             resp = "That's not Json";
-        }
-        else if(error.equals("EOFException")) {
+        } else if (error.equals("EOFException")) {
             resp = "Failed to get Json";
-        }
-        else if(error.equals("IOException")) {
+        } else if (error.equals("IOException")) {
             resp = "I/O error";
-        }
-        else if(error.equals("NullPointerException")) {
+        } else if (error.equals("NullPointerException")) {
             resp = "Json content is empty";
-        }
-        else {
+        } else {
             resp = "unknow error";
         }
         return Response.status(401).header("Access-Control-Allow-Origin", "*").entity(resp).build();
@@ -425,7 +395,7 @@ public class TrafficResource extends InternalPools {
             String query = "SELECT id,lonlat,type FROM gate";
             ResultSet rs = conn.prepareStatement(query).executeQuery();
             while (rs.next()) {
-                if(!rs.getString(1).equals("0")) {
+                if (!rs.getString(1).equals("0")) {
                     HashMap coordinateMap = new HashMap();
                     coordinateMap.put("longitude", rs.getString(2).split(",")[0]);
                     coordinateMap.put("latitude", rs.getString(2).split(",")[1]);
