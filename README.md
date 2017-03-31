@@ -15,7 +15,7 @@
 请求方式:GET  
 需要提供 : HBase行键[rowkey]  
 示例:  
->http://datanode1:8001/traffic/image?rowkey=875542703454876_8  
+>http://172.18.199.11:8001/solar/traffic/image/313668800076876_3  
 
 * 流量统计查询  
 请求方式:GET  
