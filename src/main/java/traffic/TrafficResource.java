@@ -75,6 +75,7 @@ public class TrafficResource extends InternalPools {
 
     @GET
     @Path("/track")
+    @Produces("application/json; charset=utf-8")
     public Response trackQuery(
             @QueryParam("start") final String start,
             @QueryParam("end") final String end,
@@ -114,6 +115,7 @@ public class TrafficResource extends InternalPools {
 
     @GET
     @Path("/statistics")
+    @Produces("application/json; charset=utf-8")
     public Response statisticsQuery(
             @QueryParam("by") final String by,
             @QueryParam("start") final String start,
@@ -130,7 +132,7 @@ public class TrafficResource extends InternalPools {
             case "minute":
                 return HbasequeryTrafficStatisticsMinute(start, end, deviceId);
             default:
-                return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("search by are not found!").build();
+                return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("{\"error\":\"method by are not found!\"}").build();
         }
     }
 
@@ -336,8 +338,8 @@ public class TrafficResource extends InternalPools {
             department = (String) maps.get("department");
             if (!name.equals("admin") || !password.equals("admin123") || !department.equals("traffic")) {
                 Map<String, String> res = new LinkedHashMap<>();
-                res.put("Result", "0");
-                res.put("Error", "Failed to authentication");
+                res.put("result", "0");
+                res.put("error", "Failed to authentication");
                 mapper.writeValue(writer, res);
                 return Response.status(401).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
             } else {
@@ -382,11 +384,12 @@ public class TrafficResource extends InternalPools {
         } else {
             resp = "unknow error";
         }
-        return Response.status(401).header("Access-Control-Allow-Origin", "*").entity(resp).build();
+        return Response.status(401).header("Access-Control-Allow-Origin", "*").entity("{\"error\":\"" + resp + "\"}").build();
     }
 
     @GET
     @Path("devices")
+    @Produces("application/json; charset=utf-8")
     public Response devicesQuery() throws SQLException, IOException {
         StringWriter writer = new StringWriter();
         if (deviceList == null) {
