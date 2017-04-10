@@ -327,17 +327,17 @@ public class TrafficResource extends InternalPools {
     @Consumes("application/json; charset=utf-8")
     public Response login(String data) throws IOException {
         StringWriter writer = new StringWriter();
-        String name;
+        String username;
         String password;
         String department;
         Map<String, Object> maps;
 
         try {
             maps = mapper.readValue(data, Map.class);
-            name = (String) maps.get("username");
+            username = (String) maps.get("username");
             password = (String) maps.get("password");
             department = (String) maps.get("department");
-            if (!name.equals("admin") || !password.equals("admin123") || !department.equals("traffic")) {
+            if (!username.equals("admin") || !password.equals("admin123") || !department.equals("traffic")) {
                 Map<String, String> res = new LinkedHashMap<>();
                 res.put("result", "0");
                 res.put("error", "Failed to authentication");
