@@ -333,7 +333,7 @@ public class TrafficResource extends InternalPools {
     @Produces("application/json; charset=utf-8")
     public Response login(String data) throws Exception {
         StringWriter writer = new StringWriter();
-        String name;
+        String username;
         String password;
         String department;
         Map<String, Object> maps;
