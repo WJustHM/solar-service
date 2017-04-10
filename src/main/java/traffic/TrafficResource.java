@@ -105,7 +105,7 @@ public class TrafficResource extends InternalPools {
             content.put("SBBH", i.getSource().get("SBBH").toString());
             content.put("RowKey", i.getSource().get("RowKey").toString());
             content.put("Vehicle_Speed", i.getSource().get("Vehicle_Speed").toString());
-            content.put("lonlat", mysqlmap.get(i.getSource().get("SBBH").toString()));
+            content.put("Lonlat", mysqlmap.get(i.getSource().get("SBBH").toString()));
             map.put(i.getSource().get("Time").toString(), content);
         }
         mapper.writeValue(writer, map);
@@ -324,6 +324,7 @@ public class TrafficResource extends InternalPools {
     @POST
     @Path("/authenticate")
     @Produces("application/json; charset=utf-8")
+    @Consumes("application/json; charset=utf-8")
     public Response login(String data) throws IOException {
         StringWriter writer = new StringWriter();
         String name;
