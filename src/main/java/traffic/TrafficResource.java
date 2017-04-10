@@ -8,8 +8,6 @@ import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.util.Bytes;
 
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.JsonMappingException;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -19,7 +17,6 @@ import org.elasticsearch.search.sort.SortOrder;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
-import java.io.EOFException;
 import java.io.IOException;
 import java.io.StringWriter;
 
@@ -27,6 +24,9 @@ import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
+import static traffic.RSA_Encrypt.decrypt;
+import static traffic.RSA_Encrypt.encrypt;
 
 /**
  * Created by xuefei_wang on 16-12-13.
@@ -44,7 +44,10 @@ public class TrafficResource extends InternalPools {
 
     @GET
     @Path("/image/{rowkey}")
-    public Response imageQuery(@PathParam("rowkey") final String rowkey) {
+    public Response imageQuery(@PathParam("rowkey") final String rowkey,
+                               @HeaderParam("X-TOKEN") final String token) throws Exception {
+        if(checkToken(token) < 0)
+            return Response.status(401).header("Access-Control-Allow-Origin", "*").entity("{\"error\":\"Failed to authentication.\"}").build();
         StringWriter writer = new StringWriter();
         HashMap metadata = new HashMap();
         int stat = 200;
@@ -79,7 +82,10 @@ public class TrafficResource extends InternalPools {
     public Response trackQuery(
             @QueryParam("start") final String start,
             @QueryParam("end") final String end,
-            @QueryParam("PlateLicense") final String PlateLicense) throws Exception {
+            @QueryParam("PlateLicense") final String PlateLicense,
+            @HeaderParam("X-TOKEN") final String token) throws Exception {
+        if(checkToken(token) < 0)
+            return Response.status(401).header("Access-Control-Allow-Origin", "*").entity("{\"error\":\"Failed to authentication.\"}").build();
         TransportClient conn = getEsConnection();
         StringWriter writer = new StringWriter();
         Map<String, HashMap> map = new LinkedHashMap<String, HashMap>();
@@ -105,7 +111,7 @@ public class TrafficResource extends InternalPools {
             content.put("SBBH", i.getSource().get("SBBH").toString());
             content.put("RowKey", i.getSource().get("RowKey").toString());
             content.put("Vehicle_Speed", i.getSource().get("Vehicle_Speed").toString());
-            content.put("lonlat", mysqlmap.get(i.getSource().get("SBBH").toString()));
+            content.put("Lonlat", mysqlmap.get(i.getSource().get("SBBH").toString()));
             map.put(i.getSource().get("Time").toString(), content);
         }
         mapper.writeValue(writer, map);
@@ -120,8 +126,10 @@ public class TrafficResource extends InternalPools {
             @QueryParam("by") final String by,
             @QueryParam("start") final String start,
             @QueryParam("end") final String end,
-            @QueryParam("deviceId") final String deviceId
-    ) throws IOException, ParseException {
+            @QueryParam("deviceId") final String deviceId,
+            @HeaderParam("X-TOKEN") final String token) throws Exception {
+        if(checkToken(token) < 0)
+            return Response.status(401).header("Access-Control-Allow-Origin", "*").entity("{\"error\":\"Failed to authentication.\"}").build();
         switch (by) {
             case "month":
                 return HbasequeryTrafficStatisticsMonth(start, end, deviceId);
@@ -171,7 +179,6 @@ public class TrafficResource extends InternalPools {
         returnHbaseConnection(hbase);
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
     }
-
 
     public Response HbasequeryTrafficStatisticsDay(String start, String end, String deviceId
     ) throws IOException {
@@ -324,73 +331,54 @@ public class TrafficResource extends InternalPools {
     @POST
     @Path("/authenticate")
     @Produces("application/json; charset=utf-8")
-    public Response login(String data) throws IOException {
+    public Response login(String data) throws Exception {
         StringWriter writer = new StringWriter();
         String name;
         String password;
         String department;
         Map<String, Object> maps;
 
-        try {
-            maps = mapper.readValue(data, Map.class);
-            name = (String) maps.get("username");
-            password = (String) maps.get("password");
-            department = (String) maps.get("department");
-            if (!name.equals("admin") || !password.equals("admin123") || !department.equals("traffic")) {
-                Map<String, String> res = new LinkedHashMap<>();
-                res.put("result", "0");
-                res.put("error", "Failed to authentication");
-                mapper.writeValue(writer, res);
-                return Response.status(401).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
-            } else {
-                Map<String, Map<String, String>> resp = new LinkedHashMap<>();
-                Map<String, String> tokens = new LinkedHashMap<>();
-                tokens.put("token", "token-XXX");
-                tokens.put("endpoint", "/solar/traffic");
-                resp.put("access", tokens);
-                mapper.writeValue(writer, resp);
-                return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
-            }
-        } catch (JsonParseException e) {
-            e.printStackTrace();
-            return catchCase("JsonParseException");
-        } catch (JsonMappingException e) {
-            e.printStackTrace();
-            return catchCase("JsonMappingException");
-        } catch (EOFException e) {
-            e.printStackTrace();
-            return catchCase("EOFException");
-        } catch (IOException e) {
-            e.printStackTrace();
-            return catchCase("IOException");
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-            return catchCase("NullPointerException");
+        maps = mapper.readValue(data, Map.class);
+        name = (String) maps.get("username");
+        password = (String) maps.get("password");
+        department = (String) maps.get("department");
+        if (!name.equals("admin") || !password.equals("admin123") || !department.equals("traffic")) {
+            Map<String, String> res = new LinkedHashMap<>();
+            res.put("result", "0");
+            res.put("error", "Failed to authentication");
+            mapper.writeValue(writer, res);
+            return Response.status(401).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
+        } else {
+            Map<String, Map<String, String>> resp = new LinkedHashMap<>();
+            Map<String, String> tokens = new LinkedHashMap<>();
+            String token = "123456";
+            tokens.put("token", encrypt(token));
+            tokens.put("endpoint", "/solar/traffic");
+            resp.put("access", tokens);
+            mapper.writeValue(writer, resp);
+            return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
         }
     }
 
-    public Response catchCase(String error) {
-        String resp;
-        if (error.equals("JsonParseException")) {
-            resp = "Json format is incorrect";
-        } else if (error.equals("JsonMappingException")) {
-            resp = "That's not Json";
-        } else if (error.equals("EOFException")) {
-            resp = "Failed to get Json";
-        } else if (error.equals("IOException")) {
-            resp = "I/O error";
-        } else if (error.equals("NullPointerException")) {
-            resp = "Json content is empty";
-        } else {
-            resp = "unknow error";
+    public int checkToken(String myToken) {
+        String token = "123456";
+        try {
+            if (decrypt(myToken).equals(token)) {
+                return 1;
+            } else {
+                return -1;
+            }
+        } catch(Exception e) {
+            return -1;
         }
-        return Response.status(401).header("Access-Control-Allow-Origin", "*").entity("{\"error\":\"" + resp + "\"}").build();
     }
 
     @GET
     @Path("devices")
     @Produces("application/json; charset=utf-8")
-    public Response devicesQuery() throws SQLException, IOException {
+    public Response devicesQuery(@HeaderParam("X-TOKEN") final String token) throws Exception {
+        if(checkToken(token) < 0)
+            return Response.status(401).header("Access-Control-Allow-Origin", "*").entity("{\"error\":\"Failed to authentication.\"}").build();
         StringWriter writer = new StringWriter();
         if (deviceList == null) {
             deviceList = new LinkedList();
@@ -415,5 +403,24 @@ public class TrafficResource extends InternalPools {
         content.put("devices", deviceList);
         mapper.writeValue(writer, content);
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
+    }
+
+
+    @GET
+    @Path("peryInfo")
+    public static Response preyQuery() {
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("").build();
+    }
+
+    @PUT
+    @Path("peryInfo")
+    public static Response preyAdd() {
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("").build();
+    }
+
+    @POST
+    @Path("peryInfo")
+    public static Response preyUpdate() {
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("").build();
     }
 }
