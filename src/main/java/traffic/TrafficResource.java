@@ -16,7 +16,9 @@ import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.sort.SortOrder;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
+import javax.xml.ws.RequestWrapper;
 import java.io.IOException;
 import java.io.StringWriter;
 
@@ -31,6 +33,7 @@ import static traffic.RSA_Encrypt.encrypt;
 /**
  * Created by xuefei_wang on 16-12-13.
  */
+
 @Path("/traffic")
 public class TrafficResource extends InternalPools {
 
@@ -337,7 +340,7 @@ public class TrafficResource extends InternalPools {
         String password;
         String department;
         Map<String, Object> maps;
-
+        System.out.println(data);
         maps = mapper.readValue(data, Map.class);
         username = (String) maps.get("username");
         password = (String) maps.get("password");
@@ -356,7 +359,13 @@ public class TrafficResource extends InternalPools {
             tokens.put("endpoint", "/solar/traffic");
             resp.put("access", tokens);
             mapper.writeValue(writer, resp);
-            return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
+            return Response.status(200)
+                    .header("Access-Control-Allow-Origin", "*")
+//                    .header("Access-Control-Allow-Headers",
+//                            "X-Requested-With, Content-Type, Content-Length")
+//                    .header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS,PATCH,PUBLISH")
+                    .entity(writer.toString())
+                    .build();
         }
     }
 
