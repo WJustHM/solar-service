@@ -16,9 +16,8 @@ import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.sort.SortOrder;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
-import javax.xml.ws.RequestWrapper;
+
 import java.io.IOException;
 import java.io.StringWriter;
 
@@ -26,6 +25,7 @@ import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.Date;
 
 import static traffic.RSA_Encrypt.decrypt;
 import static traffic.RSA_Encrypt.encrypt;
@@ -45,12 +45,28 @@ public class TrafficResource extends InternalPools {
         super(paramters);
     }
 
+
+    @OPTIONS
+    @Path("/image/{rowkey}")
+    public Response imageOptions() {
+        return Response
+                .status(200)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, PATCH, OPTIONS")
+                .header("Access-Control-Allow-Headers", "Content-Type, x-token")
+                .entity("Add record success")
+                .build();
+    }
     @GET
     @Path("/image/{rowkey}")
     public Response imageQuery(@PathParam("rowkey") final String rowkey,
                                @HeaderParam("X-TOKEN") final String token) throws Exception {
         if(checkToken(token) < 0)
-            return Response.status(401).header("Access-Control-Allow-Origin", "*").entity("{\"error\":\"Failed to authentication.\"}").build();
+            return Response
+                    .status(401)
+                    .header("Access-Control-Allow-Origin", "*")
+                    .entity("{\"error\":\"Failed to authentication.\"}")
+                    .build();
         StringWriter writer = new StringWriter();
         HashMap metadata = new HashMap();
         int stat = 200;
@@ -79,6 +95,17 @@ public class TrafficResource extends InternalPools {
         }
     }
 
+    @OPTIONS
+    @Path("/track")
+    public Response trackOptions() {
+        return Response
+                .status(200)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, PATCH, OPTIONS")
+                .header("Access-Control-Allow-Headers", "Content-Type, x-token")
+                .entity("Add record success")
+                .build();
+    }
     @GET
     @Path("/track")
     @Produces("application/json; charset=utf-8")
@@ -86,9 +113,13 @@ public class TrafficResource extends InternalPools {
             @QueryParam("start") final String start,
             @QueryParam("end") final String end,
             @QueryParam("PlateLicense") final String PlateLicense,
-            @HeaderParam("X-TOKEN") final String token) throws Exception {
+            @HeaderParam("x-token") final String token)
+            throws Exception {
         if(checkToken(token) < 0)
-            return Response.status(401).header("Access-Control-Allow-Origin", "*").entity("{\"error\":\"Failed to authentication.\"}").build();
+            return Response.status(401)
+                    .header("Access-Control-Allow-Origin", "*")
+                    .entity("{\"error\":\"Failed to authentication.\"}")
+                    .build();
         TransportClient conn = getEsConnection();
         StringWriter writer = new StringWriter();
         Map<String, HashMap> map = new LinkedHashMap<String, HashMap>();
@@ -119,9 +150,24 @@ public class TrafficResource extends InternalPools {
         }
         mapper.writeValue(writer, map);
         returnEsConnection(conn);
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
+        return Response.status(200)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Credentials", "true")
+                .entity(writer.toString())
+                .build();
     }
 
+    @OPTIONS
+    @Path("/statistics")
+    public Response statisticsOptions() {
+        return Response
+                .status(200)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, PATCH, OPTIONS")
+                .header("Access-Control-Allow-Headers", "Content-Type, x-token")
+                .entity("Add record success")
+                .build();
+    }
     @GET
     @Path("/statistics")
     @Produces("application/json; charset=utf-8")
@@ -130,9 +176,14 @@ public class TrafficResource extends InternalPools {
             @QueryParam("start") final String start,
             @QueryParam("end") final String end,
             @QueryParam("deviceId") final String deviceId,
-            @HeaderParam("X-TOKEN") final String token) throws Exception {
+            @HeaderParam("X-TOKEN") final String token)
+            throws Exception {
         if(checkToken(token) < 0)
-            return Response.status(401).header("Access-Control-Allow-Origin", "*").entity("{\"error\":\"Failed to authentication.\"}").build();
+            return Response
+                    .status(401)
+                    .header("Access-Control-Allow-Origin", "*")
+                    .entity("{\"error\":\"Failed to authentication.\"}")
+                    .build();
         switch (by) {
             case "month":
                 return HbasequeryTrafficStatisticsMonth(start, end, deviceId);
@@ -143,7 +194,11 @@ public class TrafficResource extends InternalPools {
             case "minute":
                 return HbasequeryTrafficStatisticsMinute(start, end, deviceId);
             default:
-                return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("{\"error\":\"method by are not found!\"}").build();
+                return Response
+                        .status(200)
+                        .header("Access-Control-Allow-Origin", "*")
+                        .entity("{\"error\":\"method by are not found!\"}")
+                        .build();
         }
     }
 
@@ -340,7 +395,6 @@ public class TrafficResource extends InternalPools {
         String password;
         String department;
         Map<String, Object> maps;
-        System.out.println(data);
         maps = mapper.readValue(data, Map.class);
         username = (String) maps.get("username");
         password = (String) maps.get("password");
@@ -350,7 +404,10 @@ public class TrafficResource extends InternalPools {
             res.put("result", "0");
             res.put("error", "Failed to authentication");
             mapper.writeValue(writer, res);
-            return Response.status(401).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
+            return Response.status(401)
+                    .entity(writer.toString())
+                    .header("Access-Control-Allow-Origin", "*")
+                    .build();
         } else {
             Map<String, Map<String, String>> resp = new LinkedHashMap<>();
             Map<String, String> tokens = new LinkedHashMap<>();
@@ -360,11 +417,39 @@ public class TrafficResource extends InternalPools {
             resp.put("access", tokens);
             mapper.writeValue(writer, resp);
             return Response.status(200)
-                    .header("Access-Control-Allow-Origin", "*")
-//                    .header("Access-Control-Allow-Headers",
-//                            "X-Requested-With, Content-Type, Content-Length")
-//                    .header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS,PATCH,PUBLISH")
                     .entity(writer.toString())
+                    .header("Access-Control-Allow-Origin", "*")
+                    .build();
+        }
+    }
+
+    @POST
+    @Path("/authenticate2")
+    @Produces("application/json; charset=utf-8")
+    public Response login(@FormParam("username") String username,
+                          @FormParam("password") String password,
+                          @FormParam("department") String department) throws Exception {
+        StringWriter writer = new StringWriter();
+        if (!username.equals("admin") || !password.equals("admin123") || !department.equals("traffic")) {
+            Map<String, String> res = new LinkedHashMap<>();
+            res.put("result", "0");
+            res.put("error", "Failed to authentication");
+            mapper.writeValue(writer, res);
+            return Response.status(401)
+                    .entity(writer.toString())
+                    .header("Access-Control-Allow-Origin", "*")
+                    .build();
+        } else {
+            Map<String, Map<String, String>> resp = new LinkedHashMap<>();
+            Map<String, String> tokens = new LinkedHashMap<>();
+            String token = "123456";
+            tokens.put("token", encrypt(token));
+            tokens.put("endpoint", "/solar/traffic");
+            resp.put("access", tokens);
+            mapper.writeValue(writer, resp);
+            return Response.status(200)
+                    .entity(writer.toString())
+                    .header("Access-Control-Allow-Origin", "*")
                     .build();
         }
     }
@@ -382,8 +467,20 @@ public class TrafficResource extends InternalPools {
         }
     }
 
+    @OPTIONS
+    @Path("/devices")
+    public Response devicesOptions() {
+        return Response
+                .status(200)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, PATCH, OPTIONS")
+                .header("Access-Control-Allow-Headers", "Content-Type, x-token")
+                .entity("Add record success")
+                .build();
+    }
+
     @GET
-    @Path("devices")
+    @Path("/devices")
     @Produces("application/json; charset=utf-8")
     public Response devicesQuery(@HeaderParam("X-TOKEN") final String token) throws Exception {
         if(checkToken(token) < 0)
@@ -394,6 +491,7 @@ public class TrafficResource extends InternalPools {
             java.sql.Connection conn = getMysqlConnection();
             String query = "SELECT id,lonlat,type FROM gate";
             ResultSet rs = conn.prepareStatement(query).executeQuery();
+
             while (rs.next()) {
                 if (!rs.getString(1).equals("0")) {
                     HashMap coordinateMap = new HashMap();
@@ -414,22 +512,212 @@ public class TrafficResource extends InternalPools {
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
     }
 
-
+    @OPTIONS
+    @Path("/preyinfo")
+    public Response preyOptions() {
+        return Response
+                .status(200)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, PATCH, OPTIONS")
+                .header("Access-Control-Allow-Headers", "Content-Type, Authorization")
+                .entity("Add record success")
+                .build();
+    }
     @GET
-    @Path("peryInfo")
-    public static Response preyQuery() {
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("").build();
+    @Path("/preyinfo")
+    @Produces("application/json; charset=utf-8")
+    public Response preyListQuery(@QueryParam("BKXW") final String BKXW,
+                                  @HeaderParam("x-token") final String token) throws Exception {
+        if(checkToken(token) < 0)
+            return Response.status(401)
+                    .header("Access-Control-Allow-Origin", "*")
+                    .entity("{\"error\":\"Failed to authentication.\"}")
+                    .build();
+        StringWriter writer = new StringWriter();
+        List prayList = new LinkedList();
+        java.sql.Connection conn = getMysqlConnection();
+        String query = "SELECT BKXXBH,HPHM,HPYS,CLPP1,CLPP2,CSYS,CLLX,HPZL FROM PreyInfo WHERE BKXW=?";
+        PreparedStatement pst = conn.prepareStatement(query);
+        pst.setString(1,BKXW);
+        ResultSet rs = pst.executeQuery();
+        while (rs.next()) {
+            Map singleMap = new LinkedHashMap();
+            singleMap.put("BKXXBH", rs.getString(1));
+            singleMap.put("HPHH", rs.getString(2));
+            singleMap.put("HPYS", rs.getString(3));
+            singleMap.put("CLPP1", rs.getString(4));
+            singleMap.put("CLPP2", rs.getString(5));
+            singleMap.put("CSYS", rs.getString(6));
+            singleMap.put("CLLX", rs.getString(7));
+            singleMap.put("HPZL", rs.getString(8));
+            prayList.add(singleMap);
+        }
+        Map content = new HashMap();
+        content.put("PreyList", prayList);
+        mapper.writeValue(writer, content);
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
     }
 
     @PUT
-    @Path("peryInfo")
-    public static Response preyAdd() {
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("").build();
+    @Path("/preyinfo")
+    public Response preyListAdd(final String list,
+                                @HeaderParam("x-token") final String token) throws SQLException, IOException {
+        if(checkToken(token) < 0)
+            return Response.status(401)
+                    .header("Access-Control-Allow-Origin", "*")
+                    .entity("{\"error\":\"Failed to authentication.\"}")
+                    .build();
+        java.sql.Connection conn = getMysqlConnection();
+        String query = "INSERT INTO PreyInfo (BKXXBH,HPHM,HPYS,CLPP1,CLPP2,CSYS,CLLX,HPZL,CLZP,BKXW,BKJB,BKDWDM," +
+                "BKDWMC,BKDWZBDH,BKR,BKRZJHM,BKLXRSJ,BKSZ,BKLX,BKSJ,BKFKSJ,BKJZRQ,AJMS,BKZT,CKDW,CKDWMC,CKR," +
+                "CKRZJHM,CKSJ,CKYY,BKCZR,CKCZR) " +
+                "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        Map<String, String> maps;
+        System.out.println(list);
+        maps = mapper.readValue(list, Map.class);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String BKXXBH = maps.get("HPHM") + sdf.format(new Date());
+
+        PreparedStatement pst = conn.prepareStatement(query);
+        pst.setString(1, BKXXBH);
+        pst.setString(2, maps.containsKey("HPHM") ? maps.get("HPHM") : "");
+        pst.setString(3, maps.containsKey("HPYS") ? maps.get("HPYS") : "");
+        pst.setString(4, maps.containsKey("CLPP1") ? maps.get("CLPP1") : "");
+        pst.setString(5, maps.containsKey("CLPP2") ? maps.get("CLPP2") : "");
+        pst.setString(6, maps.containsKey("CSYS") ? maps.get("CSYS") : "");
+        pst.setString(7, maps.containsKey("CLLX") ? maps.get("CLLX") : "");
+        pst.setString(8, maps.containsKey("HPZL") ? maps.get("HPZL") : "");
+        pst.setString(9, maps.containsKey("CLZP") ? maps.get("CLZP") : "");
+        pst.setString(10, maps.containsKey("BKXW") ? maps.get("BKXW") : "");
+        pst.setString(11, maps.containsKey("BKJB") ? maps.get("BKJB") : "");
+        pst.setString(12, maps.containsKey("BKDWDM") ? maps.get("BKDWDM") : "");
+        pst.setString(13, maps.containsKey("BKDWMC") ? maps.get("BKDWMC") : "");
+        pst.setString(14, maps.containsKey("BKDWZBDH") ? maps.get("BKDWZBDH") : "");
+        pst.setString(15, maps.containsKey("BKR") ? maps.get("BKR") : "");
+        pst.setString(16, maps.containsKey("BKRZJHM") ? maps.get("BKRZJHM") : "");
+        pst.setString(17, maps.containsKey("BKLXRSJ") ? maps.get("BKLXRSJ") : "");
+        pst.setString(18, maps.containsKey("BKSZ") ? maps.get("BKSZ") : "");
+        pst.setString(19, maps.containsKey("BKLX") ? maps.get("BKLX") : "");
+        pst.setString(20, maps.containsKey("BKSJ") ? maps.get("BKSJ") : "");
+        pst.setString(21, maps.containsKey("BKFKSJ") ? maps.get("BKFKSJ") : "");
+        pst.setString(22, maps.containsKey("BKJZRQ") ? maps.get("BKJZRQ") : "");
+        pst.setString(23, maps.containsKey("AJMS") ? maps.get("AJMS") : "");
+        pst.setString(24, maps.containsKey("BKZT") ? maps.get("BKZT") : "");
+        pst.setString(25, maps.containsKey("CKDW") ? maps.get("CKDW") : "");
+        pst.setString(26, maps.containsKey("CKDWMC") ? maps.get("CKDWMC") : "");
+        pst.setString(27, maps.containsKey("CKR") ? maps.get("CKR") : "");
+        pst.setString(28, maps.containsKey("CKRZJHM") ? maps.get("CKRZJHM") : "");
+        pst.setString(29, maps.containsKey("CKSJ") ? maps.get("CKSJ") : "");
+        pst.setString(30, maps.containsKey("CKYY") ? maps.get("CKYY") : "");
+        pst.setString(31, maps.containsKey("BKCZR") ? maps.get("BKCZR") : "");
+        pst.setString(32, maps.containsKey("CKCZR") ? maps.get("CKCZR") : "");
+        if(pst.executeUpdate() > 0) {
+            return Response
+                    .status(200)
+                    .header("Access-Control-Allow-Origin", "*")
+                    .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, PATCH, OPTIONS")
+                    .entity("Add record success")
+                    .build();
+        } else {
+            return Response
+                    .status(503)
+                    .header("Access-Control-Allow-Origin", "*")
+                    .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, PATCH, OPTIONS")
+                    .entity("Add failure")
+                    .build();
+        }
     }
 
     @POST
-    @Path("peryInfo")
-    public static Response preyUpdate() {
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("").build();
+    @Path("/preyinfo/{BKXXBH}")
+    public Response preyListUpdate(@PathParam("BKXXBH") final String BKXXBH,
+                                   @HeaderParam("x-token") final String token,
+                                   final String data) throws SQLException, IOException {
+        if(checkToken(token) < 0)
+            return Response.status(401)
+                    .header("Access-Control-Allow-Origin", "*")
+                    .entity("{\"error\":\"Failed to authentication.\"}")
+                    .build();
+        java.sql.Connection conn = getMysqlConnection();
+        String query1 = "SELECT COUNT(*) FROM PreyInfo WHERE BKXXBH=?";
+        PreparedStatement pst1 = conn.prepareStatement(query1);
+        pst1.setString(1, BKXXBH);
+        ResultSet rs1 = pst1.executeQuery();
+        if(rs1.next())
+            if(rs1.getInt(1) < 1) {
+                return Response
+                        .status(404)
+                        .header("Access-Control-Allow-Origin", "*")
+                        .entity("BKXXBH:" + BKXXBH + " not exist")
+                        .build();
+            }
+        String querySet = "";
+        String queryHead = "UPDATE PreyInfo SET ";
+        String queryTail = " WHERE BKXXBH=?";
+        Map<String, Object> maps;
+        maps = mapper.readValue(data, Map.class);
+        for(Map.Entry entry : maps.entrySet()) {
+            querySet += entry.getKey() + "=" + entry.getValue() + ",";
+        }
+        querySet = querySet.substring(0, querySet.length() - 1);
+        String queryALL = queryHead + querySet + queryTail;
+        PreparedStatement pst2 = conn.prepareStatement(queryALL);
+        pst2.setString(1, BKXXBH);
+        System.out.println(queryALL);
+        if(pst2.executeUpdate() > 0)
+            return Response
+                    .ok()
+                    .header("Access-Control-Allow-Origin", "*")
+                    .entity("Update is successful")
+                    .build();
+        else
+            return Response.status(503)
+                    .header("Access-Control-Allow-Origin", "*")
+                    .entity("update is failure")
+                    .build();
+    }
+
+
+    @POST
+    @Path("/preyinfo2/{BKXXBH}")
+    public Response preyListUpdate2(@PathParam("BKXXBH") final String BKXXBH,
+                                   @FormParam("list") final String list) throws SQLException, IOException {
+        java.sql.Connection conn = getMysqlConnection();
+        String query1 = "SELECT COUNT(*) FROM PreyInfo WHERE BKXXBH=?";
+        PreparedStatement pst1 = conn.prepareStatement(query1);
+        pst1.setString(1, BKXXBH);
+        ResultSet rs1 = pst1.executeQuery();
+        if(rs1.next())
+            if(rs1.getInt(1) < 1) {
+                return Response
+                        .status(404)
+                        .header("Access-Control-Allow-Origin", "*")
+                        .entity("BKXXBH:" + BKXXBH + " not exist")
+                        .build();
+            }
+        String querySet = "";
+        String queryHead = "UPDATE PreyInfo SET ";
+        String queryTail = " WHERE BKXXBH=?";
+        Map<String, Object> maps;
+        maps = mapper.readValue(list, Map.class);
+        for(Map.Entry entry : maps.entrySet()) {
+            querySet += entry.getKey() + "=" + entry.getValue() + ",";
+        }
+        querySet = querySet.substring(0, querySet.length() - 1);
+        String queryALL = queryHead + querySet + queryTail;
+        PreparedStatement pst2 = conn.prepareStatement(queryALL);
+        pst2.setString(1, BKXXBH);
+        System.out.println(queryALL);
+        if(pst2.executeUpdate() > 0)
+            return Response
+                    .ok()
+                    .header("Access-Control-Allow-Origin", "*")
+                    .entity("Update is successful")
+                    .build();
+        else
+            return Response.status(503)
+                    .header("Access-Control-Allow-Origin", "*")
+                    .entity("update is failure")
+                    .build();
     }
 }
