@@ -54,7 +54,6 @@ public class TrafficResource extends InternalPools {
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, PATCH, OPTIONS")
                 .header("Access-Control-Allow-Headers", "Content-Type, x-token")
-                .entity("Add record success")
                 .build();
     }
     @GET
@@ -89,7 +88,7 @@ public class TrafficResource extends InternalPools {
             returnHbaseConnection(hbase);
             return Response.status(stat)
                     .header("Access-Control-Allow-Origin", "*")
-                    .header("Content-Type", "image/jpeg")
+                    .header("Content-Type", "image/png")
                     .header("metadata", writer.toString())
                     .entity(image).build();
         }
@@ -103,7 +102,6 @@ public class TrafficResource extends InternalPools {
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, PATCH, OPTIONS")
                 .header("Access-Control-Allow-Headers", "Content-Type, x-token")
-                .entity("Add record success")
                 .build();
     }
     @GET
@@ -165,7 +163,6 @@ public class TrafficResource extends InternalPools {
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, PATCH, OPTIONS")
                 .header("Access-Control-Allow-Headers", "Content-Type, x-token")
-                .entity("Add record success")
                 .build();
     }
     @GET
@@ -475,7 +472,6 @@ public class TrafficResource extends InternalPools {
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, PATCH, OPTIONS")
                 .header("Access-Control-Allow-Headers", "Content-Type, x-token")
-                .entity("Add record success")
                 .build();
     }
 
@@ -509,7 +505,10 @@ public class TrafficResource extends InternalPools {
         HashMap content = new HashMap();
         content.put("devices", deviceList);
         mapper.writeValue(writer, content);
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
+        return Response
+                .status(200)
+                .header("Access-Control-Allow-Origin", "*")
+                .entity(writer.toString()).build();
     }
 
     @OPTIONS
@@ -519,8 +518,7 @@ public class TrafficResource extends InternalPools {
                 .status(200)
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, PATCH, OPTIONS")
-                .header("Access-Control-Allow-Headers", "Content-Type, Authorization")
-                .entity("Add record success")
+                .header("Access-Control-Allow-Headers", "Content-Type, x-token")
                 .build();
     }
     @GET
