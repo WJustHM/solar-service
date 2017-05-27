@@ -8,12 +8,16 @@ import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.util.Bytes;
 
+import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.sort.SortOrder;
+import redis.clients.jedis.HostAndPort;
+import redis.clients.jedis.JedisCluster;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
@@ -40,6 +44,12 @@ public class TrafficResource extends InternalPools {
     private final ObjectMapper mapper = new ObjectMapper();
     private HashMap<String, String> mysqlmap = null;
     private List deviceList = null;
+    TableName tablename = TableName.valueOf("Result");
+    Table gettable = null;
+    String TASK = "TASK";
+    String CAMERA = "CAMERA";
+    String DATASOURCE = "DATASOURCE";
+    JedisCluster redis = initredis();
 
     public TrafficResource(Map paramters) {
         super(paramters);
@@ -56,11 +66,12 @@ public class TrafficResource extends InternalPools {
                 .header("Access-Control-Allow-Headers", "Content-Type, x-token")
                 .build();
     }
+
     @GET
     @Path("/image/{rowkey}")
     public Response imageQuery(@PathParam("rowkey") final String rowkey,
                                @HeaderParam("X-TOKEN") final String token) throws Exception {
-        if(checkToken(token) < 0)
+        if (checkToken(token) < 0)
             return Response
                     .status(401)
                     .header("Access-Control-Allow-Origin", "*")
@@ -104,6 +115,7 @@ public class TrafficResource extends InternalPools {
                 .header("Access-Control-Allow-Headers", "Content-Type, x-token")
                 .build();
     }
+
     @GET
     @Path("/track")
     @Produces("application/json; charset=utf-8")
@@ -113,7 +125,7 @@ public class TrafficResource extends InternalPools {
             @QueryParam("PlateLicense") final String PlateLicense,
             @HeaderParam("x-token") final String token)
             throws Exception {
-        if(checkToken(token) < 0)
+        if (checkToken(token) < 0)
             return Response.status(401)
                     .header("Access-Control-Allow-Origin", "*")
                     .entity("{\"error\":\"Failed to authentication.\"}")
@@ -165,6 +177,7 @@ public class TrafficResource extends InternalPools {
                 .header("Access-Control-Allow-Headers", "Content-Type, x-token")
                 .build();
     }
+
     @GET
     @Path("/statistics")
     @Produces("application/json; charset=utf-8")
@@ -175,7 +188,7 @@ public class TrafficResource extends InternalPools {
             @QueryParam("deviceId") final String deviceId,
             @HeaderParam("X-TOKEN") final String token)
             throws Exception {
-        if(checkToken(token) < 0)
+        if (checkToken(token) < 0)
             return Response
                     .status(401)
                     .header("Access-Control-Allow-Origin", "*")
@@ -224,9 +237,9 @@ public class TrafficResource extends InternalPools {
             for (String str : vehicleTypes) {
                 String[] typenum = str.split("\\:");
                 //2017-02|0,100
-                monthcount.put(year + "-" + month + "|" + typenum[0], monthcount.getOrDefault(year + "-" + month + "|" + typenum[0],0) + Integer.parseInt(typenum[1]));
+                monthcount.put(year + "-" + month + "|" + typenum[0], monthcount.getOrDefault(year + "-" + month + "|" + typenum[0], 0) + Integer.parseInt(typenum[1]));
                 monthcount.put("total", monthcount.getOrDefault("total", 0) + Integer.parseInt(typenum[1]));
-                monthcount.put(typenum[0], monthcount.getOrDefault(typenum[0],0) + Integer.parseInt(typenum[1]));
+                monthcount.put(typenum[0], monthcount.getOrDefault(typenum[0], 0) + Integer.parseInt(typenum[1]));
 
             }
         }
@@ -260,7 +273,7 @@ public class TrafficResource extends InternalPools {
                 String[] typenum = str.split("\\:");
                 daycount.put(date + "|" + typenum[0], daycount.getOrDefault(date + "|" + typenum[0], 0) + Integer.parseInt(typenum[1]));
                 daycount.put("total", daycount.getOrDefault("total", 0) + Integer.parseInt(typenum[1]));
-                daycount.put(typenum[0], daycount.getOrDefault(typenum[0],0) + Integer.parseInt(typenum[1]));
+                daycount.put(typenum[0], daycount.getOrDefault(typenum[0], 0) + Integer.parseInt(typenum[1]));
             }
         }
         mapper.writeValue(writer, daycount);
@@ -309,7 +322,7 @@ public class TrafficResource extends InternalPools {
                         String[] typenum = str.split("\\:");
                         hourcount.put(rowhour + "|" + typenum[0], hourcount.getOrDefault(rowhour + "|" + typenum[0], 0) + Integer.parseInt(typenum[1]));
                         hourcount.put("total", hourcount.getOrDefault("total", 0) + Integer.parseInt(typenum[1]));
-                        hourcount.put(typenum[0], hourcount.getOrDefault(typenum[0],0) + Integer.parseInt(typenum[1]));
+                        hourcount.put(typenum[0], hourcount.getOrDefault(typenum[0], 0) + Integer.parseInt(typenum[1]));
 
                     }
                 }
@@ -459,7 +472,7 @@ public class TrafficResource extends InternalPools {
             } else {
                 return -1;
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             return -1;
         }
     }
@@ -479,7 +492,7 @@ public class TrafficResource extends InternalPools {
     @Path("/devices")
     @Produces("application/json; charset=utf-8")
     public Response devicesQuery(@HeaderParam("X-TOKEN") final String token) throws Exception {
-        if(checkToken(token) < 0)
+        if (checkToken(token) < 0)
             return Response.status(401).header("Access-Control-Allow-Origin", "*").entity("{\"error\":\"Failed to authentication.\"}").build();
         StringWriter writer = new StringWriter();
         if (deviceList == null) {
@@ -521,12 +534,13 @@ public class TrafficResource extends InternalPools {
                 .header("Access-Control-Allow-Headers", "Content-Type, x-token")
                 .build();
     }
+
     @GET
     @Path("/preyinfo")
     @Produces("application/json; charset=utf-8")
     public Response preyListQuery(@QueryParam("BKXW") final String BKXW,
                                   @HeaderParam("x-token") final String token) throws Exception {
-        if(checkToken(token) < 0)
+        if (checkToken(token) < 0)
             return Response.status(401)
                     .header("Access-Control-Allow-Origin", "*")
                     .entity("{\"error\":\"Failed to authentication.\"}")
@@ -536,7 +550,7 @@ public class TrafficResource extends InternalPools {
         java.sql.Connection conn = getMysqlConnection();
         String query = "SELECT BKXXBH,HPHM,HPYS,CLPP1,CLPP2,CSYS,CLLX,HPZL FROM PreyInfo WHERE BKXW=?";
         PreparedStatement pst = conn.prepareStatement(query);
-        pst.setString(1,BKXW);
+        pst.setString(1, BKXW);
         ResultSet rs = pst.executeQuery();
         while (rs.next()) {
             Map singleMap = new LinkedHashMap();
@@ -560,7 +574,7 @@ public class TrafficResource extends InternalPools {
     @Path("/preyinfo")
     public Response preyListAdd(final String list,
                                 @HeaderParam("x-token") final String token) throws SQLException, IOException {
-        if(checkToken(token) < 0)
+        if (checkToken(token) < 0)
             return Response.status(401)
                     .header("Access-Control-Allow-Origin", "*")
                     .entity("{\"error\":\"Failed to authentication.\"}")
@@ -609,7 +623,7 @@ public class TrafficResource extends InternalPools {
         pst.setString(30, maps.containsKey("CKYY") ? maps.get("CKYY") : "");
         pst.setString(31, maps.containsKey("BKCZR") ? maps.get("BKCZR") : "");
         pst.setString(32, maps.containsKey("CKCZR") ? maps.get("CKCZR") : "");
-        if(pst.executeUpdate() > 0) {
+        if (pst.executeUpdate() > 0) {
             return Response
                     .status(200)
                     .header("Access-Control-Allow-Origin", "*")
@@ -631,7 +645,7 @@ public class TrafficResource extends InternalPools {
     public Response preyListUpdate(@PathParam("BKXXBH") final String BKXXBH,
                                    @HeaderParam("x-token") final String token,
                                    final String data) throws SQLException, IOException {
-        if(checkToken(token) < 0)
+        if (checkToken(token) < 0)
             return Response.status(401)
                     .header("Access-Control-Allow-Origin", "*")
                     .entity("{\"error\":\"Failed to authentication.\"}")
@@ -641,8 +655,8 @@ public class TrafficResource extends InternalPools {
         PreparedStatement pst1 = conn.prepareStatement(query1);
         pst1.setString(1, BKXXBH);
         ResultSet rs1 = pst1.executeQuery();
-        if(rs1.next())
-            if(rs1.getInt(1) < 1) {
+        if (rs1.next())
+            if (rs1.getInt(1) < 1) {
                 return Response
                         .status(404)
                         .header("Access-Control-Allow-Origin", "*")
@@ -654,7 +668,7 @@ public class TrafficResource extends InternalPools {
         String queryTail = " WHERE BKXXBH=?";
         Map<String, Object> maps;
         maps = mapper.readValue(data, Map.class);
-        for(Map.Entry entry : maps.entrySet()) {
+        for (Map.Entry entry : maps.entrySet()) {
             querySet += entry.getKey() + "=" + entry.getValue() + ",";
         }
         querySet = querySet.substring(0, querySet.length() - 1);
@@ -662,7 +676,7 @@ public class TrafficResource extends InternalPools {
         PreparedStatement pst2 = conn.prepareStatement(queryALL);
         pst2.setString(1, BKXXBH);
         System.out.println(queryALL);
-        if(pst2.executeUpdate() > 0)
+        if (pst2.executeUpdate() > 0)
             return Response
                     .ok()
                     .header("Access-Control-Allow-Origin", "*")
@@ -679,14 +693,14 @@ public class TrafficResource extends InternalPools {
     @POST
     @Path("/preyinfo2/{BKXXBH}")
     public Response preyListUpdate2(@PathParam("BKXXBH") final String BKXXBH,
-                                   @FormParam("list") final String list) throws SQLException, IOException {
+                                    @FormParam("list") final String list) throws SQLException, IOException {
         java.sql.Connection conn = getMysqlConnection();
         String query1 = "SELECT COUNT(*) FROM PreyInfo WHERE BKXXBH=?";
         PreparedStatement pst1 = conn.prepareStatement(query1);
         pst1.setString(1, BKXXBH);
         ResultSet rs1 = pst1.executeQuery();
-        if(rs1.next())
-            if(rs1.getInt(1) < 1) {
+        if (rs1.next())
+            if (rs1.getInt(1) < 1) {
                 return Response
                         .status(404)
                         .header("Access-Control-Allow-Origin", "*")
@@ -698,7 +712,7 @@ public class TrafficResource extends InternalPools {
         String queryTail = " WHERE BKXXBH=?";
         Map<String, Object> maps;
         maps = mapper.readValue(list, Map.class);
-        for(Map.Entry entry : maps.entrySet()) {
+        for (Map.Entry entry : maps.entrySet()) {
             querySet += entry.getKey() + "=" + entry.getValue() + ",";
         }
         querySet = querySet.substring(0, querySet.length() - 1);
@@ -706,7 +720,7 @@ public class TrafficResource extends InternalPools {
         PreparedStatement pst2 = conn.prepareStatement(queryALL);
         pst2.setString(1, BKXXBH);
         System.out.println(queryALL);
-        if(pst2.executeUpdate() > 0)
+        if (pst2.executeUpdate() > 0)
             return Response
                     .ok()
                     .header("Access-Control-Allow-Origin", "*")
@@ -717,5 +731,280 @@ public class TrafficResource extends InternalPools {
                     .header("Access-Control-Allow-Origin", "*")
                     .entity("update is failure")
                     .build();
+    }
+
+    @GET
+    @Path("/searchelastichbase")
+    @Produces("application/json; charset=utf-8")
+    public Response searchElasticHBase(
+            @QueryParam("starttime") final String start,
+            @QueryParam("endtime") final String end)
+            throws Exception {
+        TransportClient esclient = getEsConnection();
+        StringWriter writer = new StringWriter();
+        SearchRequestBuilder request = esclient.prepareSearch().setIndices("vehicle2").setTypes("result");
+        String qu = "{\n" +
+                "    \"range\": {\n" +
+                "      \"ResultTime\": {\n" +
+                "        \"gte\": \"" + start.replace("\"", "") + "\",\n" +
+                "        \"lte\": \"" + end.replace("\"", "") + "\"\n" +
+                "      }\n" +
+                "    }\n" +
+                "  }";
+        //执行查询语句
+        long starttimes = System.currentTimeMillis();
+        SearchResponse response = request.setQuery(QueryBuilders.wrapperQuery(qu)).execute().actionGet();
+
+        Map<String,Long> map=new HashMap<>();
+        map.put("total",response.getHits().getTotalHits());
+        mapper.writeValue(writer,map);
+        returnEsConnection(esclient);
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
+    }
+
+    @GET
+    @Path("/searchlicense")
+    public Response searchlicense(
+            @QueryParam("starttime") final String start,
+            @QueryParam("province") final String province,
+            @QueryParam("regexnumber") final String regexnumber)
+            throws Exception {
+        StringWriter writer = new StringWriter();
+        TransportClient esclient = getEsConnection();
+        SimpleDateFormat simplehms = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String now = simplehms.format(new Date(System.currentTimeMillis()));
+        SearchRequestBuilder request = esclient.prepareSearch().setIndices("vehicle2").setTypes("result");
+        //ES查询Json代码
+        String qu = "{\n" +
+                "    \"bool\": {\n" +
+                "      \"must\": [\n" +
+                "        {\n" +
+                "          \"regexp\": {\n" +
+                "            \"Plate.keyword\": {\n" +
+                "              \"value\": \"" + province + ".{5}" + regexnumber + "\"\n" +
+                "            }\n" +
+                "          }\n" +
+                "        },\n" +
+                "        {\n" +
+                "          \"range\": {\n" +
+                "            \"ResultTime\": {\n" +
+                "              \"gte\": \"" + start.replace("\"", "") + "\",\n" +
+                "              \"lte\": \"" + now + "\"\n" +
+                "            }\n" +
+                "          }\n" +
+                "        }\n" +
+                "      ]\n" +
+                "    }\n" +
+                "  }";
+        //执行查询语句
+        long starttimes = System.currentTimeMillis();
+        SearchResponse response = request.setQuery(QueryBuilders.wrapperQuery(qu)).setSize(50)
+                .setScroll(new TimeValue(5000)).execute().actionGet();
+        System.out.println("------------------++++------------Search Spend Time:" + (System.currentTimeMillis() - starttimes));
+        System.out.println("-----Search hit total data:" + response.getHits().getTotalHits());
+        int num = 0;
+        do {
+            for (SearchHit rs : response.getHits().getHits()) {
+                //异步查询
+                HashMap<String, String> task = searchRedis(TASK, rs.getSource().get("taskId").toString());
+                HashMap<String, String> camera = searchRedis(CAMERA, rs.getSource().get("cameraId").toString());
+                HashMap<String, String> dataSource = searchRedis(DATASOURCE, rs.getSource().get("dataSourceId").toString());
+                LinkedList<HashMap<String, String>> res = joinResult(task, camera, dataSource);
+                num++;
+                if (num == 100) {
+                    mapper.writeValue(writer,res);
+                    returnEsConnection(esclient);
+                    return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
+                }
+            }
+            response = esclient.prepareSearchScroll(response.getScrollId()).setScroll(new TimeValue(60000)).execute().actionGet();
+        } while (response.getHits().getHits().length != 0);
+
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("").build();
+    }
+
+    @GET
+    @Path("/searchelasticHBase")
+    public Response searchelasticHBase(
+            @QueryParam("starttime") final String starttime,
+            @QueryParam("endtime") final String endtime,
+            @QueryParam("vehicleBrand") final String vehicleBrand,
+            @QueryParam("PlateColor") final String PlateColor,
+            @QueryParam("Direction") final String Direction,
+            @QueryParam("tag") final String tag,
+            @QueryParam("paper") final String paper,
+            @QueryParam("sun") final String sun,
+            @QueryParam("drop") final String drop,
+            @QueryParam("secondBelt") final String secondBelt,
+            @QueryParam("crash") final String crash,
+            @QueryParam("danger") final String danger)
+            throws Exception {
+        StringWriter writer = new StringWriter();
+        TransportClient esclient = getEsConnection();
+        Connection hbase = getHbaseConnection();
+        gettable = hbase.getTable(tablename);
+        SimpleDateFormat simplehms = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String now = simplehms.format(new Date(System.currentTimeMillis()));
+        SearchRequestBuilder request = esclient.prepareSearch().setIndices("vehicle2").setTypes("result");
+        //ES查询Json代码
+        String qu = "{\n" +
+                "    \"bool\": {\n" +
+                "      \"must\": [\n" +
+                "        {\n" +
+                "          \"term\": {\n" +
+                "            \"vehicleBrand.keyword\": {\n" +
+                "              \"value\": \"" + vehicleBrand + "\"\n" +
+                "            }\n" + "          }\n" + "        },\n" + "        {\n" +
+                "          \"term\": {\n" +
+                "            \"PlateColor.keyword\": {\n" +
+                "              \"value\": \"" + PlateColor + "\"\n" +
+                "            }\n" + "          }\n" + "        },\n" + "        {\n" +
+                "          \"term\": {\n" +
+                "            \"Direction\": {\n" +
+                "              \"value\": \"" + Direction + "\"\n" +
+                "            }\n" + "          }\n" + "        },\n" + "        {\n" +
+                "          \"term\": {\n" +
+                "            \"tag.keyword\": {\n" +
+                "              \"value\": \"" + tag + "\"\n" +
+                "            }\n" + "          }\n" + "        },\n" + "        {\n" +
+                "          \"term\": {\n" +
+                "            \"paper.keyword\": {\n" +
+                "              \"value\": \"" + paper + "\"\n" +
+                "            }\n" + "          }\n" + "        },\n" + "        {\n" +
+                "          \"term\": {\n" +
+                "            \"sun.keyword\": {\n" +
+                "              \"value\": \"" + sun + "\"\n" +
+                "            }\n" + "          }\n" + "        },\n" + "        {\n" +
+                "          \"term\": {\n" +
+                "            \"drop.keyword\": {\n" +
+                "              \"value\": \"" + drop + "\"\n" +
+                "            }\n" + "          }\n" + "        },\n" + "        {\n" +
+                "          \"term\": {\n" +
+                "            \"secondBelt.keyword\": {\n" +
+                "              \"value\": \"" + secondBelt + "\"\n" +
+                "            }\n" + "          }\n" + "        },\n" + "        {\n" +
+                "          \"term\": {\n" +
+                "            \"crash.keyword\": {\n" +
+                "              \"value\": \"" + crash + "\"\n" +
+                "            }\n" + "          }\n" + "        },\n" + "        {\n" +
+                "          \"term\": {\n" +
+                "            \"danger.keyword\": {\n" +
+                "              \"value\": \"" + danger + "\"\n" +
+                "            }\n" + "          }\n" + "        }\n" + "      ],\n" +
+                "      \"filter\": {\n" +
+                "        \"range\": {\n" +
+                "          \"ResultTime\": {\n" +
+                "            \"gte\": \"" + starttime + "\",\n" +
+                "            \"lte\": \"" + endtime + "\"\n" +
+                "          }\n" + "        }\n" + "      }\n" + "    }\n" +
+                "  }";
+        //执行查询语句
+        long starttimes = System.currentTimeMillis();
+        SearchResponse response = request.setQuery(QueryBuilders.wrapperQuery(qu)).setSize(50)
+                .setScroll(new TimeValue(60000)).execute().actionGet();
+        int num = 0;
+        List<Get> list = new LinkedList<Get>();
+        do {
+            for (SearchHit rs : response.getHits().getHits()) {
+                //异步查询
+                list.add(new Get(Bytes.toBytes(rs.getSource().get("resultId").toString())));
+                HashMap<String, String> task = searchRedis(TASK, rs.getSource().get("taskId").toString());
+                HashMap<String, String> camera = searchRedis(CAMERA, rs.getSource().get("cameraId").toString());
+                HashMap<String, String> dataSource = searchRedis(DATASOURCE, rs.getSource().get("dataSourceId").toString());
+                LinkedList<HashMap<String, String>> res = joinResult(task, camera, dataSource);
+                num++;
+                if (num == 200) {
+                    LinkedList<HashMap<String, String>> hb = searchHBase(list);
+                    hb.addAll(res);
+                    mapper.writeValue(writer,res);
+                    returnEsConnection(esclient);
+                    returnHbaseConnection(hbase);
+                    return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
+                }
+            }
+            response = esclient.prepareSearchScroll(response.getScrollId()).setScroll(new TimeValue(60000)).execute().actionGet();
+        } while (response.getHits().getHits().length != 0);
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("").build();
+    }
+
+    //执行Redis查询
+    public HashMap<String, String> searchRedis(String table, String id) {
+        HashMap<String, String> map = null;
+        if (redis.hexists(table, id)) {
+            String result = redis.hget(table, id);
+            try {
+                map = mapper.readValue(result, new HashMap<String, String>().getClass());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return map;
+    }
+
+    public JedisCluster initredis() {
+        HashSet jedisClusterNodes = new HashSet<HostAndPort>();
+        jedisClusterNodes.add(new HostAndPort("datanode1", 6380));
+        jedisClusterNodes.add(new HostAndPort("datanode2", 6380));
+        jedisClusterNodes.add(new HostAndPort("datanode3", 6380));
+        JedisCluster jc = new JedisCluster(jedisClusterNodes);
+        return jc;
+    }
+
+    public LinkedList<HashMap<String, String>> joinResult(HashMap<String, String> task, HashMap<String, String> camera, HashMap<String, String> dataSource) {
+        LinkedList results = new LinkedList<HashMap<String, String>>();
+        results.add(task);
+        results.add(camera);
+        results.add(dataSource);
+
+        return results;
+    }
+
+    public LinkedList<HashMap<String, String>> joinResult2(HashMap<String, String> task, HashMap<String, String> camera, HashMap<String, String> dataSource) {
+        LinkedList results = new LinkedList<HashMap<String, String>>();
+        results.add(task);
+        results.add(camera);
+        results.add(dataSource);
+
+        return results;
+    }
+
+    public LinkedList<HashMap<String, String>> searchHBase(List<Get> gets) {
+        LinkedList<HashMap<String, String>> resultsFinal = new LinkedList<HashMap<String, String>>();
+        try {
+            Result[] res = gettable.get(gets);
+            for (Result ss : res) {
+                HashMap<String, String> resultHbase = new HashMap<String, String>();
+                String License = Bytes.toString(ss.getValue("Result".getBytes(), "License".getBytes()));
+                String PlateType = Bytes.toString(ss.getValue("Result".getBytes(), "PlateType".getBytes()));
+                String PlateColor = Bytes.toString(ss.getValue("Result".getBytes(), "PlateColor".getBytes()));
+                String Confidence = Bytes.toString(ss.getValue("Result".getBytes(), "Confidence".getBytes()));
+                String LicenseAttribution = Bytes.toString(ss.getValue("Result".getBytes(), "LicenseAttribution".getBytes()));
+                String ImageURL = Bytes.toString(ss.getValue("Result".getBytes(), "ImageURL".getBytes()));
+                String CarColor = Bytes.toString(ss.getValue("Result".getBytes(), "CarColor".getBytes()));
+                String ResultTime = Bytes.toString(ss.getValue("Result".getBytes(), "ResultTime".getBytes()));
+                String Direction = Bytes.toString(ss.getValue("Result".getBytes(), "Direction".getBytes()));
+                String frame_index = Bytes.toString(ss.getValue("Result".getBytes(), "frame_index".getBytes()));
+                String vehicleKind = Bytes.toString(ss.getValue("Result".getBytes(), "vehicleKind".getBytes()));
+                String vehicleBrand = Bytes.toString(ss.getValue("Result".getBytes(), "vehicleBrand".getBytes()));
+                String vehicleStyle = Bytes.toString(ss.getValue("Result".getBytes(), "vehicleStyle".getBytes()));
+                String LocationLeft = Bytes.toString(ss.getValue("Result".getBytes(), "LocationLeft".getBytes()));
+                if (License != null) {
+                    resultHbase.put("HP", License);
+                }
+                resultsFinal.add(resultHbase);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return resultsFinal;
+    }
+
+    @GET
+    @Path("/searchlicensesss")
+    @Produces("application/json; charset=utf-8")
+    public Response test()
+            throws Exception {
+        initredis();
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("ewew").build();
     }
 }
