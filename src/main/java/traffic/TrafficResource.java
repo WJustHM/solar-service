@@ -743,21 +743,26 @@ public class TrafficResource extends InternalPools {
         TransportClient esclient = getEsConnection();
         StringWriter writer = new StringWriter();
         SearchRequestBuilder request = esclient.prepareSearch().setIndices("vehicle2").setTypes("result");
-        String qu = "{\n" +
-                "    \"range\": {\n" +
-                "      \"ResultTime\": {\n" +
-                "        \"gte\": \"" + start.replace("\"", "") + "\",\n" +
-                "        \"lte\": \"" + end.replace("\"", "") + "\"\n" +
+        String que = "{\n" +
+                "    \"bool\": {\n" +
+                "      \"filter\": {\n" +
+                "       \"range\": {\n" +
+                "         \"ResultTime\": {\n" +
+                "           \"gte\": \"" + start.replace("\"", "") + "\",\n" +
+                "           \"lte\": \"" + end.replace("\"", "") + "\"\n" +
+                "         }\n" +
+                "       }\n" +
                 "      }\n" +
                 "    }\n" +
                 "  }";
+
         //执行查询语句
         long starttimes = System.currentTimeMillis();
-        SearchResponse response = request.setQuery(QueryBuilders.wrapperQuery(qu)).execute().actionGet();
+        SearchResponse response = request.setQuery(QueryBuilders.wrapperQuery(que)).execute().actionGet();
 
-        Map<String,Long> map=new HashMap<>();
-        map.put("total",response.getHits().getTotalHits());
-        mapper.writeValue(writer,map);
+        Map<String, Long> map = new HashMap<>();
+        map.put("total", response.getHits().getTotalHits());
+        mapper.writeValue(writer, map);
         returnEsConnection(esclient);
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
     }
@@ -775,33 +780,37 @@ public class TrafficResource extends InternalPools {
         String now = simplehms.format(new Date(System.currentTimeMillis()));
         SearchRequestBuilder request = esclient.prepareSearch().setIndices("vehicle2").setTypes("result");
         //ES查询Json代码
-        String qu = "{\n" +
+        String que = "{\n" +
                 "    \"bool\": {\n" +
-                "      \"must\": [\n" +
-                "        {\n" +
-                "          \"regexp\": {\n" +
-                "            \"Plate.keyword\": {\n" +
-                "              \"value\": \"" + province + ".{5}" + regexnumber + "\"\n" +
+                "      \"filter\": {\n" +
+                "        \"bool\": {\n" +
+                "          \"must\": [\n" +
+                "            {\n" +
+                "              \"range\": {\n" +
+                "                \"ResultTime\": {\n" +
+                "                  \"gte\": \"" + start.replace("\"", "") + "\",\n" +
+                "                  \"lte\": \"" + now + "\"\n" +
+                "                }\n" +
+                "              }\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"regexp\": {\n" +
+                "                \"Plate\": {\n" +
+                "                  \"value\": \"" + province + ".{5}" + regexnumber + "\"\n" +
+                "                }\n" +
+                "              }\n" +
                 "            }\n" +
-                "          }\n" +
-                "        },\n" +
-                "        {\n" +
-                "          \"range\": {\n" +
-                "            \"ResultTime\": {\n" +
-                "              \"gte\": \"" + start.replace("\"", "") + "\",\n" +
-                "              \"lte\": \"" + now + "\"\n" +
-                "            }\n" +
-                "          }\n" +
+                "          ]\n" +
                 "        }\n" +
-                "      ]\n" +
+                "      }\n" +
                 "    }\n" +
                 "  }";
         //执行查询语句
-        long starttimes = System.currentTimeMillis();
-        SearchResponse response = request.setQuery(QueryBuilders.wrapperQuery(qu)).setSize(50)
+
+        SearchResponse response = request.setQuery(QueryBuilders.boolQuery().filter(QueryBuilders.boolQuery().must(QueryBuilders.rangeQuery("ResultTime").gte("2017-04-11 17:32:45")
+                .lte("2017-04-20 17:32:45")).must(QueryBuilders.regexpQuery("Plate.keyword", province + ".{5}" + regexnumber)))).setSize(50)
                 .setScroll(new TimeValue(5000)).execute().actionGet();
-        System.out.println("------------------++++------------Search Spend Time:" + (System.currentTimeMillis() - starttimes));
-        System.out.println("-----Search hit total data:" + response.getHits().getTotalHits());
+        System.out.println("------------" + response.getHits().getTotalHits());
         int num = 0;
         do {
             for (SearchHit rs : response.getHits().getHits()) {
@@ -812,7 +821,7 @@ public class TrafficResource extends InternalPools {
                 LinkedList<HashMap<String, String>> res = joinResult(task, camera, dataSource);
                 num++;
                 if (num == 100) {
-                    mapper.writeValue(writer,res);
+                    mapper.writeValue(writer, res);
                     returnEsConnection(esclient);
                     return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
                 }
@@ -847,61 +856,76 @@ public class TrafficResource extends InternalPools {
         String now = simplehms.format(new Date(System.currentTimeMillis()));
         SearchRequestBuilder request = esclient.prepareSearch().setIndices("vehicle2").setTypes("result");
         //ES查询Json代码
-        String qu = "{\n" +
+        String que = "{\n" +
                 "    \"bool\": {\n" +
-                "      \"must\": [\n" +
+                "      \"filter\": [\n" +
                 "        {\n" +
                 "          \"term\": {\n" +
-                "            \"vehicleBrand.keyword\": {\n" +
-                "              \"value\": \"" + vehicleBrand + "\"\n" +
-                "            }\n" + "          }\n" + "        },\n" + "        {\n" +
+                "            \"vehicleBrand.keyword\": \""+vehicleBrand+"\"\n" +
+                "          }\n" +
+                "        },\n" +
+                "        {\n" +
                 "          \"term\": {\n" +
-                "            \"PlateColor.keyword\": {\n" +
-                "              \"value\": \"" + PlateColor + "\"\n" +
-                "            }\n" + "          }\n" + "        },\n" + "        {\n" +
+                "            \"PlateColor\": \""+PlateColor+"\"\n" +
+                "          }\n" +
+                "        },\n" +
+                "        {\n" +
                 "          \"term\": {\n" +
-                "            \"Direction\": {\n" +
-                "              \"value\": \"" + Direction + "\"\n" +
-                "            }\n" + "          }\n" + "        },\n" + "        {\n" +
+                "            \"Direction\": \""+Direction+"\"\n" +
+                "          }\n" +
+                "        },\n" +
+                "        {\n" +
                 "          \"term\": {\n" +
-                "            \"tag.keyword\": {\n" +
-                "              \"value\": \"" + tag + "\"\n" +
-                "            }\n" + "          }\n" + "        },\n" + "        {\n" +
+                "            \"tag\": \""+tag+"\"\n" +
+                "          }\n" +
+                "        },\n" +
+                "        {\n" +
                 "          \"term\": {\n" +
-                "            \"paper.keyword\": {\n" +
-                "              \"value\": \"" + paper + "\"\n" +
-                "            }\n" + "          }\n" + "        },\n" + "        {\n" +
+                "            \"paper\": \""+paper+"\"\n" +
+                "          }\n" +
+                "        },\n" +
+                "        {\n" +
                 "          \"term\": {\n" +
-                "            \"sun.keyword\": {\n" +
-                "              \"value\": \"" + sun + "\"\n" +
-                "            }\n" + "          }\n" + "        },\n" + "        {\n" +
+                "            \"sun\": \""+sun+"\"\n" +
+                "          }\n" +
+                "        },\n" +
+                "        {\n" +
                 "          \"term\": {\n" +
-                "            \"drop.keyword\": {\n" +
-                "              \"value\": \"" + drop + "\"\n" +
-                "            }\n" + "          }\n" + "        },\n" + "        {\n" +
+                "            \"secondBelt\": \""+secondBelt+"\"\n" +
+                "          }\n" +
+                "        },\n" +
+                "        {\n" +
                 "          \"term\": {\n" +
-                "            \"secondBelt.keyword\": {\n" +
-                "              \"value\": \"" + secondBelt + "\"\n" +
-                "            }\n" + "          }\n" + "        },\n" + "        {\n" +
+                "            \"crash\": \""+crash+"\"\n" +
+                "          }\n" +
+                "        },\n" +
+                "        {\n" +
                 "          \"term\": {\n" +
-                "            \"crash.keyword\": {\n" +
-                "              \"value\": \"" + crash + "\"\n" +
-                "            }\n" + "          }\n" + "        },\n" + "        {\n" +
+                "            \"drop\": \""+drop+"\"\n" +
+                "          }\n" +
+                "        },\n" +
+                "          {\n" +
                 "          \"term\": {\n" +
-                "            \"danger.keyword\": {\n" +
-                "              \"value\": \"" + danger + "\"\n" +
-                "            }\n" + "          }\n" + "        }\n" + "      ],\n" +
-                "      \"filter\": {\n" +
-                "        \"range\": {\n" +
-                "          \"ResultTime\": {\n" +
-                "            \"gte\": \"" + starttime + "\",\n" +
-                "            \"lte\": \"" + endtime + "\"\n" +
-                "          }\n" + "        }\n" + "      }\n" + "    }\n" +
+                "            \"danger\": \""+danger+"\"\n" +
+                "          }\n" +
+                "        },\n" +
+                "        {\n" +
+                "          \"range\": {\n" +
+                "            \"ResultTime\": {\n" +
+                "              \"gte\": \""+starttime.replace("\"", "")+"\",\n" +
+                "              \"lte\": \""+endtime.replace("\"", "")+"\"\n" +
+                "            }\n" +
+                "          }\n" +
+                "        }\n" +
+                "      ]\n" +
+                "    }\n" +
                 "  }";
         //执行查询语句
         long starttimes = System.currentTimeMillis();
-        SearchResponse response = request.setQuery(QueryBuilders.wrapperQuery(qu)).setSize(50)
+        SearchResponse response = request.setQuery(QueryBuilders.wrapperQuery(que)).setSize(50)
                 .setScroll(new TimeValue(60000)).execute().actionGet();
+        System.out.println("------------" + response.getHits().getTotalHits());
+
         int num = 0;
         List<Get> list = new LinkedList<Get>();
         do {
@@ -916,7 +940,7 @@ public class TrafficResource extends InternalPools {
                 if (num == 200) {
                     LinkedList<HashMap<String, String>> hb = searchHBase(list);
                     hb.addAll(res);
-                    mapper.writeValue(writer,res);
+                    mapper.writeValue(writer, res);
                     returnEsConnection(esclient);
                     returnHbaseConnection(hbase);
                     return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
@@ -997,14 +1021,5 @@ public class TrafficResource extends InternalPools {
             e.printStackTrace();
         }
         return resultsFinal;
-    }
-
-    @GET
-    @Path("/searchlicensesss")
-    @Produces("application/json; charset=utf-8")
-    public Response test()
-            throws Exception {
-        initredis();
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("ewew").build();
     }
 }

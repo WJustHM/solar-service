@@ -42,6 +42,7 @@ public class InternalPools extends Pools {
 
     @Override
     public EsConnectionPool getEsConnectionPool()  {
+        System.out.println("----------------------init ES");
         Settings.Builder settings = Settings.builder();
         settings.put("cluster.name",paramters.getOrDefault("cluster.name",""));
 
