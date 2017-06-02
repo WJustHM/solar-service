@@ -8,6 +8,10 @@ import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.util.Bytes;
 
+import org.elasticsearch.action.bulk.BulkRequestBuilder;
+import org.elasticsearch.action.get.GetRequest;
+import org.elasticsearch.action.index.IndexAction;
+import org.elasticsearch.action.index.IndexRequestBuilder;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
@@ -742,7 +746,7 @@ public class TrafficResource extends InternalPools {
             throws Exception {
         TransportClient esclient = getEsConnection();
         StringWriter writer = new StringWriter();
-        SearchRequestBuilder request = esclient.prepareSearch().setIndices("vehicle2").setTypes("result");
+        SearchRequestBuilder request = esclient.prepareSearch().setIndices("vehicle").setTypes("result");
         String que = "{\n" +
                 "    \"bool\": {\n" +
                 "      \"filter\": {\n" +
@@ -778,7 +782,7 @@ public class TrafficResource extends InternalPools {
         TransportClient esclient = getEsConnection();
         SimpleDateFormat simplehms = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String now = simplehms.format(new Date(System.currentTimeMillis()));
-        SearchRequestBuilder request = esclient.prepareSearch().setIndices("vehicle2").setTypes("result");
+        SearchRequestBuilder request = esclient.prepareSearch().setIndices("vehicle").setTypes("result");
         //ES查询Json代码
         String que = "{\n" +
                 "    \"bool\": {\n" +
@@ -795,7 +799,7 @@ public class TrafficResource extends InternalPools {
                 "            },\n" +
                 "            {\n" +
                 "              \"regexp\": {\n" +
-                "                \"Plate\": {\n" +
+                "                \"Plate.keyword\": {\n" +
                 "                  \"value\": \"" + province + ".{5}" + regexnumber + "\"\n" +
                 "                }\n" +
                 "              }\n" +
@@ -813,23 +817,77 @@ public class TrafficResource extends InternalPools {
         System.out.println("------------" + response.getHits().getTotalHits());
         int num = 0;
         do {
+            List<String> TASKS = new ArrayList<>();
+            List<String> CAMERAS = new ArrayList<>();
+            List<String> DATASOURCES = new ArrayList<>();
             for (SearchHit rs : response.getHits().getHits()) {
-                //异步查询
-                HashMap<String, String> task = searchRedis(TASK, rs.getSource().get("taskId").toString());
-                HashMap<String, String> camera = searchRedis(CAMERA, rs.getSource().get("cameraId").toString());
-                HashMap<String, String> dataSource = searchRedis(DATASOURCE, rs.getSource().get("dataSourceId").toString());
-                LinkedList<HashMap<String, String>> res = joinResult(task, camera, dataSource);
+                TASKS.add(rs.getSource().get("taskId").toString());
+                CAMERAS.add(rs.getSource().get("cameraId").toString());
+                DATASOURCES.add(rs.getSource().get("dataSourceId").toString());
                 num++;
-                if (num == 100) {
-                    mapper.writeValue(writer, res);
-                    returnEsConnection(esclient);
-                    return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
-                }
+                //异步查询
+//                HashMap<String, String> task = searchRedis(TASK, rs.getSource().get("taskId").toString());
+//                HashMap<String, String> camera = searchRedis(CAMERA, rs.getSource().get("cameraId").toString());
+//                HashMap<String, String> dataSource = searchRedis(DATASOURCE, rs.getSource().get("dataSourceId").toString());
+//                LinkedList<HashMap<String, String>> res = joinResult(task, camera, dataSource);
+//                num++;
+//                if (num == 100) {
+//                    mapper.writeValue(writer, res);
+//                    returnEsConnection(esclient);
+//                    return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
+//                }
             }
+            HashMap<String, String> task = TASKSE(TASKS);
+            HashMap<String, String> camera = CAMERASE(CAMERAS);
+            HashMap<String, String> dataSource = DATASOURCESE(DATASOURCES);
+            LinkedList<HashMap<String, String>> res = joinResult(task, camera, dataSource);
+            if (num == 50) {
+                mapper.writeValue(writer, res);
+                returnEsConnection(esclient);
+                return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
+            }
+
             response = esclient.prepareSearchScroll(response.getScrollId()).setScroll(new TimeValue(60000)).execute().actionGet();
         } while (response.getHits().getHits().length != 0);
 
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("").build();
+    }
+
+    public HashMap<String, String> TASKSE(List<String> TASK) {
+        HashMap<String, String> map = new HashMap<>();
+        TransportClient esclient = getEsConnection();
+        SearchRequestBuilder request = esclient.prepareSearch().setIndices("vehicle").setTypes("task");
+        for (String ta : TASK) {
+            map.put(ta, request.setQuery(QueryBuilders.boolQuery().filter(QueryBuilders.boolQuery().must(QueryBuilders.termQuery("taskId", ta)))).execute().actionGet().getHits().getHits().toString());
+        }
+        returnEsConnection(esclient);
+        return map;
+    }
+
+    public HashMap<String, String> CAMERASE(List<String> CAMERA) {
+        HashMap<String, String> map = new HashMap<>();
+        TransportClient esclient = getEsConnection();
+        SearchRequestBuilder request = esclient.prepareSearch().setIndices("vehicle").setTypes("camera");
+        for (String ta : CAMERA) {
+            if (!ta.equals("") && ta != null) {
+                map.put(ta, request.setQuery(QueryBuilders.boolQuery().filter(QueryBuilders.boolQuery().must(QueryBuilders.termQuery("cameraId", ta)))).execute().actionGet().getHits().getHits().toString());
+            }
+        }
+        returnEsConnection(esclient);
+        return map;
+    }
+
+    public HashMap<String, String> DATASOURCESE(List<String> DATASOURCE) {
+        HashMap<String, String> map = new HashMap<>();
+        TransportClient esclient = getEsConnection();
+        SearchRequestBuilder request = esclient.prepareSearch().setIndices("vehicle").setTypes("datasource");
+        for (String ta : DATASOURCE) {
+            if (!ta.equals("") && ta != null) {
+                map.put(ta, request.setQuery(QueryBuilders.boolQuery().filter(QueryBuilders.boolQuery().must(QueryBuilders.termQuery("dataSourceId", ta)))).execute().actionGet().getHits().getHits().toString());
+            }
+        }
+        returnEsConnection(esclient);
+        return map;
     }
 
     @GET
@@ -854,66 +912,66 @@ public class TrafficResource extends InternalPools {
         gettable = hbase.getTable(tablename);
         SimpleDateFormat simplehms = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String now = simplehms.format(new Date(System.currentTimeMillis()));
-        SearchRequestBuilder request = esclient.prepareSearch().setIndices("vehicle2").setTypes("result");
+        SearchRequestBuilder request = esclient.prepareSearch().setIndices("vehicle").setTypes("result");
         //ES查询Json代码
         String que = "{\n" +
                 "    \"bool\": {\n" +
                 "      \"filter\": [\n" +
                 "        {\n" +
                 "          \"term\": {\n" +
-                "            \"vehicleBrand.keyword\": \""+vehicleBrand+"\"\n" +
+                "            \"vehicleBrand.keyword\": \"" + vehicleBrand + "\"\n" +
                 "          }\n" +
                 "        },\n" +
                 "        {\n" +
                 "          \"term\": {\n" +
-                "            \"PlateColor\": \""+PlateColor+"\"\n" +
+                "            \"PlateColor\": \"" + PlateColor + "\"\n" +
                 "          }\n" +
                 "        },\n" +
                 "        {\n" +
                 "          \"term\": {\n" +
-                "            \"Direction\": \""+Direction+"\"\n" +
+                "            \"Direction\": \"" + Direction + "\"\n" +
                 "          }\n" +
                 "        },\n" +
                 "        {\n" +
                 "          \"term\": {\n" +
-                "            \"tag\": \""+tag+"\"\n" +
+                "            \"tag\": \"" + tag + "\"\n" +
                 "          }\n" +
                 "        },\n" +
                 "        {\n" +
                 "          \"term\": {\n" +
-                "            \"paper\": \""+paper+"\"\n" +
+                "            \"paper\": \"" + paper + "\"\n" +
                 "          }\n" +
                 "        },\n" +
                 "        {\n" +
                 "          \"term\": {\n" +
-                "            \"sun\": \""+sun+"\"\n" +
+                "            \"sun\": \"" + sun + "\"\n" +
                 "          }\n" +
                 "        },\n" +
                 "        {\n" +
                 "          \"term\": {\n" +
-                "            \"secondBelt\": \""+secondBelt+"\"\n" +
+                "            \"secondBelt\": \"" + secondBelt + "\"\n" +
                 "          }\n" +
                 "        },\n" +
                 "        {\n" +
                 "          \"term\": {\n" +
-                "            \"crash\": \""+crash+"\"\n" +
+                "            \"crash\": \"" + crash + "\"\n" +
                 "          }\n" +
                 "        },\n" +
                 "        {\n" +
                 "          \"term\": {\n" +
-                "            \"drop\": \""+drop+"\"\n" +
+                "            \"drop\": \"" + drop + "\"\n" +
                 "          }\n" +
                 "        },\n" +
                 "          {\n" +
                 "          \"term\": {\n" +
-                "            \"danger\": \""+danger+"\"\n" +
+                "            \"danger\": \"" + danger + "\"\n" +
                 "          }\n" +
                 "        },\n" +
                 "        {\n" +
                 "          \"range\": {\n" +
                 "            \"ResultTime\": {\n" +
-                "              \"gte\": \""+starttime.replace("\"", "")+"\",\n" +
-                "              \"lte\": \""+endtime.replace("\"", "")+"\"\n" +
+                "              \"gte\": \"" + starttime.replace("\"", "") + "\",\n" +
+                "              \"lte\": \"" + endtime.replace("\"", "") + "\"\n" +
                 "            }\n" +
                 "          }\n" +
                 "        }\n" +
@@ -929,23 +987,43 @@ public class TrafficResource extends InternalPools {
         int num = 0;
         List<Get> list = new LinkedList<Get>();
         do {
+            List<String> TASKS = new ArrayList<>();
+            List<String> CAMERAS = new ArrayList<>();
+            List<String> DATASOURCES = new ArrayList<>();
             for (SearchHit rs : response.getHits().getHits()) {
-                //异步查询
-                list.add(new Get(Bytes.toBytes(rs.getSource().get("resultId").toString())));
-                HashMap<String, String> task = searchRedis(TASK, rs.getSource().get("taskId").toString());
-                HashMap<String, String> camera = searchRedis(CAMERA, rs.getSource().get("cameraId").toString());
-                HashMap<String, String> dataSource = searchRedis(DATASOURCE, rs.getSource().get("dataSourceId").toString());
-                LinkedList<HashMap<String, String>> res = joinResult(task, camera, dataSource);
+                TASKS.add(rs.getSource().get("taskId").toString());
+                CAMERAS.add(rs.getSource().get("cameraId").toString());
+                DATASOURCES.add(rs.getSource().get("dataSourceId").toString());
                 num++;
-                if (num == 200) {
-                    LinkedList<HashMap<String, String>> hb = searchHBase(list);
-                    hb.addAll(res);
-                    mapper.writeValue(writer, res);
-                    returnEsConnection(esclient);
-                    returnHbaseConnection(hbase);
-                    return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
-                }
+                //异步查询
+//                list.add(new Get(Bytes.toBytes(rs.getSource().get("resultId").toString())));
+//                HashMap<String, String> task = searchRedis(TASK, rs.getSource().get("taskId").toString());
+//                HashMap<String, String> camera = searchRedis(CAMERA, rs.getSource().get("cameraId").toString());
+//                HashMap<String, String> dataSource = searchRedis(DATASOURCE, rs.getSource().get("dataSourceId").toString());
+//                LinkedList<HashMap<String, String>> res = joinResult(task, camera, dataSource);
+//                num++;
+//                if (num == 200) {
+//                    LinkedList<HashMap<String, String>> hb = searchHBase(list);
+//                    hb.addAll(res);
+//                    mapper.writeValue(writer, res);
+//                    returnEsConnection(esclient);
+//                    returnHbaseConnection(hbase);
+//                    return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
+//                }
             }
+            HashMap<String, String> task = TASKSE(TASKS);
+            HashMap<String, String> camera = CAMERASE(CAMERAS);
+            HashMap<String, String> dataSource = DATASOURCESE(DATASOURCES);
+            LinkedList<HashMap<String, String>> res = joinResult(task, camera, dataSource);
+            if(num==50){
+                LinkedList<HashMap<String, String>> hb = searchHBase(list);
+                hb.addAll(res);
+                mapper.writeValue(writer, res);
+                returnEsConnection(esclient);
+                returnHbaseConnection(hbase);
+                return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
+            }
+
             response = esclient.prepareSearchScroll(response.getScrollId()).setScroll(new TimeValue(60000)).execute().actionGet();
         } while (response.getHits().getHits().length != 0);
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("").build();
@@ -967,9 +1045,9 @@ public class TrafficResource extends InternalPools {
 
     public JedisCluster initredis() {
         HashSet jedisClusterNodes = new HashSet<HostAndPort>();
-        jedisClusterNodes.add(new HostAndPort("datanode1", 6380));
-        jedisClusterNodes.add(new HostAndPort("datanode2", 6380));
-        jedisClusterNodes.add(new HostAndPort("datanode3", 6380));
+        jedisClusterNodes.add(new HostAndPort("datanode4", 6380));
+        jedisClusterNodes.add(new HostAndPort("datanode5", 6380));
+        jedisClusterNodes.add(new HostAndPort("datanode6", 6380));
         JedisCluster jc = new JedisCluster(jedisClusterNodes);
         return jc;
     }
