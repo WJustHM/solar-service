@@ -9,7 +9,7 @@ import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.util.Bytes;
 
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
-import org.elasticsearch.action.get.GetRequest;
+import org.elasticsearch.action.get.*;
 import org.elasticsearch.action.index.IndexAction;
 import org.elasticsearch.action.index.IndexRequestBuilder;
 import org.elasticsearch.action.search.SearchRequestBuilder;
@@ -825,17 +825,6 @@ public class TrafficResource extends InternalPools {
                 CAMERAS.add(rs.getSource().get("cameraId").toString());
                 DATASOURCES.add(rs.getSource().get("dataSourceId").toString());
                 num++;
-                //异步查询
-//                HashMap<String, String> task = searchRedis(TASK, rs.getSource().get("taskId").toString());
-//                HashMap<String, String> camera = searchRedis(CAMERA, rs.getSource().get("cameraId").toString());
-//                HashMap<String, String> dataSource = searchRedis(DATASOURCE, rs.getSource().get("dataSourceId").toString());
-//                LinkedList<HashMap<String, String>> res = joinResult(task, camera, dataSource);
-//                num++;
-//                if (num == 100) {
-//                    mapper.writeValue(writer, res);
-//                    returnEsConnection(esclient);
-//                    return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
-//                }
             }
             HashMap<String, String> task = TASKSE(TASKS);
             HashMap<String, String> camera = CAMERASE(CAMERAS);
@@ -855,37 +844,57 @@ public class TrafficResource extends InternalPools {
 
     public HashMap<String, String> TASKSE(List<String> TASK) {
         HashMap<String, String> map = new HashMap<>();
+        Set<String> lis = new HashSet<>();
         TransportClient esclient = getEsConnection();
-        SearchRequestBuilder request = esclient.prepareSearch().setIndices("vehicle").setTypes("task");
-        for (String ta : TASK) {
-            map.put(ta, request.setQuery(QueryBuilders.boolQuery().filter(QueryBuilders.boolQuery().must(QueryBuilders.termQuery("taskId", ta)))).execute().actionGet().getHits().getHits().toString());
+        MultiGetRequestBuilder muli = esclient.prepareMultiGet();
+        lis.addAll(TASK);
+        MultiGetResponse multiGetItemResponses = muli.add("vehicle", "task", lis).get();
+        for (MultiGetItemResponse itemResponse : multiGetItemResponses) {
+            GetResponse response = itemResponse.getResponse();
+            if (response.isExists()) {
+                String json = response.getSourceAsString();
+                map.put(response.getId(), json);
+            }
         }
+
         returnEsConnection(esclient);
         return map;
     }
 
     public HashMap<String, String> CAMERASE(List<String> CAMERA) {
         HashMap<String, String> map = new HashMap<>();
+        Set<String> lis = new HashSet<>();
         TransportClient esclient = getEsConnection();
-        SearchRequestBuilder request = esclient.prepareSearch().setIndices("vehicle").setTypes("camera");
-        for (String ta : CAMERA) {
-            if (!ta.equals("") && ta != null) {
-                map.put(ta, request.setQuery(QueryBuilders.boolQuery().filter(QueryBuilders.boolQuery().must(QueryBuilders.termQuery("cameraId", ta)))).execute().actionGet().getHits().getHits().toString());
+        MultiGetRequestBuilder muli = esclient.prepareMultiGet();
+        lis.addAll(CAMERA);
+        MultiGetResponse multiGetItemResponses = muli.add("vehicle", "task", lis).get();
+        for (MultiGetItemResponse itemResponse : multiGetItemResponses) {
+            GetResponse response = itemResponse.getResponse();
+            if (response.isExists()) {
+                String json = response.getSourceAsString();
+                map.put(response.getId(), json);
             }
         }
+
         returnEsConnection(esclient);
         return map;
     }
 
     public HashMap<String, String> DATASOURCESE(List<String> DATASOURCE) {
         HashMap<String, String> map = new HashMap<>();
+        Set<String> lis = new HashSet<>();
         TransportClient esclient = getEsConnection();
-        SearchRequestBuilder request = esclient.prepareSearch().setIndices("vehicle").setTypes("datasource");
-        for (String ta : DATASOURCE) {
-            if (!ta.equals("") && ta != null) {
-                map.put(ta, request.setQuery(QueryBuilders.boolQuery().filter(QueryBuilders.boolQuery().must(QueryBuilders.termQuery("dataSourceId", ta)))).execute().actionGet().getHits().getHits().toString());
+        MultiGetRequestBuilder muli = esclient.prepareMultiGet();
+        lis.addAll(DATASOURCE);
+        MultiGetResponse multiGetItemResponses = muli.add("vehicle", "task", lis).get();
+        for (MultiGetItemResponse itemResponse : multiGetItemResponses) {
+            GetResponse response = itemResponse.getResponse();
+            if (response.isExists()) {
+                String json = response.getSourceAsString();
+                map.put(response.getId(), json);
             }
         }
+
         returnEsConnection(esclient);
         return map;
     }
@@ -995,29 +1004,13 @@ public class TrafficResource extends InternalPools {
                 CAMERAS.add(rs.getSource().get("cameraId").toString());
                 DATASOURCES.add(rs.getSource().get("dataSourceId").toString());
                 num++;
-                //异步查询
-//                list.add(new Get(Bytes.toBytes(rs.getSource().get("resultId").toString())));
-//                HashMap<String, String> task = searchRedis(TASK, rs.getSource().get("taskId").toString());
-//                HashMap<String, String> camera = searchRedis(CAMERA, rs.getSource().get("cameraId").toString());
-//                HashMap<String, String> dataSource = searchRedis(DATASOURCE, rs.getSource().get("dataSourceId").toString());
-//                LinkedList<HashMap<String, String>> res = joinResult(task, camera, dataSource);
-//                num++;
-//                if (num == 200) {
-//                    LinkedList<HashMap<String, String>> hb = searchHBase(list);
-//                    hb.addAll(res);
-//                    mapper.writeValue(writer, res);
-//                    returnEsConnection(esclient);
-//                    returnHbaseConnection(hbase);
-//                    return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
-//                }
             }
             HashMap<String, String> task = TASKSE(TASKS);
             HashMap<String, String> camera = CAMERASE(CAMERAS);
             HashMap<String, String> dataSource = DATASOURCESE(DATASOURCES);
             LinkedList<HashMap<String, String>> res = joinResult(task, camera, dataSource);
-            if(num==50){
+            if (num == 50) {
                 LinkedList<HashMap<String, String>> hb = searchHBase(list);
-                hb.addAll(res);
                 mapper.writeValue(writer, res);
                 returnEsConnection(esclient);
                 returnHbaseConnection(hbase);
@@ -1053,15 +1046,6 @@ public class TrafficResource extends InternalPools {
     }
 
     public LinkedList<HashMap<String, String>> joinResult(HashMap<String, String> task, HashMap<String, String> camera, HashMap<String, String> dataSource) {
-        LinkedList results = new LinkedList<HashMap<String, String>>();
-        results.add(task);
-        results.add(camera);
-        results.add(dataSource);
-
-        return results;
-    }
-
-    public LinkedList<HashMap<String, String>> joinResult2(HashMap<String, String> task, HashMap<String, String> camera, HashMap<String, String> dataSource) {
         LinkedList results = new LinkedList<HashMap<String, String>>();
         results.add(task);
         results.add(camera);
