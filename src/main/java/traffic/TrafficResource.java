@@ -783,38 +783,10 @@ public class TrafficResource extends InternalPools {
         SimpleDateFormat simplehms = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String now = simplehms.format(new Date(System.currentTimeMillis()));
         SearchRequestBuilder request = esclient.prepareSearch().setIndices("vehicle").setTypes("result");
-        //ES查询Json代码
-        String que = "{\n" +
-                "    \"bool\": {\n" +
-                "      \"filter\": {\n" +
-                "        \"bool\": {\n" +
-                "          \"must\": [\n" +
-                "            {\n" +
-                "              \"range\": {\n" +
-                "                \"ResultTime\": {\n" +
-                "                  \"gte\": \"" + start.replace("\"", "") + "\",\n" +
-                "                  \"lte\": \"" + now + "\"\n" +
-                "                }\n" +
-                "              }\n" +
-                "            },\n" +
-                "            {\n" +
-                "              \"regexp\": {\n" +
-                "                \"Plate.keyword\": {\n" +
-                "                  \"value\": \"" + province + ".{5}" + regexnumber + "\"\n" +
-                "                }\n" +
-                "              }\n" +
-                "            }\n" +
-                "          ]\n" +
-                "        }\n" +
-                "      }\n" +
-                "    }\n" +
-                "  }";
         //执行查询语句
-
         SearchResponse response = request.setQuery(QueryBuilders.boolQuery().filter(QueryBuilders.boolQuery().must(QueryBuilders.rangeQuery("ResultTime").gte("2017-04-11 17:32:45")
                 .lte("2017-04-20 17:32:45")).must(QueryBuilders.regexpQuery("Plate.keyword", province + ".{5}" + regexnumber)))).setSize(50)
                 .setScroll(new TimeValue(5000)).execute().actionGet();
-        System.out.println("------------" + response.getHits().getTotalHits());
         int num = 0;
         do {
             List<String> TASKS = new ArrayList<>();
@@ -836,7 +808,7 @@ public class TrafficResource extends InternalPools {
                 return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
             }
 
-            response = esclient.prepareSearchScroll(response.getScrollId()).setScroll(new TimeValue(60000)).execute().actionGet();
+            response = esclient.prepareSearchScroll(response.getScrollId()).setScroll(new TimeValue(5000)).execute().actionGet();
         } while (response.getHits().getHits().length != 0);
 
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("").build();
@@ -990,9 +962,7 @@ public class TrafficResource extends InternalPools {
         //执行查询语句
         long starttimes = System.currentTimeMillis();
         SearchResponse response = request.setQuery(QueryBuilders.wrapperQuery(que)).setSize(50)
-                .setScroll(new TimeValue(60000)).execute().actionGet();
-        System.out.println("------------" + response.getHits().getTotalHits());
-
+                .setScroll(new TimeValue(5000)).execute().actionGet();
         int num = 0;
         List<Get> list = new LinkedList<Get>();
         do {
@@ -1018,7 +988,7 @@ public class TrafficResource extends InternalPools {
                 return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
             }
 
-            response = esclient.prepareSearchScroll(response.getScrollId()).setScroll(new TimeValue(60000)).execute().actionGet();
+            response = esclient.prepareSearchScroll(response.getScrollId()).setScroll(new TimeValue(5000)).execute().actionGet();
         } while (response.getHits().getHits().length != 0);
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("").build();
     }
