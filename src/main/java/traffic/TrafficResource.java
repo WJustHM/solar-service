@@ -1011,6 +1011,7 @@ public class TrafficResource extends InternalPools {
             LinkedList<HashMap<String, String>> res = joinResult(task, camera, dataSource);
             if (num == 50) {
                 LinkedList<HashMap<String, String>> hb = searchHBase(list);
+                hb.addAll(res);
                 mapper.writeValue(writer, res);
                 returnEsConnection(esclient);
                 returnHbaseConnection(hbase);
