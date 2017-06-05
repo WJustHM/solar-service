@@ -737,9 +737,36 @@ public class TrafficResource extends InternalPools {
                     .build();
     }
 
+
+    @GET
+    @Path("/help")
+    public Response help() {
+        StringBuffer helper = new StringBuffer();
+        helper.append("查询 一: 指定时间段内的过车车辆记录 \n");
+        helper.append("请求方式：GET \n");
+        helper.append("条件参数：starttime、endtime\n");
+        helper.append("示例：\n");
+        helper.append("http://172.20.31.7:8001/solar/traffic/record?starttime=\"2017-04-11 17:32:45\"&endtime=\"2017-04-20 17:32:45\"\n");
+        helper.append("\n\n");
+        helper.append("查询 二: 指定时间段、车牌省份和车牌最后一位数字匹配车辆记录 \n");
+        helper.append("请求方式：GET \n");
+        helper.append("条件参数：starttime、endtime、province、number\n");
+        helper.append("示例：\n");
+        helper.append("http://172.20.31.7:8001/solar/traffic/platerecord?starttime=\"2017-04-11 17:32:45\"&province=粤&number=2\n");
+        helper.append("\n\n");
+        helper.append("查询 三: 指定时间段、车辆各种基本属性匹配车辆记录 \n");
+        helper.append("请求方式：GET \n");
+        helper.append("条件参数：starttime、endtime、vehicleBrand、PlateColor、Direction、tag、paper" +
+                "、sun、drop、secondBelt、crash、danger\n");
+        helper.append("示例：\n");
+        helper.append("http://172.20.31.7:8001/solar/traffic/allrecord?starttime=\"2017-04-11 17:32:45\"&endtime=\"2017-04-20 17:32:45\"&vehicleBrand=斯柯达&PlateColor=蓝&Direction=3&tag=true&paper=false&sun=false&drop=true&secondBelt=true&crash=true&danger=false");
+
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(helper.toString()).build();
+    }
+
+
     @GET
     @Path("/record")
-    @Produces("application/json; charset=utf-8")
     public Response searchElasticHBase(
             @QueryParam("starttime") final String start,
             @QueryParam("endtime") final String end)
@@ -772,11 +799,10 @@ public class TrafficResource extends InternalPools {
 
     @GET
     @Path("/platerecord")
-    @Produces("application/json; charset=utf-8")
     public Response searchlicense(
             @QueryParam("starttime") final String start,
             @QueryParam("province") final String province,
-            @QueryParam("regexnumber") final String regexnumber)
+            @QueryParam("number") final String regexnumber)
             throws Exception {
         StringWriter writer = new StringWriter();
         TransportClient esclient = getEsConnection();
@@ -885,7 +911,6 @@ public class TrafficResource extends InternalPools {
         TransportClient esclient = getEsConnection();
         Connection hbase = getHbaseConnection();
         gettable = hbase.getTable(tablename);
-        SimpleDateFormat simplehms = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         SearchRequestBuilder request = esclient.prepareSearch().setIndices("vehicle").setTypes("result");
         //ES查询Json代码
         String que = "{\n" +
