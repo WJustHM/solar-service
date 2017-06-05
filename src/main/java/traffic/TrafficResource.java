@@ -837,6 +837,23 @@ public class TrafficResource extends InternalPools {
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("").build();
     }
 
+    public HashMap<String, Set<String>> ALLIN(List<String> TASK, List<String> CAMERA, List<String> DATASOURCE, List<Get> HBase) {
+        HashMap<String, Set<String>> map = new HashMap<>();
+        Set<String> task = new HashSet<>();
+        Set<String> camera = new HashSet<>();
+        Set<String> datasource = new HashSet<>();
+        TransportClient esclient = getEsConnection();
+        MultiGetRequestBuilder muli = esclient.prepareMultiGet();
+        task.addAll(TASK);
+        camera.addAll(CAMERA);
+        datasource.addAll(DATASOURCE);
+        MultiGetResponse multiGettask = muli.add("vehicle", "task", task).get();
+        MultiGetResponse multiGetcamera = muli.add("vehicle", "camera", camera).get();
+        MultiGetResponse multiGetdatasource = muli.add("vehicle", "datasource", datasource).get();
+
+        return null;
+    }
+
     public HashMap<String, String> TASKSE(List<String> TASK) {
         HashMap<String, String> map = new HashMap<>();
         Set<String> lis = new HashSet<>();
@@ -990,6 +1007,7 @@ public class TrafficResource extends InternalPools {
                 TASKS.add(rs.getSource().get("taskId").toString());
                 CAMERAS.add(rs.getSource().get("cameraId").toString());
                 DATASOURCES.add(rs.getSource().get("dataSourceId").toString());
+                list.add(new Get(Bytes.toBytes(rs.getSource().get("resultId").toString())));
                 num++;
             }
             HashMap<String, String> task = TASKSE(TASKS);
@@ -999,7 +1017,7 @@ public class TrafficResource extends InternalPools {
             if (num == 50) {
                 LinkedList<HashMap<String, String>> hb = searchHBase(list);
                 hb.addAll(res);
-                mapper.writeValue(writer, res);
+                mapper.writeValue(writer, hb);
                 returnEsConnection(esclient);
                 returnHbaseConnection(hbase);
                 return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
