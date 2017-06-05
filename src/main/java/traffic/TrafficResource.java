@@ -740,26 +740,27 @@ public class TrafficResource extends InternalPools {
 
     @GET
     @Path("/help")
+    @Produces("application/json;charset=utf-8")
     public Response help() {
         StringBuffer helper = new StringBuffer();
         helper.append("查询 一: 指定时间段内的过车车辆记录 \n");
         helper.append("请求方式：GET \n");
         helper.append("条件参数：starttime、endtime\n");
         helper.append("示例：\n");
-        helper.append("http://172.20.31.7:8001/solar/traffic/record?starttime=\"2017-04-11 17:32:45\"&endtime=\"2017-04-20 17:32:45\"\n");
+        helper.append("http://222.209.223.210:31781/solar/traffic/record?starttime=\"2017-04-11 17:32:45\"&endtime=\"2017-04-20 17:32:45\"\n");
         helper.append("\n\n");
         helper.append("查询 二: 指定时间段、车牌省份和车牌最后一位数字匹配车辆记录 \n");
         helper.append("请求方式：GET \n");
         helper.append("条件参数：starttime、endtime、province、number\n");
         helper.append("示例：\n");
-        helper.append("http://172.20.31.7:8001/solar/traffic/platerecord?starttime=\"2017-04-11 17:32:45\"&province=粤&number=2\n");
+        helper.append("http://222.209.223.210:31781/solar/traffic/platerecord?starttime=\"2017-04-11 17:32:45\"&province=粤&number=2\n");
         helper.append("\n\n");
         helper.append("查询 三: 指定时间段、车辆各种基本属性匹配车辆记录 \n");
         helper.append("请求方式：GET \n");
         helper.append("条件参数：starttime、endtime、vehicleBrand、PlateColor、Direction、tag、paper" +
                 "、sun、drop、secondBelt、crash、danger\n");
         helper.append("示例：\n");
-        helper.append("http://172.20.31.7:8001/solar/traffic/allrecord?starttime=\"2017-04-11 17:32:45\"&endtime=\"2017-04-20 17:32:45\"&vehicleBrand=斯柯达&PlateColor=蓝&Direction=3&tag=true&paper=false&sun=false&drop=true&secondBelt=true&crash=true&danger=false");
+        helper.append("http://222.209.223.210:31781/solar/traffic/allrecord?starttime=\"2017-04-11 17:32:45\"&endtime=\"2017-04-20 17:32:45\"&vehicleBrand=斯柯达&PlateColor=蓝&Direction=3&tag=true&paper=false&sun=false&drop=true&secondBelt=true&crash=true&danger=false");
 
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(helper.toString()).build();
     }
@@ -767,6 +768,7 @@ public class TrafficResource extends InternalPools {
 
     @GET
     @Path("/record")
+    @Produces("application/json;charset=utf-8")
     public Response searchElasticHBase(
             @QueryParam("starttime") final String start,
             @QueryParam("endtime") final String end)
@@ -799,6 +801,7 @@ public class TrafficResource extends InternalPools {
 
     @GET
     @Path("/platerecord")
+    @Produces("application/json;charset=utf-8")
     public Response searchlicense(
             @QueryParam("starttime") final String start,
             @QueryParam("province") final String province,
@@ -825,7 +828,7 @@ public class TrafficResource extends InternalPools {
             HashMap<String, String> task = TASKSE(TASKS);
             HashMap<String, String> camera = CAMERASE(CAMERAS);
             HashMap<String, String> dataSource = DATASOURCESE(DATASOURCES);
-            LinkedList<HashMap<String, String>> res = joinResult(task, camera, dataSource);
+            LinkedList<HashMap<String, HashMap<String, String>>> res = joinResult(task, camera, dataSource);
             if (num == 50) {
                 mapper.writeValue(writer, res);
                 returnEsConnection(esclient);
@@ -910,6 +913,7 @@ public class TrafficResource extends InternalPools {
 
     @GET
     @Path("/allrecord")
+    @Produces("application/json;charset=utf-8")
     public Response searchelasticHBase(
             @QueryParam("starttime") final String starttime,
             @QueryParam("endtime") final String endtime,
@@ -998,7 +1002,7 @@ public class TrafficResource extends InternalPools {
         SearchResponse response = request.setQuery(QueryBuilders.wrapperQuery(que)).setSize(50)
                 .setScroll(new TimeValue(5000)).execute().actionGet();
         int num = 0;
-        List<Get> list = new LinkedList<Get>();
+        List<Get> list = new LinkedList<>();
         do {
             List<String> TASKS = new ArrayList<>();
             List<String> CAMERAS = new ArrayList<>();
@@ -1013,9 +1017,9 @@ public class TrafficResource extends InternalPools {
             HashMap<String, String> task = TASKSE(TASKS);
             HashMap<String, String> camera = CAMERASE(CAMERAS);
             HashMap<String, String> dataSource = DATASOURCESE(DATASOURCES);
-            LinkedList<HashMap<String, String>> res = joinResult(task, camera, dataSource);
+            LinkedList<HashMap<String, HashMap<String, String>>> res = joinResult(task, camera, dataSource);
             if (num == 50) {
-                LinkedList<HashMap<String, String>> hb = searchHBase(list);
+                LinkedList<HashMap<String, HashMap<String, String>>> hb = searchHBase(list);
                 hb.addAll(res);
                 mapper.writeValue(writer, hb);
                 returnEsConnection(esclient);
@@ -1050,21 +1054,25 @@ public class TrafficResource extends InternalPools {
         return jc;
     }
 
-    public LinkedList<HashMap<String, String>> joinResult(HashMap<String, String> task, HashMap<String, String> camera, HashMap<String, String> dataSource) {
-        LinkedList results = new LinkedList<HashMap<String, String>>();
-        results.add(task);
-        results.add(camera);
-        results.add(dataSource);
+    public LinkedList<HashMap<String, HashMap<String, String>>> joinResult(HashMap<String, String> task, HashMap<String, String> camera, HashMap<String, String> dataSource) {
+        LinkedList results = new LinkedList<HashMap<String, HashMap<String, String>>>();
+        HashMap<String, HashMap<String, String>> maps = new HashMap<>();
+        maps.put("task", task);
+        maps.put("camera", camera);
+        maps.put("dataSource", dataSource);
+        results.add(maps);
 
         return results;
     }
 
-    public LinkedList<HashMap<String, String>> searchHBase(List<Get> gets) {
-        LinkedList<HashMap<String, String>> resultsFinal = new LinkedList<HashMap<String, String>>();
+    public LinkedList<HashMap<String, HashMap<String, String>>> searchHBase(List<Get> gets) {
+        LinkedList<HashMap<String, HashMap<String, String>>> resultsFinal = new LinkedList<>();
+        HashMap<String, HashMap<String, String>> maps = new HashMap<>();
         try {
             Result[] res = gettable.get(gets);
+            HashMap<String, String> resultHbase = new HashMap<>();
             for (Result ss : res) {
-                HashMap<String, String> resultHbase = new HashMap<String, String>();
+//                resultHbase = new HashMap<String, String>();
                 String License = Bytes.toString(ss.getValue("Result".getBytes(), "License".getBytes()));
                 String PlateType = Bytes.toString(ss.getValue("Result".getBytes(), "PlateType".getBytes()));
                 String PlateColor = Bytes.toString(ss.getValue("Result".getBytes(), "PlateColor".getBytes()));
@@ -1080,13 +1088,27 @@ public class TrafficResource extends InternalPools {
                 String vehicleStyle = Bytes.toString(ss.getValue("Result".getBytes(), "vehicleStyle".getBytes()));
                 String LocationLeft = Bytes.toString(ss.getValue("Result".getBytes(), "LocationLeft".getBytes()));
                 if (License != null) {
-                    resultHbase.put("HP", License);
+                    resultHbase.put(License, new String("{PlateType:"+PlateType+","+"PlateColor:"+PlateColor+","+"Confidence:"+Confidence+","+"LicenseAttribution:"+LicenseAttribution+","+"ImageURL:"+ImageURL+","+"CarColor:"+CarColor+","+"ResultTime:"+ResultTime+
+                            ","+"Direction:"+Direction+","+"frame_index:"+frame_index+","+"vehicleKind:"+vehicleKind+","+"vehicleBrand:"+vehicleBrand+","+"vehicleStyle:"+vehicleStyle+","+"LocationLeft:"+LocationLeft+"}"));
+//                    resultHbase.put("PlateType", PlateType);
+//                    resultHbase.put("PlateColor", PlateColor);
+//                    resultHbase.put("Confidence", Confidence);
+//                    resultHbase.put("LicenseAttribution", LicenseAttribution);
+//                    resultHbase.put("ImageURL", ImageURL);
+//                    resultHbase.put("CarColor", CarColor);
+//                    resultHbase.put("ResultTime", ResultTime);
+//                    resultHbase.put("Direction", Direction);
+//                    resultHbase.put("frame_index", frame_index);
+//                    resultHbase.put("vehicleKind", vehicleKind);
+//                    resultHbase.put("vehicleStyle", vehicleStyle);
+//                    resultHbase.put("LocationLeft", LocationLeft);
                 }
-                resultsFinal.add(resultHbase);
             }
+            maps.put("Result", resultHbase);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        resultsFinal.add(maps);
         return resultsFinal;
     }
 }
