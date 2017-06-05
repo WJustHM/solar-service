@@ -738,7 +738,7 @@ public class TrafficResource extends InternalPools {
     }
 
     @GET
-    @Path("/searchelastichbase")
+    @Path("/record")
     @Produces("application/json; charset=utf-8")
     public Response searchElasticHBase(
             @QueryParam("starttime") final String start,
@@ -761,7 +761,6 @@ public class TrafficResource extends InternalPools {
                 "  }";
 
         //执行查询语句
-        long starttimes = System.currentTimeMillis();
         SearchResponse response = request.setQuery(QueryBuilders.wrapperQuery(que)).execute().actionGet();
 
         Map<String, Long> map = new HashMap<>();
@@ -772,7 +771,8 @@ public class TrafficResource extends InternalPools {
     }
 
     @GET
-    @Path("/searchlicense")
+    @Path("/platerecord")
+    @Produces("application/json; charset=utf-8")
     public Response searchlicense(
             @QueryParam("starttime") final String start,
             @QueryParam("province") final String province,
@@ -780,8 +780,6 @@ public class TrafficResource extends InternalPools {
             throws Exception {
         StringWriter writer = new StringWriter();
         TransportClient esclient = getEsConnection();
-        SimpleDateFormat simplehms = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String now = simplehms.format(new Date(System.currentTimeMillis()));
         SearchRequestBuilder request = esclient.prepareSearch().setIndices("vehicle").setTypes("result");
         //执行查询语句
         SearchResponse response = request.setQuery(QueryBuilders.boolQuery().filter(QueryBuilders.boolQuery().must(QueryBuilders.rangeQuery("ResultTime").gte("2017-04-11 17:32:45")
@@ -839,7 +837,7 @@ public class TrafficResource extends InternalPools {
         TransportClient esclient = getEsConnection();
         MultiGetRequestBuilder muli = esclient.prepareMultiGet();
         lis.addAll(CAMERA);
-        MultiGetResponse multiGetItemResponses = muli.add("vehicle", "task", lis).get();
+        MultiGetResponse multiGetItemResponses = muli.add("vehicle", "camera", lis).get();
         for (MultiGetItemResponse itemResponse : multiGetItemResponses) {
             GetResponse response = itemResponse.getResponse();
             if (response.isExists()) {
@@ -858,7 +856,7 @@ public class TrafficResource extends InternalPools {
         TransportClient esclient = getEsConnection();
         MultiGetRequestBuilder muli = esclient.prepareMultiGet();
         lis.addAll(DATASOURCE);
-        MultiGetResponse multiGetItemResponses = muli.add("vehicle", "task", lis).get();
+        MultiGetResponse multiGetItemResponses = muli.add("vehicle", "datasource", lis).get();
         for (MultiGetItemResponse itemResponse : multiGetItemResponses) {
             GetResponse response = itemResponse.getResponse();
             if (response.isExists()) {
@@ -872,7 +870,7 @@ public class TrafficResource extends InternalPools {
     }
 
     @GET
-    @Path("/searchelasticHBase")
+    @Path("/allrecord")
     public Response searchelasticHBase(
             @QueryParam("starttime") final String starttime,
             @QueryParam("endtime") final String endtime,
@@ -892,7 +890,6 @@ public class TrafficResource extends InternalPools {
         Connection hbase = getHbaseConnection();
         gettable = hbase.getTable(tablename);
         SimpleDateFormat simplehms = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String now = simplehms.format(new Date(System.currentTimeMillis()));
         SearchRequestBuilder request = esclient.prepareSearch().setIndices("vehicle").setTypes("result");
         //ES查询Json代码
         String que = "{\n" +
@@ -960,7 +957,6 @@ public class TrafficResource extends InternalPools {
                 "    }\n" +
                 "  }";
         //执行查询语句
-        long starttimes = System.currentTimeMillis();
         SearchResponse response = request.setQuery(QueryBuilders.wrapperQuery(que)).setSize(50)
                 .setScroll(new TimeValue(5000)).execute().actionGet();
         int num = 0;
@@ -987,7 +983,6 @@ public class TrafficResource extends InternalPools {
                 returnHbaseConnection(hbase);
                 return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
             }
-
             response = esclient.prepareSearchScroll(response.getScrollId()).setScroll(new TimeValue(5000)).execute().actionGet();
         } while (response.getHits().getHits().length != 0);
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("").build();
