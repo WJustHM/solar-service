@@ -805,7 +805,6 @@ public class TrafficResource extends InternalPools {
                 returnEsConnection(esclient);
                 return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(writer.toString()).build();
             }
-
             response = esclient.prepareSearchScroll(response.getScrollId()).setScroll(new TimeValue(5000)).execute().actionGet();
         } while (response.getHits().getHits().length != 0);
 
@@ -826,7 +825,6 @@ public class TrafficResource extends InternalPools {
                 map.put(response.getId(), json);
             }
         }
-
         returnEsConnection(esclient);
         return map;
     }
@@ -845,7 +843,6 @@ public class TrafficResource extends InternalPools {
                 map.put(response.getId(), json);
             }
         }
-
         returnEsConnection(esclient);
         return map;
     }
@@ -864,7 +861,6 @@ public class TrafficResource extends InternalPools {
                 map.put(response.getId(), json);
             }
         }
-
         returnEsConnection(esclient);
         return map;
     }
