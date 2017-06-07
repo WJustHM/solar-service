@@ -790,7 +790,7 @@ public class TrafficResource extends InternalPools {
                 "  }";
 
         //执行查询语句
-        SearchResponse response = request.setQuery(QueryBuilders.wrapperQuery(que)).execute().actionGet();
+        SearchResponse response = request.setQuery(QueryBuilders.wrapperQuery(que)).setFetchSource(false).execute().actionGet();
 
         Map<String, Long> map = new HashMap<>();
         map.put("total", response.getHits().getTotalHits());
